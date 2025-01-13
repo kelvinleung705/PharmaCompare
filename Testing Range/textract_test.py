@@ -1,5 +1,5 @@
 import json
-
+import pandas as pd
 import boto3
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
 
@@ -42,7 +42,9 @@ class textcract_test:
 
     if __name__ == "__main__":
         # Replace with your access key and secret access key
-        access_key_id = ""
-        secret_access_key = ""
+        df = pd.read_csv('C:/Users/kelvi/OneDrive - University of Toronto/Desktop/PharmaCompare1_accessKeys')
+        nested_list = df.values.tolist()
+        access_key_id = nested_list[0][0]
+        secret_access_key = nested_list[0][1]
 
         print(aws_Textract(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg"))
