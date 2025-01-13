@@ -1,0 +1,28 @@
+Index: Testing_Range/textract_test.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import json\r\n\r\nimport boto3\r\nfrom botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError\r\n\r\n\r\nclass textcract_test:\r\n\r\n    def aws_Textract(access_key_id, secret_access_key, document_file_name, region=\"ca-central-1\") -> str:\r\n        try:\r\n            # Create an STS client to verify credentials\r\n            textract_client = boto3.client(\r\n               \"textract\",\r\n               aws_access_key_id=access_key_id,\r\n              aws_secret_access_key=secret_access_key,\r\n              region_name=region\r\n            )\r\n            feature_types = [\"TABLES\"]\r\n            # Verify credentials by calling GetCallerIdentity\r\n            if document_file_name is not None:\r\n                with open(document_file_name, \"rb\") as document_file:\r\n                    document_bytes = document_file.read()\r\n            try:\r\n                response = textract_client.analyze_document(\r\n\r\n                    Document={\"Bytes\": document_bytes}, FeatureTypes = feature_types\r\n                )\r\n                #logger.info(\"Detected %s blocks.\", len(response[\"Blocks\"]))\r\n            except ClientError:\r\n                print(\"Couldn't detect text.\")\r\n                raise\r\n            else:\r\n                return json.dumps(response, indent=4);\r\n\r\n        except NoCredentialsError:\r\n            print(\"Error: No valid credentials provided.\")\r\n        except PartialCredentialsError:\r\n            print(\"Error: Incomplete credentials provided.\")\r\n        except Exception as e:\r\n            print(f\"An error occurred: {e}\")\r\n\r\n\r\n    if __name__ == \"__main__\":\r\n        # Replace with your access key and secret access key\r\n        access_key_id = \"AKIATNVEVGWJYFOYVVHO\"\r\n        secret_access_key = \"yhveguVXZiSiPlUMyMN+JMunO5u8iuYh08XYKR7C\"\r\n\r\n        print(aws_Textract(access_key_id, secret_access_key,\"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg\"))\r\n
+===================================================================
+diff --git a/Testing_Range/textract_test.py b/Testing_Range/textract_test.py
+--- a/Testing_Range/textract_test.py	(revision c975c4a3d3f4d4a4a39332faffad3e876986d8dc)
++++ b/Testing_Range/textract_test.py	(date 1736726918391)
+@@ -1,4 +1,5 @@
+ import json
++import pandas as pd
+ 
+ import boto3
+ from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
+@@ -42,7 +43,11 @@
+ 
+     if __name__ == "__main__":
+         # Replace with your access key and secret access key
+-        access_key_id = "AKIATNVEVGWJYFOYVVHO"
+-        secret_access_key = "yhveguVXZiSiPlUMyMN+JMunO5u8iuYh08XYKR7C"
++        df = pd.read_csv('C:/Users/kelvi/OneDrive - University of Toronto/Desktop/PharmaCompare1_accessKeys.csv')
++        # Convert the DataFrame to a nested list
++        nested_list = df.values.tolist()
++        print(nested_list)
++        access_key_id = nested_list[0][0]
++        secret_access_key = nested_list[0][1]
+ 
+         print(aws_Textract(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg"))
