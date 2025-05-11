@@ -1,2 +1,2 @@
 # PharmaCompare
-Take a picture of your prescription receipt and record the cost and fees
+This is an initiative to record the cost and fee of drugs dispensed from a registered pharmacy, for easier access of affordable perscribed drugs.
