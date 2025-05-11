@@ -1,4 +1,5 @@
 import boto3
+import pandas
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError
 
 
@@ -40,7 +41,9 @@ def aws_login_with_access_key(access_key_id, secret_access_key, region="us-east-
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key
-    access_key_id = ""
-    secret_access_key = ""
+    df = pandas.read_csv("C:/Users/kelvi/OneDrive - University of Toronto/Desktop/PharmaCompare1_accessKeys.csv")
+    nested_list = df.values.tolist()
+    access_key_id = nested_list[0][0]
+    secret_access_key = nested_list[0][1]
 
     aws_login_with_access_key(access_key_id, secret_access_key)
