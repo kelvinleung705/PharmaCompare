@@ -49,3 +49,4 @@ if __name__ == "__main__":
     p = pharmacy_list()
     r = p.normalize_address("1 Dodds Gate, Markham, ON, CANADA")
     p.check_pharmacy()
+    print("k")
