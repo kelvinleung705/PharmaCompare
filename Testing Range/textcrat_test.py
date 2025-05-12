@@ -1,6 +1,8 @@
+from dotenv import load_dotenv
 import json
 import pandas as pd
 import boto3
+import os
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
 
 
@@ -42,10 +44,9 @@ class textcract_test:
 
     if __name__ == "__main__":
         # Replace with your access key and secret access key
-        df = pd.read_csv('C:/Users/kelvi/OneDrive - University of Toronto/Desktop/PharmaCompare1_accessKeys.csv')
-        nested_list = df.values.tolist()
-        access_key_id = nested_list[0][0]
-        secret_access_key = nested_list[0][1]
+        load_dotenv()
+        access_key_id = os.getenv("AWS_Access_Key")
+        secret_access_key = os.getenv("AWS_Secret_Access_Key")
         ids = []
         json_string = aws_Textract(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
         dictionary = json.loads(json_string)
