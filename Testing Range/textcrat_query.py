@@ -54,7 +54,6 @@ class textcract_query:
 
     if __name__ == "__main__":
         # Replace with your access key and secret access key
-        df = pd.read_csv('C:/Users/kelvi/OneDrive - University of Toronto/Desktop/PharmaCompare1_accessKeys.csv')
         nested_list = df.values.tolist()
         load_dotenv()
         access_key_id = os.getenv("AWS_Access_Key")
