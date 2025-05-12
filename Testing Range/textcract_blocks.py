@@ -44,7 +44,6 @@ class textcract_query:
 
     if __name__ == "__main__":
         # Replace with your access key and secret access key
-        nested_list = df.values.tolist()
         load_dotenv()
         access_key_id = os.getenv("AWS_Access_Key")
         secret_access_key = os.getenv("AWS_Secret_Access_Key")

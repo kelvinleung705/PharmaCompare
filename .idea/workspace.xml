@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing Range/textcract_blocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/textcract_blocks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing Range/textcrat_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/textcrat_query.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing Range/textcrat_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/textcrat_test.py" afterDir="false" />
@@ -174,7 +175,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Testing Range/textcrat_query.py</url>
-          <line>68</line>
+          <line>67</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
