@@ -1,10 +1,17 @@
+from dotenv import load_dotenv
 import csv
 import requests
 import time
+import os
 
 class pharmacy_list:
-    def normalize_address(self, address):
-        url = "https://nominatim.openstreetmap.org/search"
+    def normalize_address(self, address ):
+        import os
+        load_dotenv()
+        API_KEY = os.getenv("Google_Geocoding_API_KEY")
+        url1 = "https://maps.googleapis.com/maps/api/geocode/json?address="
+        url2 = "&key="
+        url = url1 + address + url2 + API_KEY
         params = {
             "q": address,
             "format": "json",
@@ -27,9 +34,9 @@ class pharmacy_list:
             for lines in csvFile:
                 address = None
                 if lines[6] == "":
-                    address = lines[5] + ", " + lines[7] + ", ON, CANADA"
+                    address = lines[5] + "," + lines[7] + ",ON,CANADA"
                 else:
-                    address = lines[5] + ", " + lines[6] + ", " + lines[7] + ", ON, CANADA"
+                    address = lines[5] + "," + lines[6] + "," + lines[7] + ",ON,CANADA"
 
                 k = self.normalize_address(address)
                 lines.append(k)
