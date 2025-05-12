@@ -1,5 +1,6 @@
 import csv
 import requests
+import time
 
 class pharmacy_list:
     def normalize_address(self, address):
@@ -23,12 +24,11 @@ class pharmacy_list:
             csvFile = csv.reader(file)
             next(csvFile)
             for lines in csvFile:
-                lines = [cell.lower() for cell in lines]
                 address = None
                 if lines[6] == "":
-                    address = (lines[5] + ", " + lines[7] + ", ON, CANADA" + ", " + lines[8])
+                    address = lines[5] + ", " + lines[7] + ", ON, CANADA"
                 else:
-                    address = (lines[5] + ", " + lines[6] + ", " + lines[7] + ", ON, CANADA" + ", " + lines[8])
+                    address = lines[5] + ", " + lines[6] + ", " + lines[7] + ", ON, CANADA"
 
                 k = self.normalize_address(address)
                 lines.append(k)
@@ -39,5 +39,5 @@ class pharmacy_list:
 
 if __name__ == "__main__":
     p = pharmacy_list()
-    r = p.normalize_address("Ten Downing Street, Westminster, London")
+    r = p.normalize_address("1 Dodds Gate, Markham, ON, CANADA")
     p.check_pharmacy()
