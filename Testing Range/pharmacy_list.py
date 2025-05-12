@@ -12,7 +12,8 @@ class pharmacy_list:
         }
         response = requests.get(url, params=params, headers={'User-Agent': 'MyApp'})
         data = response.json()
-        return data[0] if data else None
+        address_dict = data['results']
+        return address_dict[0]['formatted_address'] if address_dict else None
 
     #a1 = normalize_address("10 Downing St, London")
     #a2 = normalize_address("Ten Downing Street, Westminster, London")
