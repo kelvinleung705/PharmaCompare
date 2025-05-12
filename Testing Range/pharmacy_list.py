@@ -2,6 +2,7 @@ import csv
 import requests
 import time
 
+#nominatim
 class pharmacy_list:
     def normalize_address(self, address):
         url = "https://nominatim.openstreetmap.org/search"
