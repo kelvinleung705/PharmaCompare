@@ -54,5 +54,26 @@ class textcract_key_value_form:
             block = blocks[i]
             keys_list = list(block.keys())
             if block['BlockType'] == 'KEY_VALUE_SET':
-                print("found")
-        #print(dictionary)
+                key_id = block['Relationships'][0]['Ids'][0]
+                value_id = block['Relationships'][0]['Ids'][0]
+                key = None
+                value = None
+                for checked in blocks:
+                    if key_id == checked['Id']:
+                        key_id = checked['Relationships'][0]['Ids'][0]
+                        for textbox in blocks:
+                            k=1
+                            # if key_id == textbox['Id']:
+                            # key = checked['Text']
+                        # if key and value:
+                        # print(key + ": " + value)
+                        # break
+                    elif value_id == checked['Id']:
+                        for textbox in blocks:
+                            k=1
+                            #if key_id == textbox['Id']:
+                                #key = checked['Text']
+                        #if key and value:
+                            #print(key + ": " + value)
+                            #break
+                        #print(dictionary)
