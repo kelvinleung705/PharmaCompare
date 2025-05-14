@@ -54,7 +54,7 @@
     "Python.loginIAM test.executor": "Run",
     "Python.pharmacy_list.executor": "Debug",
     "Python.textcract_blocks.executor": "Debug",
-    "Python.textcract_key_value_form.executor": "Debug",
+    "Python.textcract_key_value_form.executor": "Run",
     "Python.textcrat_query.executor": "Run",
     "Python.textcrat_test.executor": "Run",
     "Python.textract_test.executor": "Run",
@@ -152,6 +152,7 @@
       <workItem from="1736966443792" duration="3231000" />
       <workItem from="1746907620139" duration="10852000" />
       <workItem from="1746996481946" duration="4654000" />
+      <workItem from="1747181859032" duration="8890000" />
     </task>
     <servers />
   </component>
@@ -189,16 +190,6 @@
           <line>65</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing Range/textcract_key_value_form.py</url>
-          <line>71</line>
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing Range/textcract_key_value_form.py</url>
-          <line>62</line>
-          <option name="timeStamp" value="75" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -217,9 +208,9 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PharmaCompare$textcrat_test.coverage" NAME="textcrat_test Coverage Results" MODIFIED="1747069333430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$textcract_key_value_form.coverage" NAME="textcract_key_value_form Coverage Results" MODIFIED="1747164508177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$textcract_key_value_form.coverage" NAME="textcract_key_value_form Coverage Results" MODIFIED="1747194223134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$loginIAM_test.coverage" NAME="loginIAM test Coverage Results" MODIFIED="1736731396245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_list.coverage" NAME="pharmacy_list Coverage Results" MODIFIED="1747159247081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_list.coverage" NAME="pharmacy_list Coverage Results" MODIFIED="1747188630851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textract_test.coverage" NAME="textract_test Coverage Results" MODIFIED="1746999878673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textcract_blocks.coverage" NAME="textcract_blocks Coverage Results" MODIFIED="1747159378776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textcrat_query.coverage" NAME="textcrat_query Coverage Results" MODIFIED="1747068853807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />

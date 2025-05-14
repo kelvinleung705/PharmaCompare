@@ -50,30 +50,36 @@ class textcract_key_value_form:
         json_string = aws_Textract(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
         dictionary = json.loads(json_string)
         blocks = dictionary['Blocks']
+
         for i in range(len(blocks)):
             block = blocks[i]
             keys_list = list(block.keys())
-            if block['BlockType'] == 'KEY_VALUE_SET':
-                key_id = block['Relationships'][0]['Ids'][0]
-                value_id = block['Relationships'][0]['Ids'][0]
-                key = None
-                value = None
-                for checked in blocks:
-                    if key_id == checked['Id']:
-                        key_id = checked['Relationships'][0]['Ids'][0]
-                        for textbox in blocks:
-                            k=1
-                            # if key_id == textbox['Id']:
-                            # key = checked['Text']
-                        # if key and value:
-                        # print(key + ": " + value)
-                        # break
-                    elif value_id == checked['Id']:
-                        for textbox in blocks:
-                            k=1
-                            #if key_id == textbox['Id']:
-                                #key = checked['Text']
-                        #if key and value:
-                            #print(key + ": " + value)
-                            #break
-                        #print(dictionary)
+            key_block_id = None
+            key = ""
+            value_block_id = None
+            value = ""
+            value_word_blocks_id = []
+            if block['BlockType'] == "KEY_VALUE_SET":
+                key_value_blocks = block['Relationships']
+                list_of_block = []
+                not_done = 2
+                for inner_block in key_value_blocks:
+                    if inner_block['Type'] == "VALUE":
+                        value_block_id = inner_block["Ids"][0]
+                        not_done -= 1
+                    elif inner_block['Type'] == "CHILD":
+                        key_block_id = inner_block["Ids"][0]
+                        not_done -= 1
+                not_done = 2
+                if key_block_id and value_block_id:
+                    for inner_block in blocks:
+                        if inner_block["Id"] == key_block_id:
+                            key = inner_block["Text"]
+
+                        elif inner_block["Id"] == value_block_id:
+                            value_word_blocks_id = inner_block["Relationships"][0]["Ids"]
+                            for block_id in value_word_blocks_id:
+                                for search_block in blocks:
+                                    if search_block["Id"] == block_id:
+                                        value = value + " " + search_block["Text"]
+                    print(key + " " + value)
