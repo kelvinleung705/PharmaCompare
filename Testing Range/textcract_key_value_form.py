@@ -9,6 +9,7 @@ class textcract_key_value_form:
         self.image_location = image_location
         self.access_key_id = access_key_id
         self.secret_access_key = secret_access_key
+        self.key_value_form = None
 
     def aws_Textract(self, region="ca-central-1") -> str:
         try:
@@ -80,8 +81,30 @@ class textcract_key_value_form:
                                     if search_block["Id"] == block_id:
                                         value = value + " " + search_block["Text"]
                     key_value_pair.append([key, value])
-
+        self.key_value_form = key_value_pair
         return key_value_pair
+
+    def get_cost(self) -> value:
+        if key_value_pair is not None:
+            found = False;
+            for pair in key_value_pair:
+                if "cost" in pair[0].lower:
+                    found = True
+                    return cost
+        else:
+            return 0
+
+        try:
+            # Remove spaces
+            s_clean = s.strip().replace(" ", "")
+            # If there's a decimal point, convert to float first, then to int
+                if '.' in s_clean:
+                    return int(float(s_clean))
+                return int(s_clean)
+            except ValueError:
+                # Return None or raise error depending on what you prefer
+                return None
+
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key
