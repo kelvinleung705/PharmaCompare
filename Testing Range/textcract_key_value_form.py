@@ -44,6 +44,7 @@ class textcract_key_value_form:
             print(f"An error occurred: {e}")
 
     def get_key_value_pair(self) -> list[list[str]]:
+        key_value_pair = []
         json_string = self.aws_Textract()
         dictionary = json.loads(json_string)
         blocks = dictionary['Blocks']
@@ -78,8 +79,9 @@ class textcract_key_value_form:
                                 for search_block in blocks:
                                     if search_block["Id"] == block_id:
                                         value = value + " " + search_block["Text"]
-                    print(key + " " + value)
-        return None
+                    key_value_pair.append([key, value])
+
+        return key_value_pair
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key
@@ -90,4 +92,6 @@ if __name__ == "__main__":
     ids = []
     textcract = textcract_key_value_form(access_key_id, secret_access_key,
                                "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
-    json_string = textcract.get_key_value_pair()
+    key_value_pair = textcract.get_key_value_pair()
+    for pair in key_value_pair:
+        print(pair[0], pair[1])
