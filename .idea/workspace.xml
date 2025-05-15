@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing Range/textcrat_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/textcrat_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing Range/textcract_key_value_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/textcract_key_value_form.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +71,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.textcract_key_value_form">
     <configuration name="pharmacy_list" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
@@ -87,6 +87,29 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing Range/pharmacy_list.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="textcract_key_value_form" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PharmaCompare" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Testing Range" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing Range/textcract_key_value_form.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -120,8 +143,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.textcract_key_value_form" />
         <item itemvalue="Python.pharmacy_list" />
-        <item itemvalue="Python.textract_test" />
         <item itemvalue="Python.textract_test" />
         <item itemvalue="Python.textract_test" />
         <item itemvalue="Python.textract_test" />
@@ -153,7 +176,7 @@
       <workItem from="1746907620139" duration="10852000" />
       <workItem from="1746996481946" duration="4654000" />
       <workItem from="1747181859032" duration="8890000" />
-      <workItem from="1747256724495" duration="3097000" />
+      <workItem from="1747256724495" duration="3672000" />
     </task>
     <servers />
   </component>
@@ -209,7 +232,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PharmaCompare$textcrat_test.coverage" NAME="textcrat_test Coverage Results" MODIFIED="1747275851541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$textcract_key_value_form.coverage" NAME="textcract_key_value_form Coverage Results" MODIFIED="1747256799520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$textcract_key_value_form.coverage" NAME="textcract_key_value_form Coverage Results" MODIFIED="1747277131038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$loginIAM_test.coverage" NAME="loginIAM test Coverage Results" MODIFIED="1736731396245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_list.coverage" NAME="pharmacy_list Coverage Results" MODIFIED="1747188630851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textract_test.coverage" NAME="textract_test Coverage Results" MODIFIED="1746999878673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
