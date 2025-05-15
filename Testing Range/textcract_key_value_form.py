@@ -1,7 +1,10 @@
 import json
 import pandas as pd
 import boto3
+import os
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
+from dotenv import load_dotenv
+from typing import Union
 
 
 class textcract_key_value_form:
@@ -10,6 +13,12 @@ class textcract_key_value_form:
         self.access_key_id = access_key_id
         self.secret_access_key = secret_access_key
         self.key_value_form = None
+        self.cost = None
+        self.fee = None
+        self.din = None
+        self.quantity_gram = None
+        self.quantity_number = None
+        self.is_qty_number = True
 
     def aws_Textract(self, region="ca-central-1") -> str:
         try:
@@ -84,37 +93,85 @@ class textcract_key_value_form:
         self.key_value_form = key_value_pair
         return key_value_pair
 
-    def get_cost(self) -> value:
+    def get_cost(self) -> float:
         if key_value_pair is not None:
             found = False;
             for pair in key_value_pair:
-                if "cost" in pair[0].lower:
-                    found = True
-                    return cost
+                if "cost" in pair[0].lower():
+                    try:
+                        # Remove spaces
+                        s_clean = pair[1].strip().replace(" ", "")
+                        # If there's a decimal point, convert to float first, then to int
+                        self.cost = float(s_clean)
+                        return self.cost
+                    except ValueError:
+                        # Return None or raise error depending on what you prefer
+                        return None
         else:
-            return 0
+            return None
 
-        try:
-            # Remove spaces
-            s_clean = s.strip().replace(" ", "")
-            # If there's a decimal point, convert to float first, then to int
-                if '.' in s_clean:
-                    return int(float(s_clean))
-                return int(s_clean)
-            except ValueError:
-                # Return None or raise error depending on what you prefer
-                return None
+    def get_fee(self) -> float:
+        if key_value_pair is not None:
+            found = False;
+            for pair in key_value_pair:
+                if "fee" in pair[0].lower():
+                    try:
+                        # Remove spaces
+                        s_clean = pair[1].strip().replace(" ", "")
+                        # If there's a decimal point, convert to float first, then to int
+                        self.fee = float(s_clean)
+                        return self.fee
+                    except ValueError:
+                        # Return None or raise error depending on what you prefer
+                        return None
+        else:
+            return None
+
+    def get_din(self) -> str:
+        if key_value_pair is not None:
+            found = False;
+            for pair in key_value_pair:
+                if "din" in pair[0].lower():
+                    s_clean = pair[1].strip().replace(" ", "")
+                    s_clean.lower()
+                    self.din = s_clean
+                    return self.din
+        else:
+            return None
+
+    def get_quantity(self) -> Union[int, str]:
+        if key_value_pair is not None:
+            found = False;
+            for pair in key_value_pair:
+                if "qt" in pair[0].lower() or "quant" in pair[0].lower():
+                    s_clean = pair[1].strip().replace(" ", "")
+                    s_clean.lower()
+                    try:
+                        # Remove spaces
+                        # If there's a decimal point, convert to float first, then to int
+                        self.quantity_number = int(s_clean)
+                        self.is_qty_number = True
+                        return self.quantity_number
+                    except ValueError:
+                        # Return None or raise error depending on what you prefer
+                        self.quantity_gram = str(s_clean)
+                        self.is_qty_number = False
+                        return self.quantity_gram
+        else:
+            return None
 
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key
-    df = pd.read_csv('C:/Users/kelvi/OneDrive - University of Toronto/Desktop/PharmaCompare1_accessKeys.csv')
-    nested_list = df.values.tolist()
-    access_key_id = nested_list[0][0]
-    secret_access_key = nested_list[0][1]
-    ids = []
+    load_dotenv()
+    access_key_id = os.getenv("AWS_Access_Key")
+    secret_access_key = os.getenv("AWS_Secret_Access_Key")
     textcract = textcract_key_value_form(access_key_id, secret_access_key,
                                "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
     key_value_pair = textcract.get_key_value_pair()
     for pair in key_value_pair:
         print(pair[0], pair[1])
+    print(textcract.get_cost())
+    print(textcract.get_fee())
+    print(textcract.get_din())
+    print(textcract.get_quantity())
