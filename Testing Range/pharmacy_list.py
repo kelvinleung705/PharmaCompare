@@ -45,8 +45,34 @@ class pharmacy_list:
             print(pharmacy)
         return pharmacy_list
 
+    def update_pharmacy_list(self) -> list[list[str]]:
+        pharmacy_list = []
+        with open('../Data/Ontario_Pharmacy_Information.csv', mode='r', encoding='utf-8-sig') as file:
+            csvFile = csv.reader(file)
+            title_line = next(csvFile)
+            for lines in csvFile:
+                address = None
+                if lines[6] == "":
+                    address = lines[5] + "," + lines[7] + ",ON,CANADA"
+                else:
+                    address = lines[5] + "," + lines[6] + "," + lines[7] + ",ON,CANADA"
+
+                k = self.normalize_address(address)
+                lines.append(k)
+                print(k)
+                pharmacy_list.append(lines)
+        for pharmacy in pharmacy_list:
+            print(pharmacy)
+        with open('../Data/Ontario_Pharmacy_Information.csv', 'w', newline='', encoding='utf-8-sig') as file:
+            writer = csv.writer(file)
+            writer.writerow(title_line)
+            writer.writerows(pharmacy_list)
+        return pharmacy_list
+
+    #def write_csv_address(self):
+
+
 if __name__ == "__main__":
     p = pharmacy_list()
-    r = p.normalize_address("1 Dodds Gate, Markham, ON, CANADA")
-    p.check_pharmacy()
-    print("k")
+    r = p.normalize_address("1048 Midland Avenue, Kingston, ON, CANADA")
+    p.update_pharmacy_list()
