@@ -1,0 +1,30 @@
+* [33maec5a03[m[33m ([m[1;36mHEAD[m[33m, [m[1;32maddress-tidying-google[m[33m)[m for rebase
+* [33mcc19e95[m Stop tracking .env and ignore it
+* [33m313dcdc[m now use .env
+* [33mfb2361e[m now use .env
+* [33mc5ed970[m now use .env
+* [33m192ed08[m security
+[31m|[m * [33m0134d5f[m[33m ([m[1;32maddress-tidying-nominatim[m[33m)[m Stop tracking .env and ignore it
+[31m|[m * [33mff75cc9[m Stop tracking .env and ignore it
+[31m|[m * [33m3b01ca4[m security
+[31m|[m * [33mf6a547f[m now use .env 1
+[31m|[m * [33m7a01d55[m disclaimer changed
+[31m|[m * [33m13127f0[m add disclaimer
+[31m|[m * [33mcd2d029[m yes
+[31m|[m[31m/[m  
+[31m|[m * [33m8b895d3[m[33m ([m[1;32maddress-tidying-google-new[m[33m)[m now use .env
+[31m|[m * [33m9a16280[m now use .env
+[31m|[m * [33m7945ccf[m now use .env
+[31m|[m * [33mf05c079[m security
+[31m|[m * [33mac23476[m n
+[31m|[m * [33m089630c[m implemented
+[31m|[m[31m/[m  
+* [33m1ff706f[m nominatim works
+* [33m14fd7d5[m yes
+[33m|[m * [33m4a77ba9[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m system commit required
+[33m|[m * [33mb9e5080[m Update README.md
+[33m|[m * [33me254a73[m Update README.md
+[33m|[m[33m/[m  
+* [33mf08969c[m good
+* [33m0664fc2[m bypass
+* [33m6637bd6[m Initial commit
