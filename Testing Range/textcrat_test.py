@@ -1,26 +1,29 @@
-from dotenv import load_dotenv
 import json
 import pandas as pd
 import boto3
-import os
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
 
 
 class textcract_test:
 
-    def aws_Textract(access_key_id, secret_access_key, document_file_name, region="ca-central-1") -> str:
+    def __init__(self, access_key_id, secret_access_key, image_location):
+        self.image_location = image_location
+        self.access_key_id = access_key_id
+        self.secret_access_key = secret_access_key
+
+    def aws_Textract(self, region="ca-central-1") -> str:
         try:
             # Create an STS client to verify credentials
             textract_client = boto3.client(
                "textract",
-               aws_access_key_id=access_key_id,
-              aws_secret_access_key=secret_access_key,
+               aws_access_key_id=self.access_key_id,
+              aws_secret_access_key=self.secret_access_key,
               region_name=region
             )
             feature_types = ["TABLES"]
             # Verify credentials by calling GetCallerIdentity
-            if document_file_name is not None:
-                with open(document_file_name, "rb") as document_file:
+            if self.image_location is not None:
+                with open(self.image_location, "rb") as document_file:
                     document_bytes = document_file.read()
             try:
                 response = textract_client.analyze_document(
@@ -41,14 +44,8 @@ class textcract_test:
         except Exception as e:
             print(f"An error occurred: {e}")
 
-
-    if __name__ == "__main__":
-        # Replace with your access key and secret access key
-        load_dotenv()
-        access_key_id = os.getenv("AWS_Access_Key")
-        secret_access_key = os.getenv("AWS_Secret_Access_Key")
-        ids = []
-        json_string = aws_Textract(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
+    def get_key_value_pair(self) -> list[list[str]]:
+        json_string = self.aws_Textract()
         dictionary = json.loads(json_string)
         objects = dictionary['Blocks']
         for i in range(len(objects)):
@@ -61,5 +58,17 @@ class textcract_test:
                         checked = objects[j]
                         if id == checked['Id']:
                             print(object['Text'] + checked['Text'])
+        return [[0]]
+
+
+if __name__ == "__main__":
+    # Replace with your access key and secret access key
+    df = pd.read_csv('C:/Users/kelvi/OneDrive - University of Toronto/Desktop/PharmaCompare1_accessKeys.csv')
+    nested_list = df.values.tolist()
+    access_key_id = nested_list[0][0]
+    secret_access_key = nested_list[0][1]
+    ids = []
+    textcract = textcract_test(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
+    json_string = textcract.get_key_value_pair()
 
         #print(dictionary)
