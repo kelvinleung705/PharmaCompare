@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing Range/textcract_key_value_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/textcract_key_value_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Ontario_Pharmacy_Locations.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Ontario_Pharmacy_Locations.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing Range/pharmacy_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/pharmacy_list.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="address-tidying-google" />
+        <entry key="$PROJECT_DIR$" value="address-tidying-nominatim" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,14 +55,13 @@
     "Python.loginIAM test.executor": "Run",
     "Python.pharmacy_list.executor": "Debug",
     "Python.textcract_blocks.executor": "Run",
-    "Python.textcract_key_value_form.executor": "Run",
     "Python.textcrat_query.executor": "Run",
     "Python.textcrat_test.executor": "Run",
     "Python.textract_test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "extract-drug-info",
+    "git-widget-placeholder": "address-tidying-google",
     "last_opened_file_path": "C:/Users/kelvi/PycharmProjects/csc148",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -71,7 +71,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.pharmacy_list">
     <configuration name="pharmacy_list" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
@@ -87,29 +87,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing Range/pharmacy_list.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="textcract_key_value_form" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PharmaCompare" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Testing Range" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing Range/textcract_key_value_form.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -144,8 +121,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.pharmacy_list" />
-        <item itemvalue="Python.textcract_key_value_form" />
         <item itemvalue="Python.textract_test" />
+        <item itemvalue="Python.pharmacy_list" />
         <item itemvalue="Python.textract_test" />
         <item itemvalue="Python.textract_test" />
       </list>
@@ -174,9 +151,7 @@
       <workItem from="1736730605912" duration="8014000" />
       <workItem from="1736966443792" duration="3231000" />
       <workItem from="1746907620139" duration="10852000" />
-      <workItem from="1746996481946" duration="4654000" />
-      <workItem from="1747181859032" duration="8890000" />
-      <workItem from="1747256724495" duration="5059000" />
+      <workItem from="1746996481946" duration="9675000" />
     </task>
     <servers />
   </component>
@@ -188,19 +163,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="main" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -210,34 +173,29 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing Range/textcrat_query.py</url>
-          <line>65</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/Testing Range/pharmacy_list.py</url>
+          <line>77</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Testing Range/pharmacy_list.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
-      <default-breakpoints>
-        <breakpoint type="python-exception">
-          <properties notifyOnTerminate="true" exception="BaseException">
-            <option name="notifyOnTerminate" value="true" />
-          </properties>
-        </breakpoint>
-      </default-breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="k['display_name']" />
         <watch expression="block['EntityTypes']" />
-        <watch expression="value_block_id" />
-        <watch expression="value_block_id" />
-        <watch expression="inner_block['Relationships']" />
       </configuration>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PharmaCompare$textcrat_test.coverage" NAME="textcrat_test Coverage Results" MODIFIED="1747275851541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$textcract_key_value_form.coverage" NAME="textcract_key_value_form Coverage Results" MODIFIED="1747443398187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$textcract_key_value_form.coverage" NAME="textcract_key_value_form Coverage Results" MODIFIED="1747337382144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$loginIAM_test.coverage" NAME="loginIAM test Coverage Results" MODIFIED="1736731396245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_list.coverage" NAME="pharmacy_list Coverage Results" MODIFIED="1747427296589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_list.coverage" NAME="pharmacy_list Coverage Results" MODIFIED="1747350055843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textract_test.coverage" NAME="textract_test Coverage Results" MODIFIED="1746999878673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textcract_blocks.coverage" NAME="textcract_blocks Coverage Results" MODIFIED="1747277164763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textcrat_query.coverage" NAME="textcrat_query Coverage Results" MODIFIED="1747068853807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />

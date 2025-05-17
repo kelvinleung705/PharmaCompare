@@ -74,5 +74,5 @@ class pharmacy_list:
 
 if __name__ == "__main__":
     p = pharmacy_list()
-    r = p.normalize_address("1048 Midland Avenue, Kingston, ON, CANADA")
+    r = p.normalize_address("414 Fifth Avenue, Po Box 607, Matheson, ON, CANADA")
     p.update_pharmacy_list()
