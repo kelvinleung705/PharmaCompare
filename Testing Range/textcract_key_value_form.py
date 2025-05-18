@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from typing import Union
 import requests
 import re
+from datetime import date
 
 
 class textcract_key_value_form:
@@ -15,6 +16,7 @@ class textcract_key_value_form:
         self.access_key_id = access_key_id
         self.secret_access_key = secret_access_key
         self.key_value_form = None
+        self.lines = []
         self.cost = None
         self.fee = None
         self.din = None
@@ -22,6 +24,7 @@ class textcract_key_value_form:
         self.quantity_number = 1
         self.is_qty_number = True
         self.drug_brand_name = None
+        self.date = None
 
     def aws_Textract(self, region="ca-central-1") -> str:
         try:
@@ -100,17 +103,21 @@ class textcract_key_value_form:
                 #print(block["Text"])
             elif block['BlockType'] == "LINE":
                 line_blocks_id = block["Relationships"][0]["Ids"]
+                line_word = block['Text']
+                """
                 line_word = ""
                 for search_block in blocks:
                     if search_block["Id"] in line_blocks_id:
                         line_word = line_word + " " + search_block["Text"]
                 #print(line_word)
+                """
                 if line_word.find(":") != -1:
                     line_word = line_word.strip().replace(" ", "")
                     pt = line_word.find(":")
                     key = line_word[:pt]
                     value = line_word[pt+1:]
                     key_value_pair_secondary.append([key, value])
+                self.lines.append(line_word)
         self.key_value_form = key_value_pair
         self.key_value_form.extend(key_value_pair_secondary)
         return key_value_pair
@@ -222,6 +229,60 @@ class textcract_key_value_form:
             self.is_qty_number = False
         return self.is_qty_number
 
+    def get_dates(self):
+        # Map month strings to numbers
+        month_map = {
+            'jan': 1, 'january': 1,
+            'feb': 2, 'february': 2,
+            'mar': 3, 'march': 3,
+            'apr': 4, 'april': 4,
+            'may': 5,
+            'jun': 6, 'june': 6,
+            'jul': 7, 'july': 7,
+            'aug': 8, 'august': 8,
+            'sep': 9, 'september': 9,
+            'oct': 10, 'october': 10,
+            'nov': 11, 'november': 11,
+            'dec': 12, 'december': 12
+        }
+
+        pattern = re.compile(
+            r'\b(?P<month>jan|january|feb|february|mar|march|apr|april|may|jun|june|jul|july|aug|august|sep|september|oct|october|nov|november|dec|december)\s+(?P<day>\d{1,2})\s+(?P<year>\d{4})\b',
+            re.IGNORECASE
+        )
+        for pair in key_value_pair:
+            if "date" in pair[0].lower():
+                match = pattern.fullmatch(pair[1].strip())
+                if match:
+                    parts = match.groupdict()
+                    month_str = parts['month'].lower()
+                    day = int(parts['day'])
+                    year = int(parts['year'])
+                    month = month_map[month_str]
+                    try:
+                        self.date = date(year, month, day)
+                        return self.date
+                    except ValueError as e:
+                        continue  # Skip invalid dates (like April 31)
+        for line in self.lines:
+            match = pattern.fullmatch(line.strip())
+            if match:
+                parts = match.groupdict()
+                month_str = parts['month'].lower()
+                day = int(parts['day'])
+                year = int(parts['year'])
+                month = month_map[month_str]
+                try:
+                    self.date = date(year, month, day)
+                    return self.date
+                except ValueError as e:
+                    continue  # Skip invalid dates (like April 31)
+        return None  # No valid date found
+
+
+
+
+
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key
@@ -242,3 +303,4 @@ if __name__ == "__main__":
     print(textcract.get_drug_code_and_brand_name())
     print(textcract.get_drug_type())
     print(textcract.quantity_correction())
+    print(textcract.get_dates())

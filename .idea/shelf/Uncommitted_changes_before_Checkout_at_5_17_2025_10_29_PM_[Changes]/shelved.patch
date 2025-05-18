@@ -1,0 +1,151 @@
+Index: Testing Range/pharmacy_list.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from dotenv import load_dotenv\r\nimport csv\r\nimport requests\r\nimport time\r\nimport os\r\n\r\nclass pharmacy_list:\r\n    def normalize_address(self, address ):\r\n        import os\r\n        load_dotenv()\r\n        API_KEY = os.getenv(\"Google_Geocoding_API_KEY\")\r\n        url1 = \"https://maps.googleapis.com/maps/api/geocode/json?address=\"\r\n        url2 = \"&key=\"\r\n        url = url1 + address + url2 + API_KEY\r\n        params = {\r\n            \"q\": address,\r\n            \"format\": \"json\",\r\n            \"addressdetails\": 1\r\n        }\r\n        response = requests.get(url, params=params, headers={'User-Agent': 'MyApp'})\r\n        data = response.json()\r\n        address_dict = data['results']\r\n        return address_dict[0]['formatted_address'] if address_dict else None\r\n\r\n    #a1 = normalize_address(\"10 Downing St, London\")\r\n    #a2 = normalize_address(\"Ten Downing Street, Westminster, London\")\r\n\r\n\r\n    def check_pharmacy(self) -> list[list[str]]:\r\n        pharmacy_list = []\r\n        with open('../Data/Ontario_Pharmacy_Locations.csv', mode='r', encoding='utf-8-sig') as file:\r\n            csvFile = csv.reader(file)\r\n            next(csvFile)\r\n            for lines in csvFile:\r\n                address = None\r\n                if lines[6] == \"\":\r\n                    address = lines[5] + \",\" + lines[7] + \",ON,CANADA\"\r\n                else:\r\n                    address = lines[5] + \",\" + lines[6] + \",\" + lines[7] + \",ON,CANADA\"\r\n\r\n                k = self.normalize_address(address)\r\n                lines.append(k)\r\n                pharmacy_list.append(lines)\r\n        for pharmacy in pharmacy_list:\r\n            print(pharmacy)\r\n        return pharmacy_list\r\n\r\n    def update_pharmacy_list(self) -> list[list[str]]:\r\n        pharmacy_list = []\r\n        with open('../Data/Ontario_Pharmacy_Information.csv', mode='r', encoding='utf-8-sig') as file:\r\n            csvFile = csv.reader(file)\r\n            title_line = next(csvFile)\r\n            for lines in csvFile:\r\n                address = None\r\n                if lines[6] == \"\":\r\n                    address = lines[5] + \",\" + lines[7] + \",ON,CANADA\"\r\n                else:\r\n                    address = lines[5] + \",\" + lines[6] + \",\" + lines[7] + \",ON,CANADA\"\r\n\r\n                k = self.normalize_address(address)\r\n                lines.append(k)\r\n                print(k)\r\n                pharmacy_list.append(lines)\r\n        for pharmacy in pharmacy_list:\r\n            print(pharmacy)\r\n        with open('../Data/Ontario_Pharmacy_Information.csv', 'w', newline='', encoding='utf-8-sig') as file:\r\n            writer = csv.writer(file)\r\n            writer.writerow(title_line)\r\n            writer.writerows(pharmacy_list)\r\n        return pharmacy_list\r\n\r\n    #def write_csv_address(self):\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    p = pharmacy_list()\r\n    r = p.normalize_address(\"1048 Midland Avenue, Kingston, ON, CANADA\")\r\n    p.update_pharmacy_list()\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Testing Range/pharmacy_list.py b/Testing Range/pharmacy_list.py
+--- a/Testing Range/pharmacy_list.py	(revision 2be353dc59f13e01ef41b5f46b7e352d85363a50)
++++ b/Testing Range/pharmacy_list.py	(date 1747454192040)
+@@ -52,10 +52,10 @@
+             title_line = next(csvFile)
+             for lines in csvFile:
+                 address = None
+-                if lines[6] == "":
+-                    address = lines[5] + "," + lines[7] + ",ON,CANADA"
++                if lines[6] == "" or 'Box' in lines[6]:
++                    address = lines[5] + "," + lines[7] + ",ON,CANADA," + lines[8]
+                 else:
+-                    address = lines[5] + "," + lines[6] + "," + lines[7] + ",ON,CANADA"
++                    address = lines[5] + "," + lines[5] + "," + lines[7] + ",ON,CANADA," + lines[8]
+ 
+                 k = self.normalize_address(address)
+                 lines.append(k)
+@@ -74,5 +74,7 @@
+ 
+ if __name__ == "__main__":
+     p = pharmacy_list()
+-    r = p.normalize_address("1048 Midland Avenue, Kingston, ON, CANADA")
++    r = p.normalize_address("151-883303 Highway 65 East, Units 15 16, New Liskeard, ON, CANADA, P0J1P0")
+     p.update_pharmacy_list()
++    #need to get rid of except number, character, -
++    #If address not avaliable, remove address line 2
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"8c3e316a-377f-427b-bfe4-49d82703f0ad\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Data/Ontario_Pharmacy_Locations.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Data/Ontario_Pharmacy_Locations.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Testing Range/pharmacy_list.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Testing Range/pharmacy_list.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"address-tidying-nominatim\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"RESET_MODE\" value=\"HARD\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;kelvinleung705&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/kelvinleung705/PharmaCompare.git&quot;,\r\n    &quot;accountId&quot;: &quot;22031737-f023-4e82-9d08-02efa205da12&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2rXqGb21M7HcYl9ybeffMGats0w\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Python.loginIAM test.executor\": \"Run\",\r\n    \"Python.pharmacy_list.executor\": \"Debug\",\r\n    \"Python.textcract_blocks.executor\": \"Run\",\r\n    \"Python.textcrat_query.executor\": \"Run\",\r\n    \"Python.textcrat_test.executor\": \"Run\",\r\n    \"Python.textract_test.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"address-tidying-google\",\r\n    \"last_opened_file_path\": \"C:/Users/kelvi/PycharmProjects/csc148\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\" selected=\"Python.pharmacy_list\">\r\n    <configuration name=\"pharmacy_list\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"PharmaCompare\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/Testing Range\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/Testing Range/pharmacy_list.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"textract_test\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"PharmaCompare\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/Testing_Range/textract_test.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.pharmacy_list\" />\r\n        <item itemvalue=\"Python.textract_test\" />\r\n        <item itemvalue=\"Python.pharmacy_list\" />\r\n        <item itemvalue=\"Python.textract_test\" />\r\n        <item itemvalue=\"Python.textract_test\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PY-243.22562.220\" />\r\n        <option value=\"bundled-python-sdk-0fc6c617c4bd-9a18a617cbe4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.22562.220\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"8c3e316a-377f-427b-bfe4-49d82703f0ad\" name=\"Changes\" comment=\"\" />\r\n      <created>1736715672621</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1736715672621</updated>\r\n      <workItem from=\"1736715675561\" duration=\"1697000\" />\r\n      <workItem from=\"1736717667104\" duration=\"6967000\" />\r\n      <workItem from=\"1736727099257\" duration=\"377000\" />\r\n      <workItem from=\"1736730549665\" duration=\"46000\" />\r\n      <workItem from=\"1736730605912\" duration=\"8014000\" />\r\n      <workItem from=\"1736966443792\" duration=\"3231000\" />\r\n      <workItem from=\"1746907620139\" duration=\"10852000\" />\r\n      <workItem from=\"1746996481946\" duration=\"9675000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\r\n          <url>file://$PROJECT_DIR$/Testing Range/pharmacy_list.py</url>\r\n          <line>77</line>\r\n          <option name=\"timeStamp\" value=\"42\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\r\n          <url>file://$PROJECT_DIR$/Testing Range/pharmacy_list.py</url>\r\n          <line>22</line>\r\n          <option name=\"timeStamp\" value=\"43\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n    <watches-manager>\r\n      <configuration name=\"PythonConfigurationType\">\r\n        <watch expression=\"k['display_name']\" />\r\n        <watch expression=\"block['EntityTypes']\" />\r\n      </configuration>\r\n    </watches-manager>\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/PharmaCompare$textcrat_test.coverage\" NAME=\"textcrat_test Coverage Results\" MODIFIED=\"1747275851541\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/Testing Range\" />\r\n    <SUITE FILE_PATH=\"coverage/PharmaCompare$textcract_key_value_form.coverage\" NAME=\"textcract_key_value_form Coverage Results\" MODIFIED=\"1747337382144\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/Testing Range\" />\r\n    <SUITE FILE_PATH=\"coverage/PharmaCompare$loginIAM_test.coverage\" NAME=\"loginIAM test Coverage Results\" MODIFIED=\"1736731396245\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/Testing Range\" />\r\n    <SUITE FILE_PATH=\"coverage/PharmaCompare$pharmacy_list.coverage\" NAME=\"pharmacy_list Coverage Results\" MODIFIED=\"1747350055843\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/Testing Range\" />\r\n    <SUITE FILE_PATH=\"coverage/PharmaCompare$textract_test.coverage\" NAME=\"textract_test Coverage Results\" MODIFIED=\"1746999878673\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$\" />\r\n    <SUITE FILE_PATH=\"coverage/PharmaCompare$textcract_blocks.coverage\" NAME=\"textcract_blocks Coverage Results\" MODIFIED=\"1747277164763\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/Testing Range\" />\r\n    <SUITE FILE_PATH=\"coverage/PharmaCompare$textcrat_query.coverage\" NAME=\"textcrat_query Coverage Results\" MODIFIED=\"1747068853807\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/Testing Range\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 2be353dc59f13e01ef41b5f46b7e352d85363a50)
++++ b/.idea/workspace.xml	(date 1747454192390)
+@@ -6,7 +6,6 @@
+   <component name="ChangeListManager">
+     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Data/Ontario_Pharmacy_Locations.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Ontario_Pharmacy_Locations.csv" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Testing Range/pharmacy_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/pharmacy_list.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -24,7 +23,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="address-tidying-nominatim" />
++        <entry key="$PROJECT_DIR$" value="main" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -50,27 +49,27 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Python.loginIAM test.executor": "Run",
+-    "Python.pharmacy_list.executor": "Debug",
+-    "Python.textcract_blocks.executor": "Run",
+-    "Python.textcrat_query.executor": "Run",
+-    "Python.textcrat_test.executor": "Run",
+-    "Python.textract_test.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "address-tidying-google",
+-    "last_opened_file_path": "C:/Users/kelvi/PycharmProjects/csc148",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Python.loginIAM test.executor&quot;: &quot;Run&quot;,
++    &quot;Python.pharmacy_list.executor&quot;: &quot;Debug&quot;,
++    &quot;Python.textcract_blocks.executor&quot;: &quot;Run&quot;,
++    &quot;Python.textcrat_query.executor&quot;: &quot;Run&quot;,
++    &quot;Python.textcrat_test.executor&quot;: &quot;Run&quot;,
++    &quot;Python.textract_test.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;address-tidying-google&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/kelvi/PycharmProjects/csc148&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RunManager" selected="Python.pharmacy_list">
+     <configuration name="pharmacy_list" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="PharmaCompare" />
+@@ -124,7 +123,7 @@
+         <item itemvalue="Python.textract_test" />
+         <item itemvalue="Python.pharmacy_list" />
+         <item itemvalue="Python.textract_test" />
+-        <item itemvalue="Python.textract_test" />
++        <item itemvalue="Python.pharmacy_list" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -175,12 +174,7 @@
+         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+           <url>file://$PROJECT_DIR$/Testing Range/pharmacy_list.py</url>
+           <line>77</line>
+-          <option name="timeStamp" value="42" />
+-        </line-breakpoint>
+-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+-          <url>file://$PROJECT_DIR$/Testing Range/pharmacy_list.py</url>
+-          <line>22</line>
+-          <option name="timeStamp" value="43" />
++          <option name="timeStamp" value="52" />
+         </line-breakpoint>
+       </breakpoints>
+     </breakpoint-manager>
+@@ -188,14 +182,17 @@
+       <configuration name="PythonConfigurationType">
+         <watch expression="k['display_name']" />
+         <watch expression="block['EntityTypes']" />
++        <watch expression="value_block_id" />
++        <watch expression="value_block_id" />
++        <watch expression="inner_block['Relationships']" />
+       </configuration>
+     </watches-manager>
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/PharmaCompare$textcrat_test.coverage" NAME="textcrat_test Coverage Results" MODIFIED="1747275851541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+-    <SUITE FILE_PATH="coverage/PharmaCompare$textcract_key_value_form.coverage" NAME="textcract_key_value_form Coverage Results" MODIFIED="1747337382144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
++    <SUITE FILE_PATH="coverage/PharmaCompare$textcract_key_value_form.coverage" NAME="textcract_key_value_form Coverage Results" MODIFIED="1747443398187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+     <SUITE FILE_PATH="coverage/PharmaCompare$loginIAM_test.coverage" NAME="loginIAM test Coverage Results" MODIFIED="1736731396245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+-    <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_list.coverage" NAME="pharmacy_list Coverage Results" MODIFIED="1747350055843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
++    <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_list.coverage" NAME="pharmacy_list Coverage Results" MODIFIED="1747453862867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+     <SUITE FILE_PATH="coverage/PharmaCompare$textract_test.coverage" NAME="textract_test Coverage Results" MODIFIED="1746999878673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/PharmaCompare$textcract_blocks.coverage" NAME="textcract_blocks Coverage Results" MODIFIED="1747277164763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+     <SUITE FILE_PATH="coverage/PharmaCompare$textcrat_query.coverage" NAME="textcrat_query Coverage Results" MODIFIED="1747068853807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
