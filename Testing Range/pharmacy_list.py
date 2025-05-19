@@ -3,6 +3,7 @@ import csv
 import requests
 import time
 import os
+import re
 
 class pharmacy_list:
     def normalize_address(self, address ):
@@ -32,13 +33,22 @@ class pharmacy_list:
             csvFile = csv.reader(file)
             next(csvFile)
             for lines in csvFile:
+                line_1 = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', lines[5])
+                line_2 = re.sub(r'[^A-Za-z0-9\- ]', '', lines[6])
+                postal_code = lines[7]
                 address = None
-                if lines[6] == "":
-                    address = lines[5] + "," + lines[7] + ",ON,CANADA"
+                if line_2 == "" or "box" in line_2.lower():
+                    address = line_1 + "," + lines[7] + ",ON,CANADA"
+                    k = self.normalize_address(address)
                 else:
-                    address = lines[5] + "," + lines[6] + "," + lines[7] + ",ON,CANADA"
-
-                k = self.normalize_address(address)
+                    address1 = line_1 + "," + line_2 + "," + lines[7] + ",ON,CANADA"
+                    address2 = line_1 + "," + lines[7] + ",ON,CANADA"
+                    k1 = self.normalize_address(address1)
+                    k2 = self.normalize_address(address2)
+                    if len(k2) > len(k1):
+                        k = k2
+                    else:
+                        k = k1
                 lines.append(k)
                 pharmacy_list.append(lines)
         for pharmacy in pharmacy_list:
@@ -51,13 +61,29 @@ class pharmacy_list:
             csvFile = csv.reader(file)
             title_line = next(csvFile)
             for lines in csvFile:
+                line_1 = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', lines[5])
+                find_po = line_1.lower().find("po box")
+                if find_po > 0:
+                    line_1 = line_1[:find_po]
+                line_2 = re.sub(r'[^A-Za-z0-9\- ]', '', lines[6])
+                postal_code = lines[7]
                 address = None
-                if lines[6] == "":
-                    address = lines[5] + "," + lines[7] + ",ON,CANADA"
+                find_unit = line_1.lower().find("unit")
+                if find_unit > 0:
+                    line_2 = line_1[find_unit:]
+                    line_1 = line_1[:find_unit]
+                if line_2 == "" or "box" in line_2.lower():
+                    address = line_1 + "," + lines[7] + ",ON,CANADA"
+                    k = self.normalize_address(address)
                 else:
-                    address = lines[5] + "," + lines[6] + "," + lines[7] + ",ON,CANADA"
-
-                k = self.normalize_address(address)
+                    address1 = line_1 + "," + line_2 + "," + lines[7] + ",ON,CANADA"
+                    address2 = line_1 + "," + lines[7] + ",ON,CANADA"
+                    k1 = self.normalize_address(address1)
+                    k2 = self.normalize_address(address2)
+                    if len(k2) > len(k1):
+                        k = k2
+                    else:
+                        k = k1
                 lines.append(k)
                 print(k)
                 pharmacy_list.append(lines)
@@ -74,5 +100,5 @@ class pharmacy_list:
 
 if __name__ == "__main__":
     p = pharmacy_list()
-    r = p.normalize_address("414 Fifth Avenue, Po Box 607, Matheson, ON, CANADA")
+    r = p.normalize_address("107 Jonathon Cheechoo Drive,Moose Factory,ON,CANADA")
     p.update_pharmacy_list()
