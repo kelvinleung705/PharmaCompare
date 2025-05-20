@@ -20,6 +20,7 @@ class textcract_query:
             )
             feature_types = ["QUERIES"]
 
+
             # Verify credentials by calling GetCallerIdentity
             if document_file_name is not None:
                 with open(document_file_name, "rb") as document_file:
