@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing Range/pharmacy_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/pharmacy_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing Range/textcract_key_value_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/textcract_key_value_form.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="extract_address" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,7 +61,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "extract__address",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/kelvi/PycharmProjects/csc148",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -73,7 +71,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.pharmacy_list">
     <configuration name="pharmacy_list (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
@@ -146,9 +144,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.pharmacy_list (1)" />
-        <item itemvalue="Python.get_pharmacy_list" />
         <item itemvalue="Python.textract_test" />
-        <item itemvalue="Python.get_pharmacy_list" />
         <item itemvalue="Python.textract_test" />
       </list>
     </recent_temporary>
