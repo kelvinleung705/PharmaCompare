@@ -6,6 +6,23 @@ import os
 import re
 
 class pharmacy_list:
+    def __init__(self):
+        self.pharmacy_address_list = []
+
+    def check_pharmacy_address_list(self, pharmacy_address):
+        for address in self.pharmacy_address_list:
+            if pharmacy_address in address:
+                return True
+
+    def get_pharmacy_address_list(self):
+        with open('../Data/Ontario_Pharmacy_Information.csv', mode='r', encoding='utf-8-sig') as file:
+            csvFile = csv.reader(file)
+            title_line = next(csvFile)
+            for lines in csvFile:
+                #print(lines[11])
+                self.pharmacy_address_list.append(lines[11])
+
+
     def normalize_address(self, address ):
         import os
         load_dotenv()
@@ -66,6 +83,7 @@ class pharmacy_list:
                 if find_po > 0:
                     line_1 = line_1[:find_po]
                 line_2 = re.sub(r'[^A-Za-z0-9\- ]', '', lines[6])
+                community = lines[7]
                 postal_code = lines[7]
                 address = None
                 find_unit = line_1.lower().find("unit")
@@ -73,11 +91,11 @@ class pharmacy_list:
                     line_2 = line_1[find_unit:]
                     line_1 = line_1[:find_unit]
                 if line_2 == "" or "box" in line_2.lower():
-                    address = line_1 + "," + lines[7] + ",ON,CANADA"
+                    address = line_1 + "," + community + ",ON,CANADA," + postal_code
                     k = self.normalize_address(address)
                 else:
-                    address1 = line_1 + "," + line_2 + "," + lines[7] + ",ON,CANADA"
-                    address2 = line_1 + "," + lines[7] + ",ON,CANADA"
+                    address1 = line_1 + "," + line_2 + "," + community + ",ON,CANADA," + postal_code #remove postal code if not working
+                    address2 = line_1 + "," + community + ",ON,CANADA," + postal_code
                     k1 = self.normalize_address(address1)
                     k2 = self.normalize_address(address2)
                     if len(k2) > len(k1):
@@ -101,4 +119,6 @@ class pharmacy_list:
 if __name__ == "__main__":
     p = pharmacy_list()
     r = p.normalize_address("107 Jonathon Cheechoo Drive,Moose Factory,ON,CANADA")
-    p.update_pharmacy_list()
+    #p.update_pharmacy_list()
+    p.get_pharmacy_address_list()
+    print(p.check_pharmacy_address_list("300 Main St W, Kingsville, ON N9Y 1H8, Canada"))

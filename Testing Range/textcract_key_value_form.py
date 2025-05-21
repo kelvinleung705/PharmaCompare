@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from typing import Union
 import requests
 import re
+from pharmacy_list import pharmacy_list
 from datetime import date
 
 
@@ -25,6 +26,7 @@ class textcract_key_value_form:
         self.is_qty_number = True
         self.drug_brand_name = None
         self.date = None
+        self.address = None
 
     def aws_Textract(self, region="ca-central-1") -> str:
         try:
@@ -247,7 +249,7 @@ class textcract_key_value_form:
         }
 
         pattern = re.compile(
-            r'\b(?P<month>jan|january|feb|february|mar|march|apr|april|may|jun|june|jul|july|aug|august|sep|september|oct|october|nov|november|dec|december)\s+(?P<day>\d{1,2})\s+(?P<year>\d{4})\b',
+            r'\b(?P<month>jan|january|feb|february|mar|march|apr|april|may|jun|june|jul|july|aug|august|sep|september|oct|october|nov|november|dec|december),?\s?(?P<day>\d{1,2}),?\s?(?P<year>\d{4})\b',
             re.IGNORECASE
         )
         for pair in key_value_pair:
@@ -279,6 +281,35 @@ class textcract_key_value_form:
                     continue  # Skip invalid dates (like April 31)
         return None  # No valid date found
 
+    def normalize_address(self, address):
+        import os
+        load_dotenv()
+        API_KEY = os.getenv("Google_Geocoding_API_KEY")
+        url1 = "https://maps.googleapis.com/maps/api/geocode/json?address="
+        url2 = "&key="
+        url = url1 + address + url2 + API_KEY
+        params = {
+            "q": address,
+            "format": "json",
+            "addressdetails": 1
+        }
+        response = requests.get(url, params=params, headers={'User-Agent': 'MyApp'})
+        data = response.json()
+        address_dict = data['results']
+        return address_dict[0]['formatted_address'] if address_dict else None
+
+    def get_address(self, pharmacy_list_obj) -> str:
+        for line in self.lines:
+            formatted_address = self.normalize_address(line)
+            if formatted_address is not None:
+                if pharmacy_list_obj.check_pharmacy_address_list(formatted_address):
+                    self.address = formatted_address
+                    print("address found")
+                    return self.address
+        return None
+
+
+
 
 
 
@@ -292,7 +323,9 @@ if __name__ == "__main__":
     #textcract = textcract_key_value_form(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
     #textcract = textcract_key_value_form(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
     #textcract = textcract_key_value_form(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250515_233055.jpg")
-    textcract = textcract_key_value_form(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250516_205447.jpg")
+    #textcract = textcract_key_value_form(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250516_205447.jpg")
+    #textcract = textcract_key_value_form(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/1000084658.jpg")
+    textcract = textcract_key_value_form(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
     key_value_pair = textcract.get_key_value_pair()
     for pair in key_value_pair:
         print(pair[0], pair[1])
@@ -304,3 +337,6 @@ if __name__ == "__main__":
     print(textcract.get_drug_type())
     print(textcract.quantity_correction())
     print(textcract.get_dates())
+    pharmacy_list_obj = pharmacy_list()
+    pharmacy_list_obj.get_pharmacy_address_list()
+    print(textcract.get_address(pharmacy_list_obj))
