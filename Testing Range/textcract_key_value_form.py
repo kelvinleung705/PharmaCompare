@@ -248,15 +248,31 @@ class textcract_key_value_form:
             'dec': 12, 'december': 12
         }
 
-        pattern = re.compile(
-            r'\b(?P<month>jan|january|feb|february|mar|march|apr|april|may|jun|june|jul|july|aug|august|sep|september|oct|october|nov|november|dec|december),?\s?(?P<day>\d{1,2}),?\s?(?P<year>\d{4})\b',
+        pattern1 = re.compile(
+            r'(?<!\d)\b'
+            r'(?:'  # Start non-capturing group for optional weekday
+                r'(?P<weekday>mon|tue|wed|thu|fri|sat|sun|'
+                r'monday|tuesday|wednesday|thursday|friday|saturday|sunday)'
+                r'\s+'
+            r')?'
+            r'(?P<month>jan|january|feb|february|mar|march|apr|april|may|jun|june|jul|july|aug|august|sep|september|oct|october|nov|november|dec|december)(-|,\s|\s)(?P<day>\d{1,2})(-|,\s|\s)(?P<year>\d{4})\b',
+            re.IGNORECASE
+        )
+        pattern2 = re.compile(
+            r'(?<!\d)\b'  # Prevent match starting in the middle of a number
+            r'(?:'  # Start non-capturing group for optional weekday
+                r'(?P<weekday>mon|tue|wed|thu|fri|sat|sun|'
+                r'monday|tuesday|wednesday|thursday|friday|saturday|sunday)'
+                r'\s+'
+            r')?'
+            r'(?P<day>\d{1,2})(-|,\s|\s)(?P<month>jan|january|feb|february|mar|march|apr|april|may|jun|june|jul|july|aug|august|sep|september|oct|october|nov|november|dec|december)(-|,\s|\s)(?P<year>\d{4})\b',
             re.IGNORECASE
         )
         for pair in key_value_pair:
             if "date" in pair[0].lower():
-                match = pattern.fullmatch(pair[1].strip())
-                if match:
-                    parts = match.groupdict()
+                match1 = pattern1.fullmatch(pair[1].strip())
+                if match1:
+                    parts = match1.groupdict()
                     month_str = parts['month'].lower()
                     day = int(parts['day'])
                     year = int(parts['year'])
@@ -266,10 +282,36 @@ class textcract_key_value_form:
                         return self.date
                     except ValueError as e:
                         continue  # Skip invalid dates (like April 31)
+                match2 = pattern2.fullmatch(pair[1].strip())
+                if match2:
+                    parts = match2.groupdict()
+                    month_str = parts['month'].lower()
+                    day = int(parts['day'])
+                    year = int(parts['year'])
+                    month = month_map[month_str]
+                    try:
+                        self.date = date(year, month, day)
+                        return self.date
+                    except ValueError as e:
+                        continue  # Skip invalid dates (like April 31)
+
+
         for line in self.lines:
-            match = pattern.fullmatch(line.strip())
-            if match:
-                parts = match.groupdict()
+            match1 = pattern1.fullmatch(line.strip())
+            if match1:
+                parts = match1.groupdict()
+                month_str = parts['month'].lower()
+                day = int(parts['day'])
+                year = int(parts['year'])
+                month = month_map[month_str]
+                try:
+                    self.date = date(year, month, day)
+                    return self.date
+                except ValueError as e:
+                    continue  # Skip invalid dates (like April 31)
+            match2 = pattern2.fullmatch(line.strip())
+            if match2:
+                parts = match2.groupdict()
                 month_str = parts['month'].lower()
                 day = int(parts['day'])
                 year = int(parts['year'])
@@ -300,13 +342,14 @@ class textcract_key_value_form:
 
     def get_address(self, pharmacy_list_obj) -> str:
         for line in self.lines:
-            formatted_address = self.normalize_address(line)
+            formatted_line = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', line)
+            formatted_address = self.normalize_address(formatted_line)
             if formatted_address is not None:
                 if pharmacy_list_obj.check_pharmacy_address_list(formatted_address):
-                    self.address = formatted_address
-                    print("address found")
-                    return self.address
-        return None
+                    if self.address == None or len(formatted_address) > len(self.address):
+                        self.address = formatted_address
+                        print("address found")
+        return self.address
 
 
 
@@ -320,12 +363,12 @@ if __name__ == "__main__":
     load_dotenv()
     access_key_id = os.getenv("AWS_Access_Key")
     secret_access_key = os.getenv("AWS_Secret_Access_Key")
-    #textcract = textcract_key_value_form(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
+    textcract = textcract_key_value_form(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
     #textcract = textcract_key_value_form(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
     #textcract = textcract_key_value_form(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250515_233055.jpg")
     #textcract = textcract_key_value_form(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250516_205447.jpg")
     #textcract = textcract_key_value_form(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/1000084658.jpg")
-    textcract = textcract_key_value_form(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
+    #textcract = textcract_key_value_form(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
     key_value_pair = textcract.get_key_value_pair()
     for pair in key_value_pair:
         print(pair[0], pair[1])
