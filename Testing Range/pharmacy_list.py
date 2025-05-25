@@ -9,10 +9,10 @@ class pharmacy_list:
     def __init__(self):
         self.pharmacy_address_list = []
 
-    def check_pharmacy_address_list(self, pharmacy_address):
-        for address in self.pharmacy_address_list:
-            if pharmacy_address in address:
-                return True
+    def check_pharmacy_address_list(self, pharmacy_address) -> list[str]:
+        for i in range(len(self.pharmacy_address_list)):
+            if pharmacy_address in self.pharmacy_address_list[i][2]:
+                return [self.pharmacy_address_list[i][0], self.pharmacy_address_list[i][1]]
 
     def get_pharmacy_address_list(self):
         with open('../Data/Ontario_Pharmacy_Information.csv', mode='r', encoding='utf-8-sig') as file:
@@ -20,10 +20,10 @@ class pharmacy_list:
             title_line = next(csvFile)
             for lines in csvFile:
                 #print(lines[11])
-                self.pharmacy_address_list.append(lines[11])
+                self.pharmacy_address_list.append([lines[3], lines[4], lines[11]])
 
 
-    def normalize_address(self, address ):
+    def normalize_address(self, address):
         import os
         load_dotenv()
         API_KEY = os.getenv("Google_Geocoding_API_KEY")
