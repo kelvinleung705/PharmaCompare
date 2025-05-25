@@ -1,4 +1,6 @@
 import json
+from encodings.punycode import selective_find
+
 import pandas as pd
 import boto3
 import os
@@ -8,8 +10,8 @@ from typing import Union
 import requests
 import re
 from pharmacy_list import pharmacy_list
-from datetime import date
-
+from datetime import datetime
+ #extract: from image, access: from canada drug base, get: return value
 
 class textcract_key_value_form:
     def __init__(self, access_key_id, secret_access_key, image_location):
@@ -26,7 +28,9 @@ class textcract_key_value_form:
         self.is_qty_number = True
         self.drug_brand_name = None
         self.date = None
-        self.address = None
+        self.pharmacy_address = None
+        self.pharmacy_ident = None
+        self.pharmacy_name = None
 
     def aws_Textract(self, region="ca-central-1") -> str:
         try:
@@ -61,7 +65,7 @@ class textcract_key_value_form:
         except Exception as e:
             print(f"An error occurred: {e}")
 
-    def get_key_value_pair(self) -> list[list[str]]:
+    def extract_key_value_pair(self) -> list[list[str]]:
         key_value_pair = []
         key_value_pair_secondary = []
         json_string = self.aws_Textract()
@@ -124,10 +128,10 @@ class textcract_key_value_form:
         self.key_value_form.extend(key_value_pair_secondary)
         return key_value_pair
 
-    def get_cost(self) -> float:
-        if key_value_pair is not None:
+    def extract_cost(self) -> float:
+        if self.key_value_form is not None:
             found = False;
-            for pair in key_value_pair:
+            for pair in self.key_value_form:
                 if "cost" in pair[0].lower():
                     try:
                         # Remove spaces
@@ -141,10 +145,13 @@ class textcract_key_value_form:
         else:
             return None
 
-    def get_fee(self) -> float:
-        if key_value_pair is not None:
+    def get_cost(self) -> float:
+        return self.cost
+
+    def extract_fee(self) -> float:
+        if self.key_value_form is not None:
             found = False;
-            for pair in key_value_pair:
+            for pair in self.key_value_form:
                 if "fee" in pair[0].lower():
                     try:
                         # Remove spaces
@@ -158,10 +165,13 @@ class textcract_key_value_form:
         else:
             return None
 
-    def get_din(self) -> str:
-        if key_value_pair is not None:
+    def get_fee(self) -> float:
+        return self.fee
+
+    def extract_din(self) -> str:
+        if self.key_value_form is not None:
             found = False;
-            for pair in key_value_pair:
+            for pair in self.key_value_form:
                 if "din" in pair[0].lower():
                     s_clean = pair[1].strip().replace(" ", "")
                     s_clean.lower()
@@ -170,7 +180,10 @@ class textcract_key_value_form:
         else:
             return None
 
-    def get_drug_code_and_brand_name(self) -> list[str]:
+    def get_din(self) -> str:
+        return self.din
+
+    def access_drug_code_and_brand_name(self) -> list[str]:
         url = f"https://health-products.canada.ca/api/drug/drugproduct/?lang=eng&din={self.din}"
         response = requests.get(url)
         if response.status_code == 200:
@@ -185,7 +198,10 @@ class textcract_key_value_form:
         else:
             return f"Error: {response.status_code}"
 
-    def get_drug_type(self) -> str:
+    def get_drug_code_and_brand_name(self) -> list[str]:
+        return [self.drug_code, self.drug_name]
+
+    def access_drug_type(self) -> str:
         url = f"https://health-products.canada.ca/api/drug/form/?lang=eng&id={self.drug_code}"
         response = requests.get(url)
         if response.status_code == 200:
@@ -198,11 +214,13 @@ class textcract_key_value_form:
         else:
             return f"Error: {response.status_code}"
 
+    def get_drug_type(self) -> str:
+        return self.drug_type
 
-    def get_quantity(self) -> Union[int, str]:
-        if key_value_pair is not None:
+    def extract_quantity(self) -> int:
+        if self.key_value_form is not None:
             found = False;
-            for pair in key_value_pair:
+            for pair in self.key_value_form:
                 if "qt" in pair[0].lower() or "quant" in pair[0].lower():
                     #s_clean = pair[1].strip().replace(" ", "")
                     self.quantity_number = int(re.sub(r"\D", "", pair[1]))
@@ -219,10 +237,14 @@ class textcract_key_value_form:
                         self.is_qty_number = False
                         return self.quantity_gram
                     """
+                    return self.quantity_number
                 else:
                     return None
         else:
             return None
+
+    def get_quantity(self) -> int:
+        return self.quantity_number
 
     def quantity_correction(self) -> bool:
         if self.drug_type == "Capsule" or self.drug_type == "Tablet":
@@ -231,7 +253,10 @@ class textcract_key_value_form:
             self.is_qty_number = False
         return self.is_qty_number
 
-    def get_dates(self):
+    def get_quantity_pill_type(self) -> bool:
+        return self.is_qty_number
+
+    def extract_dates(self) -> datetime:
         # Map month strings to numbers
         month_map = {
             'jan': 1, 'january': 1,
@@ -268,7 +293,7 @@ class textcract_key_value_form:
             r'(?P<day>\d{1,2})(-|,\s|\s)(?P<month>jan|january|feb|february|mar|march|apr|april|may|jun|june|jul|july|aug|august|sep|september|oct|october|nov|november|dec|december)(-|,\s|\s)(?P<year>\d{4})\b',
             re.IGNORECASE
         )
-        for pair in key_value_pair:
+        for pair in self.key_value_form:
             if "date" in pair[0].lower():
                 match1 = pattern1.fullmatch(pair[1].strip())
                 if match1:
@@ -278,7 +303,7 @@ class textcract_key_value_form:
                     year = int(parts['year'])
                     month = month_map[month_str]
                     try:
-                        self.date = date(year, month, day)
+                        self.date = datetime(year, month, day)
                         return self.date
                     except ValueError as e:
                         continue  # Skip invalid dates (like April 31)
@@ -290,7 +315,7 @@ class textcract_key_value_form:
                     year = int(parts['year'])
                     month = month_map[month_str]
                     try:
-                        self.date = date(year, month, day)
+                        self.date = datetime(year, month, day)
                         return self.date
                     except ValueError as e:
                         continue  # Skip invalid dates (like April 31)
@@ -305,7 +330,7 @@ class textcract_key_value_form:
                 year = int(parts['year'])
                 month = month_map[month_str]
                 try:
-                    self.date = date(year, month, day)
+                    self.date = datetime(year, month, day)
                     return self.date
                 except ValueError as e:
                     continue  # Skip invalid dates (like April 31)
@@ -317,11 +342,14 @@ class textcract_key_value_form:
                 year = int(parts['year'])
                 month = month_map[month_str]
                 try:
-                    self.date = date(year, month, day)
+                    self.date = datetime(year, month, day)
                     return self.date
                 except ValueError as e:
                     continue  # Skip invalid dates (like April 31)
         return None  # No valid date found
+
+    def get_date(self) -> datetime:
+        return self.date
 
     def normalize_address(self, address):
         import os
@@ -340,23 +368,27 @@ class textcract_key_value_form:
         address_dict = data['results']
         return address_dict[0]['formatted_address'] if address_dict else None
 
-    def get_address(self, pharmacy_list_obj) -> str:
+    def extract_address(self, pharmacy_list_obj) -> str:
         for line in self.lines:
             formatted_line = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', line)
             formatted_address = self.normalize_address(formatted_line)
-            if formatted_address is not None:
-                if pharmacy_list_obj.check_pharmacy_address_list(formatted_address):
-                    if self.address == None or len(formatted_address) > len(self.address):
-                        self.address = formatted_address
-                        print("address found")
-        return self.address
+            if formatted_address is not None and (self.pharmacy_address == None or len(formatted_address) > len(self.pharmacy_address)):
+                temp_pharmacy_ident_name = pharmacy_list_obj.check_pharmacy_address_list(formatted_address)
+                if temp_pharmacy_ident_name:
+                    self.pharmacy_address = formatted_address
+                    self.pharmacy_ident = temp_pharmacy_ident_name[0]
+                    self.pharmacy_name = temp_pharmacy_ident_name[1]
+                    print("address found")
+        return self.pharmacy_address
 
+    def get_pharmacy_address(self) -> str:
+        return self.pharmacy_address
 
+    def get_pharmacy_ident(self) -> str:
+        return self.pharmacy_ident
 
-
-
-
-
+    def get_pharmacy_name(self) -> str:
+        return self.pharmacy_name
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key
@@ -369,17 +401,19 @@ if __name__ == "__main__":
     #textcract = textcract_key_value_form(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250516_205447.jpg")
     #textcract = textcract_key_value_form(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/1000084658.jpg")
     #textcract = textcract_key_value_form(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
-    key_value_pair = textcract.get_key_value_pair()
+    key_value_pair = textcract.extract_key_value_pair()
     for pair in key_value_pair:
         print(pair[0], pair[1])
-    print(textcract.get_cost())
-    print(textcract.get_fee())
-    print(textcract.get_din())
-    print(textcract.get_quantity())
-    print(textcract.get_drug_code_and_brand_name())
-    print(textcract.get_drug_type())
+    print(textcract.extract_cost())
+    print(textcract.extract_fee())
+    print(textcract.extract_din())
+    print(textcract.extract_quantity())
+    print(textcract.access_drug_code_and_brand_name())
+    print(textcract.access_drug_type())
     print(textcract.quantity_correction())
-    print(textcract.get_dates())
+    print(textcract.extract_dates())
     pharmacy_list_obj = pharmacy_list()
     pharmacy_list_obj.get_pharmacy_address_list()
-    print(textcract.get_address(pharmacy_list_obj))
+    print(textcract.extract_address(pharmacy_list_obj))
+    print(textcract.get_pharmacy_ident())
+    print(textcract.get_pharmacy_name())
