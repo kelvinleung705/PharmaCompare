@@ -29,17 +29,125 @@ class new_pharmacy_drug:
         date = self.prescription_receipt.get_date()
         din = self.prescription_receipt.get_din()
         is_pill = self.prescription_receipt.get_quantity_pill_type()
-        cost = self.prescription_receipt.get_cost()
+        if is_pill:
+            cost = self.prescription_receipt.get_cost()/self.prescription_receipt.get_quantity()
+        else:
+            cost = self.prescription_receipt.get_cost()
 
         pharmacy_column = self.pharmacy_drug_list_col.find_one({"pharmacy ident": pharmacy_ident})
         if pharmacy_column:
-            pharmacy_column["fee date"] = date
-            if pharmacy_column["fee"] != fee:
-                pharmacy_column["fee"] = fee
-                new_fee_record = {
-                    "fee": fee,
-                    "fee date": date
+            old_date = pharmacy_column["fee date"]
+            old_fee = pharmacy_column["fee"]
+            if date > pharmacy_column["fee date"]:
+                self.pharmacy_drug_list_col.update_one(
+                    {
+                        "pharmacy ident": pharmacy_ident,
+                    },
+                    {"$set":
+                        {"fee date": date}
+                    }
+                )
+                if pharmacy_column["fee"] != fee:
+                    self.pharmacy_drug_list_col.update_one(
+                        {
+                            "pharmacy ident": pharmacy_ident,
+                        },
+                        {"$set":
+                            {"fee": fee}
+                        }
+                    )
+                    self.pharmacy_drug_list_col.update_one(
+                        {
+                            "pharmacy ident": pharmacy_ident
+                        },
+                        {"$push":
+                            {"fee history": {
+                                "cost": old_fee,
+                                "recent date dispensed": old_date
+                            }
+                            }
+                        }
+                    )
+                    self.pharmacy_drug_list_col.update_one(
+                        {
+                            "pharmacy ident": pharmacy_ident
+                        },
+                        {"$push":
+                            {"fee history": {
+                                "cost": fee,
+                                "recent date dispensed": date
+                            }
+                            }
+                        }
+                    )
+            have_med = self.pharmacy_drug_list_col.find_one({
+                "medication.din": din,
+                "pharmacy ident": pharmacy_ident
+            })
+            if have_med:
+                matching_med = next((m for m in have_med["medication"] if m["din"] == din), None)
+                if matching_med:
+                    old_date = matching_med["recent date dispensed"]
+                    old_fee = matching_med["cost"]
+                    if old_date < date:
+                        self.pharmacy_drug_list_col.update_one(
+                            {
+                                "pharmacy ident": pharmacy_ident,
+                                "medication.din": din
+                            },
+                            {"$push":
+                                {"medication.$.record": {
+                                    "cost": old_fee,
+                                    "recent date dispensed": old_date
+                                }
+                                }
+                            }
+                        )
+                        self.pharmacy_drug_list_col.update_one(
+                            {
+                                "pharmacy ident": pharmacy_ident,
+                                "medication.din": din
+                            },
+                            {"$push":
+                                 {"medication.$.record" : {
+                                     "cost": cost,
+                                     "recent date dispensed": date
+                                 }
+                                 }
+                            })
+                        self.pharmacy_drug_list_col.update_one(
+                            {
+                                "pharmacy ident": pharmacy_ident,
+                                "medication.din": din
+                            },
+                            { "$set" : {
+                                "medication.$.cost" : cost,
+                                 "medication.$.recent date dispensed": date
+                                }
+                            }
+                        )
+
+
+
+            else:
+                new_med = {
+                    "din": din,
+                    "pill_type": is_pill,
+                    "cost": cost,
+                    "recent date dispensed": date,  # Ideally a datetime object
+                    "record": [
+                        {
+                            "price": cost,
+                            "date dispensed": date
+                        }
+                    ]
                 }
+                # Push the new medication
+                self.pharmacy_drug_list_col.update_one(
+                    {"pharmacy ident": pharmacy_ident},
+                    {"$push": {"medication": new_med}}
+                )
+
 
         else:
             pharmacy_document = {}

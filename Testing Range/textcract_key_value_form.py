@@ -238,8 +238,8 @@ class textcract_key_value_form:
                         return self.quantity_gram
                     """
                     return self.quantity_number
-                else:
-                    return None
+
+            return None
         else:
             return None
 
