@@ -24,6 +24,7 @@ class pharmacy_receipt:
         self.fee = None
         self.din = None
         self.drug_code = None
+        self.drug_ingredient_name = None
         self.quantity_number = 1
         self.is_qty_number = True
         self.drug_brand_name = None
@@ -191,15 +192,35 @@ class pharmacy_receipt:
             if data:
                 self.drug_code = str(data[0]['drug_code'])
                 self.drug_code = self.drug_code.rjust(8, '0')
-                self.drug_name = str(data[0]['brand_name'])
-                return [self.drug_code, self.drug_name]
+                self.drug_brand_name = str(data[0]['brand_name'])
             else:
                 return "No result found for this DIN"
         else:
             return f"Error: {response.status_code}"
 
-    def get_drug_code_and_brand_name(self) -> list[str]:
-        return [self.drug_code, self.drug_name]
+        url = f"https://health-products.canada.ca/api/drug/activeingredient/?lang=eng&id={self.drug_code}"
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            if data:
+                self.drug_ingredient_name = str(data[0]['ingredient_name'])
+                return [self.drug_code, self.drug_brand_name, self.drug_ingredient_name]
+            else:
+                return "No result found for this DIN"
+        else:
+            return f"Error: {response.status_code}"
+
+    def get_drug_code_and_brand_name_and_ingredient_name(self) -> list[str]:
+        return [self.drug_code, self.drug_brand_name, self.drug_ingredient_name]
+
+    def get_drug_code(self) -> str:
+        return self.drug_code
+
+    def get_drug_brand_name(self) -> str:
+        return self.drug_brand_name
+
+    def get_drug_ingredient_name(self) -> str:
+        return self.drug_ingredient_name
 
     def access_drug_type(self) -> str:
         url = f"https://health-products.canada.ca/api/drug/form/?lang=eng&id={self.drug_code}"
@@ -238,6 +259,46 @@ class pharmacy_receipt:
                         return self.quantity_gram
                     """
                     return self.quantity_number
+            recognize_token = self.drug_brand_name.lower().split()
+            closest_index = -1
+            closest_qty_number = -1
+            for line in self.lines:
+                line_lower = line.lower()
+                for token in recognize_token:
+                    index = line_lower.find(token)
+                    qty_number = -1
+                    if index != -1 and index != 0:
+                        try:
+                            qty_number = int(re.sub(r"\D", "", line_lower[:index]))
+                        except ValueError as e:
+                            qty_number = -1
+                    if qty_number != -1 and index != -1 and (index < closest_index or closest_index == -1):
+                        closest_index = index
+                        closest_qty_number = qty_number
+            if closest_index != -1 and closest_qty_number != -1:
+                self.quantity_number = closest_qty_number
+                return self.quantity_number
+
+            recognize_token = self.drug_ingredient_name.lower().split()
+            closest_index = -1
+            closest_qty_number = -1
+            for line in self.lines:
+                line_lower = line.lower()
+                for token in recognize_token:
+                    index = line_lower.find(token)
+                    qty_number = -1
+                    if index != -1 and index != 0:
+                        try:
+                            qty_number = int(re.sub(r"\D", "", line_lower[:index]))
+                        except ValueError as e:
+                            qty_number = -1
+                    if qty_number != -1 and index != -1 and (index < closest_index or closest_index == -1):
+                        closest_index = index
+                        closest_qty_number = qty_number
+            if closest_index != -1 and closest_qty_number != -1:
+                self.quantity_number = closest_qty_number
+                return self.quantity_number
+
 
             return None
         else:
@@ -400,7 +461,10 @@ if __name__ == "__main__":
     #receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250515_233055.jpg")
     #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250516_205447.jpg")
     #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/1000084658.jpg")
-    receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
+    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
+    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086731.jpg")
+    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086732.jpg")
+    receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
     key_value_pair = receipt.extract_key_value_pair()
     for pair in key_value_pair:
         print(pair[0], pair[1])
