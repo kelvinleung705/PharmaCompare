@@ -11,6 +11,7 @@ import re
 from pharmacy_list import pharmacy_list
 from add_pharmacy_drug import new_pharmacy_drug
 from textcract_key_value_form import textcract_key_value_form
+from pharmacy_receipt import pharmacy_receipt
 from datetime import datetime
 
 if __name__ == "__main__":
