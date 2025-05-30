@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Testing Range/pharmacy_receipt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_5_19_2025_8_00_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_5_19_2025_8_00_PM_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_5_19_2025_8_00_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_5_19_2025_8_00_PM__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing Range/add_pharmacy_drug.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/add_pharmacy_drug.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing Range/mongodb_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/mongodb_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing Range/textcract_key_value_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing Range/textcract_key_value_form.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +45,9 @@
     &quot;accountId&quot;: &quot;22031737-f023-4e82-9d08-02efa205da12&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Testing Range/mongodb_test.py" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -58,6 +63,7 @@
     "Python.mongodb_test.executor": "Run",
     "Python.pharmacy_list (1).executor": "Run",
     "Python.pharmacy_list.executor": "Run",
+    "Python.pharmacy_receipt.executor": "Debug",
     "Python.textcract_blocks.executor": "Run",
     "Python.textcract_key_value_form.executor": "Run",
     "Python.textcrat_query.executor": "Run",
@@ -76,7 +82,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.mongodb_test">
+  <component name="RunManager">
     <configuration name="mongodb_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
@@ -231,6 +237,7 @@
       <workItem from="1747837346278" duration="1346000" />
       <workItem from="1747876385179" duration="744000" />
       <workItem from="1748141270461" duration="14858000" />
+      <workItem from="1748562820577" duration="1555000" />
     </task>
     <servers />
   </component>
@@ -273,6 +280,11 @@
           <line>239</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Testing Range/pharmacy_receipt.py</url>
+          <line>222</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -296,5 +308,6 @@
     <SUITE FILE_PATH="coverage/PharmaCompare$add_pharmacy_drug.coverage" NAME="add_pharmacy_drug Coverage Results" MODIFIED="1748289954908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textcrat_query.coverage" NAME="textcrat_query Coverage Results" MODIFIED="1748230315252" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_list__1_.coverage" NAME="pharmacy_list (1) Coverage Results" MODIFIED="1747804554314" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_receipt.coverage" NAME="pharmacy_receipt Coverage Results" MODIFIED="1748565060626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
   </component>
 </project>
