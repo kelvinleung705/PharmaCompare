@@ -159,6 +159,16 @@ class pharmacy_receipt:
                         s_clean = pair[1].strip().replace(" ", "")
                         # If there's a decimal point, convert to float first, then to int
                         self.fee = float(s_clean)
+                        if self.fee > 14 or self.fee < 8:   #abnormal fee
+                            if len(s_clean) == 3:
+                                self.fee = float(s_clean[:-2])
+                                self.fee += float(s_clean[-2:]) / 100
+                                if self.fee > 14 or self.fee < 8:
+                                    self.fee = float(s_clean[:-1])
+                                    self.fee += float(s_clean[-1:]) / 10
+                            elif len(s_clean) == 4 and self.fee > 100:
+                                self.fee = float(s_clean[:-2])
+                                self.fee += float(s_clean[-2:])/100
                         return self.fee
                     except ValueError:
                         # Return None or raise error depending on what you prefer
@@ -407,6 +417,11 @@ class pharmacy_receipt:
                     return self.date
                 except ValueError as e:
                     continue  # Skip invalid dates (like April 31)
+            """
+            if 
+            tokens = re.split(r'[^a-zA-Z0-9_]+', text)
+            tokens = [t for t in tokens if t]
+            """
         return None  # No valid date found
 
     def get_date(self) -> datetime:

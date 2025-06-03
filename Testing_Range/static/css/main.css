@@ -2,3 +2,14 @@ body {
     margin: 0;
     font-family: sans-serif;
 }
+table {
+    margin: 0 auto; /* center the table */
+    border: 2px solid black; /* outer border */
+    border-collapse: collapse; /* remove gaps between cells */
+}
+
+th, td {
+    border: 1px solid black; /* cell borders */
+    padding: 8px;
+    text-align: center;
+}
