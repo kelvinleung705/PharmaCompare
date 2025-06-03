@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Testing_Range/templates/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/instance/test.db" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/instance/test.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/templates/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,38 +50,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JavaScript Debug.index.html.executor": "Run",
-    "Python.Run Flask App.executor": "Run",
-    "Python.add_pharmacy_drug.executor": "Run",
-    "Python.app.executor": "Debug",
-    "Python.flask_test.executor": "Run",
-    "Python.loginIAM test.executor": "Run",
-    "Python.mongodb_test.executor": "Run",
-    "Python.mongodb_text_pharmacy_receipt.executor": "Run",
-    "Python.pharmacy_list (1).executor": "Run",
-    "Python.pharmacy_list.executor": "Run",
-    "Python.pharmacy_receipt.executor": "Run",
-    "Python.textcract_blocks.executor": "Run",
-    "Python.textcract_key_value_form.executor": "Run",
-    "Python.textcrat_query.executor": "Run",
-    "Python.textcrat_test.executor": "Run",
-    "Python.textract_test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/kelvi/PycharmProjects/csc148",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Run Flask App.executor&quot;: &quot;Run&quot;,
+    &quot;Python.add_pharmacy_drug.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.flask_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.loginIAM test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mongodb_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mongodb_text_pharmacy_receipt.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pharmacy_list (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.pharmacy_list.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pharmacy_receipt.executor&quot;: &quot;Run&quot;,
+    &quot;Python.textcract_blocks.executor&quot;: &quot;Run&quot;,
+    &quot;Python.textcract_key_value_form.executor&quot;: &quot;Run&quot;,
+    &quot;Python.textcrat_query.executor&quot;: &quot;Run&quot;,
+    &quot;Python.textcrat_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.textract_test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kelvi/PycharmProjects/csc148&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing Range" />
