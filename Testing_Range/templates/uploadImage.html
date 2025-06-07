@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Image Upload (No Disk)</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Upload an Image</h1>
+    <div class="content">
+        <h1 style="text-align: center">Upload an Image (In Memory)</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input id="imageInput" type="file" name="image" accept="image/*" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        <img id="preview" style="display:none; max-width: 500px; margin-top: 20px;" />
+
+        <script>
+            const imageInput = document.getElementById('imageInput');
+            const preview = document.getElementById('preview');
+
+            imageInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (!file) {
+                    preview.style.display = 'none';
+                    preview.src = '';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            });
+        </script>
+        {% if image_data %}
+            <h2>Server-processed Preview (After Upload):</h2>
+            <img src="{{ image_data }}" style="max-width: 500px; margin-top: 20px;">
+        {% endif %}
+    </div>
+{% endblock %}
