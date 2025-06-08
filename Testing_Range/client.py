@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
 import base64
+import re
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -34,13 +35,19 @@ def send_image():
     # You want to strip the prefix before decoding:
     header, encoded = image_base64.split(',', 1)
 
+    file_type = header.split(';')[0].split(':')[1]
+
+    image_type = file_type.split('/', 1)[1]
+
+    image_name = "receipt." + image_type
+
     try:
         image_bytes = base64.b64decode(encoded)
     except Exception as e:
         return f'Invalid base64 data: {str(e)}', 400
 
     files = {
-        'image': (image_bytes, header)  # name, content, MIME type
+        'image': (image_name, image_bytes, file_type)  # name, content, MIME type
     }
 
     response = requests.post('http://127.0.0.1:5000/submit', files=files)
