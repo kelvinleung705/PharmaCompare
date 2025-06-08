@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
 import base64
+import io
 import re
 from werkzeug.utils import secure_filename
 
@@ -45,12 +46,12 @@ def send_image():
         image_bytes = base64.b64decode(encoded)
     except Exception as e:
         return f'Invalid base64 data: {str(e)}', 400
-
+    image_file = io.BytesIO(image_bytes)
     files = {
-        'image': (image_name, image_bytes, file_type)  # name, content, MIME type
+        'image': (image_name, image_file, file_type)  # name, content, MIME type
     }
 
-    response = requests.post('http://127.0.0.1:5000/submit', files=files)
+    response = requests.post('http://127.0.0.1:5001/upload', files=files)
     return 'Image received successfully', 200
     # Send to external Flask server
 
