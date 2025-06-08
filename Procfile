@@ -1,1 +1,1 @@
-web: gunicorn Testing_Range.app:app
+web: gunicorn main:app
