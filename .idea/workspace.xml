@@ -112,7 +112,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing_Range/app.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing_Range\appold.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -121,7 +121,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="appold" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -135,7 +135,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing_Range/app.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing_Range\appold.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -239,7 +239,7 @@
     <list>
       <item itemvalue="Python.Run Flask App" />
       <item itemvalue="Python.server" />
-      <item itemvalue="Python.app" />
+      <item itemvalue="Python.appold" />
       <item itemvalue="Python.flask_test" />
       <item itemvalue="Python.mongodb_test" />
       <item itemvalue="Python.pharmacy_receipt" />
@@ -247,7 +247,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.server" />
-        <item itemvalue="Python.app" />
+        <item itemvalue="Python.appold" />
         <item itemvalue="Python.flask_test" />
         <item itemvalue="Python.mongodb_test" />
         <item itemvalue="Python.pharmacy_receipt" />
@@ -289,7 +289,7 @@
       <workItem from="1748887528022" duration="4103000" />
       <workItem from="1748983490892" duration="385000" />
       <workItem from="1749249430872" duration="8573000" />
-      <workItem from="1749314660786" duration="16997000" />
+      <workItem from="1749314660786" duration="17309000" />
     </task>
     <servers />
   </component>
@@ -353,47 +353,47 @@
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
+          <url>file://$PROJECT_DIR$/Testing_Range/app.py</url>
           <line>44</line>
           <option name="timeStamp" value="92" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
+          <url>file://$PROJECT_DIR$/Testing_Range/app.py</url>
           <line>45</line>
           <option name="timeStamp" value="93" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
+          <url>file://$PROJECT_DIR$/Testing_Range/app.py</url>
           <line>46</line>
           <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
+          <url>file://$PROJECT_DIR$/Testing_Range/app.py</url>
           <line>47</line>
           <option name="timeStamp" value="95" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
+          <url>file://$PROJECT_DIR$/Testing_Range/app.py</url>
           <line>49</line>
           <option name="timeStamp" value="96" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
+          <url>file://$PROJECT_DIR$/Testing_Range/app.py</url>
           <line>53</line>
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
+          <url>file://$PROJECT_DIR$/Testing_Range/app.py</url>
           <line>54</line>
           <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
+          <url>file://$PROJECT_DIR$/Testing_Range/app.py</url>
           <line>48</line>
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
+          <url>file://$PROJECT_DIR$/Testing_Range/app.py</url>
           <line>42</line>
           <option name="timeStamp" value="112" />
         </line-breakpoint>

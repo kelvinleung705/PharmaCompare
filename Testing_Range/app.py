@@ -1,6 +1,5 @@
 import requests
 from flask import Flask, render_template, request, redirect, url_for, session
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
 import base64
