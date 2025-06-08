@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Testing_Range/static/js/imagePreview.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing_Range/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/static/imagepPreview.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/templates/uploadImage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/templates/uploadImage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +61,7 @@
     "Python.Run Flask App.executor": "Run",
     "Python.add_pharmacy_drug.executor": "Run",
     "Python.app.executor": "Debug",
-    "Python.client.executor": "Run",
+    "Python.client.executor": "Debug",
     "Python.flask_test.executor": "Run",
     "Python.loginIAM test.executor": "Run",
     "Python.mongodb_test.executor": "Run",
@@ -291,7 +288,7 @@
       <workItem from="1748887528022" duration="4103000" />
       <workItem from="1748983490892" duration="385000" />
       <workItem from="1749249430872" duration="8573000" />
-      <workItem from="1749314660786" duration="7087000" />
+      <workItem from="1749314660786" duration="7896000" />
     </task>
     <servers />
   </component>
@@ -354,11 +351,6 @@
           <line>141</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
-          <line>42</line>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -387,6 +379,6 @@
     <SUITE FILE_PATH="coverage/PharmaCompare$Run_Flask_App.coverage" NAME="Run Flask App Coverage Results" MODIFIED="1749315240738" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing_Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textcract_blocks.coverage" NAME="textcract_blocks Coverage Results" MODIFIED="1747277164763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$add_pharmacy_drug.coverage" NAME="add_pharmacy_drug Coverage Results" MODIFIED="1748630526219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$client.coverage" NAME="client Coverage Results" MODIFIED="1749352023950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$client.coverage" NAME="client Coverage Results" MODIFIED="1749357618372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
   </component>
 </project>

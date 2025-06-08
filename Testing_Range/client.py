@@ -39,7 +39,11 @@ def send_image():
     except Exception as e:
         return f'Invalid base64 data: {str(e)}', 400
 
-    response = requests.post('http://127.0.0.1:5000/submit', image_bytes)
+    files = {
+        'image': (image_bytes, header)  # name, content, MIME type
+    }
+
+    response = requests.post('http://127.0.0.1:5000/submit', files=files)
     return 'Image received successfully', 200
     # Send to external Flask server
 
