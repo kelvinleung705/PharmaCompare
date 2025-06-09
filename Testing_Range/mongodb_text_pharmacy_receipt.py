@@ -21,10 +21,10 @@ if __name__ == "__main__":
     secret_access_key = os.getenv("AWS_Secret_Access_Key")
     # receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
     # receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
-    # receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250515_233055.jpg")
     # receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250516_205447.jpg")
+    # receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250515_233055.jpg")
     # receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/1000084658.jpg")
-    # receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
+    # receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg") #repeated
     # receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086731.jpg")
     # receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086732.jpg")
     receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
@@ -44,6 +44,7 @@ if __name__ == "__main__":
     print(receipt.extract_address(pharmacy_list_obj))
     print(receipt.get_pharmacy_ident())
     print(receipt.get_pharmacy_name())
-
-    new_pharmacy_drug = new_pharmacy_drug_receipt(receipt)
+    mongoDB_Username = os.getenv("MongoDB_Username")
+    mongoDB_Password = os.getenv("MongoDB_Password")
+    new_pharmacy_drug = new_pharmacy_drug_receipt(receipt, mongoDB_Username, mongoDB_Password)
     new_pharmacy_drug.add_pharmacy_drug()

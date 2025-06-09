@@ -41,6 +41,7 @@ if __name__ == "__main__":
     print(textcract.extract_address(pharmacy_list_obj))
     print(textcract.get_pharmacy_ident())
     print(textcract.get_pharmacy_name())
-
+    mongoDB_Username = os.getenv("AWS_Access_Key")
+    mongoDB_Password = os.getenv("AWS_Secret_Access_Key")
     new_pharmacy_drug = new_pharmacy_drug(textcract)
     new_pharmacy_drug.add_pharmacy_drug()

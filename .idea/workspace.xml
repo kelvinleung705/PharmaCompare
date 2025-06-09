@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing_Range/add_pharmacy_drug_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/add_pharmacy_drug_receipt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing_Range/mongodb_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/mongodb_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing_Range/mongodb_text_pharmacy_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/mongodb_text_pharmacy_receipt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing_Range/received_receipt.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/received_receipt.jpeg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +23,17 @@
         <option value="JavaScript File" />
         <option value="Python Script" />
       </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
     </option>
   </component>
   <component name="Git.Settings">
@@ -69,7 +83,7 @@
     "Python.pharmacy_list (1).executor": "Run",
     "Python.pharmacy_list.executor": "Run",
     "Python.pharmacy_receipt.executor": "Run",
-    "Python.server.executor": "Run",
+    "Python.server.executor": "Debug",
     "Python.textcract_blocks.executor": "Run",
     "Python.textcract_key_value_form.executor": "Run",
     "Python.textcrat_query.executor": "Run",
@@ -97,7 +111,7 @@
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing Range" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.mongodb_text_pharmacy_receipt">
     <configuration name="Run Flask App" type="PythonConfigurationType" factoryName="Python">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
@@ -190,7 +204,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pharmacy_receipt" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="mongodb_text_pharmacy_receipt" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -199,12 +213,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Testing Range" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Testing_Range" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing Range/pharmacy_receipt.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing_Range/mongodb_text_pharmacy_receipt.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -242,15 +256,15 @@
       <item itemvalue="Python.appold" />
       <item itemvalue="Python.flask_test" />
       <item itemvalue="Python.mongodb_test" />
-      <item itemvalue="Python.pharmacy_receipt" />
+      <item itemvalue="Python.mongodb_text_pharmacy_receipt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.mongodb_text_pharmacy_receipt" />
         <item itemvalue="Python.server" />
         <item itemvalue="Python.appold" />
         <item itemvalue="Python.flask_test" />
         <item itemvalue="Python.mongodb_test" />
-        <item itemvalue="Python.pharmacy_receipt" />
       </list>
     </recent_temporary>
   </component>
@@ -289,7 +303,7 @@
       <workItem from="1748887528022" duration="4103000" />
       <workItem from="1748983490892" duration="385000" />
       <workItem from="1749249430872" duration="8573000" />
-      <workItem from="1749314660786" duration="18951000" />
+      <workItem from="1749314660786" duration="26843000" />
     </task>
     <servers />
   </component>
@@ -397,6 +411,11 @@
           <line>42</line>
           <option name="timeStamp" value="112" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Testing_Range/server.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -421,12 +440,12 @@
     <SUITE FILE_PATH="coverage/PharmaCompare$textcrat_query.coverage" NAME="textcrat_query Coverage Results" MODIFIED="1748230315252" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_list__1_.coverage" NAME="pharmacy_list (1) Coverage Results" MODIFIED="1747804554314" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_receipt.coverage" NAME="pharmacy_receipt Coverage Results" MODIFIED="1748886514009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$mongodb_text_pharmacy_receipt.coverage" NAME="mongodb_text_pharmacy_receipt Coverage Results" MODIFIED="1748631036527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$mongodb_text_pharmacy_receipt.coverage" NAME="mongodb_text_pharmacy_receipt Coverage Results" MODIFIED="1749504680255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$mongodb_test.coverage" NAME="mongodb_test Coverage Results" MODIFIED="1748630022978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$server.coverage" NAME="server Coverage Results" MODIFIED="1749362814143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$server.coverage" NAME="server Coverage Results" MODIFIED="1749498073936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$Run_Flask_App.coverage" NAME="Run Flask App Coverage Results" MODIFIED="1749315240738" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing_Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textcract_blocks.coverage" NAME="textcract_blocks Coverage Results" MODIFIED="1747277164763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$add_pharmacy_drug.coverage" NAME="add_pharmacy_drug Coverage Results" MODIFIED="1748630526219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$client.coverage" NAME="client Coverage Results" MODIFIED="1749362820300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$client.coverage" NAME="client Coverage Results" MODIFIED="1749498081057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
   </component>
 </project>

@@ -13,10 +13,10 @@ import pymongo
 from datetime import datetime
 
 class new_pharmacy_drug_receipt:
-    def __init__(self, prescription_receipt: pharmacy_receipt):
+    def __init__(self, prescription_receipt: pharmacy_receipt, mongoDB_Username, mongoDB_Password):
         self.prescription_receipt = prescription_receipt
-        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-        self.database = myclient["PharmaCompare"]
+        myclient = pymongo.MongoClient("mongodb+srv://"+mongoDB_Username+":"+mongoDB_Password+"@pharmacomparedata1.tu3p29k.mongodb.net/?retryWrites=true&w=majority&appName=PharmaCompareData1")
+        self.database = myclient["Drug_Price"]
         self.pharmacy_drug_list_col = self.database["pharmacy_drug_list"]
 
     def get_pharmacy_drug_list(self) -> pymongo.collection.Collection:
@@ -36,6 +36,8 @@ class new_pharmacy_drug_receipt:
             cost = self.prescription_receipt.get_cost()
 
         pharmacy_column = self.pharmacy_drug_list_col.find_one({"pharmacy ident": pharmacy_ident})
+
+        # have pharmacy
         if pharmacy_column:
             old_date = pharmacy_column["fee date"]
             old_fee = pharmacy_column["fee"]
@@ -69,22 +71,11 @@ class new_pharmacy_drug_receipt:
                             }
                         }
                     )
-                    self.pharmacy_drug_list_col.update_one(
-                        {
-                            "pharmacy ident": pharmacy_ident
-                        },
-                        {"$push":
-                            {"fee history": {
-                                "cost": fee,
-                                "recent date dispensed": date
-                            }
-                            }
-                        }
-                    )
             have_med = self.pharmacy_drug_list_col.find_one({
                 "medication.din": din,
                 "pharmacy ident": pharmacy_ident
             })
+            #pahve pharmacy have drug
             if have_med:
                 matching_med = next((m for m in have_med["medication"] if m["din"] == din), None)
                 if matching_med:
@@ -109,18 +100,6 @@ class new_pharmacy_drug_receipt:
                                 "pharmacy ident": pharmacy_ident,
                                 "medication.din": din
                             },
-                            {"$push":
-                                 {"medication.$.record" : {
-                                     "cost": cost,
-                                     "recent date dispensed": date
-                                 }
-                                 }
-                            })
-                        self.pharmacy_drug_list_col.update_one(
-                            {
-                                "pharmacy ident": pharmacy_ident,
-                                "medication.din": din
-                            },
                             { "$set" : {
                                 "medication.$.cost" : cost,
                                  "medication.$.recent date dispensed": date
@@ -129,19 +108,14 @@ class new_pharmacy_drug_receipt:
                         )
 
 
-
+            #have pharmacy no drug
             else:
                 new_med = {
                     "din": din,
                     "pill_type": is_pill,
                     "cost": cost,
                     "recent date dispensed": date,  # Ideally a datetime object
-                    "record": [
-                        {
-                            "price": cost,
-                            "date dispensed": date
-                        }
-                    ]
+                    "record": []
                 }
                 # Push the new medication
                 self.pharmacy_drug_list_col.update_one(
@@ -149,7 +123,7 @@ class new_pharmacy_drug_receipt:
                     {"$push": {"medication": new_med}}
                 )
 
-
+        # all new
         else:
             pharmacy_document = {}
             pharmacy_document["pharmacy ident"] = pharmacy_ident
@@ -157,10 +131,10 @@ class new_pharmacy_drug_receipt:
             pharmacy_document["pharmacy address"] = pharmacy_address
             pharmacy_document["fee"] = fee
             pharmacy_document["fee date"] = self.prescription_receipt.get_date()
-            pharmacy_document["fee history"] = [ { "fee": fee, "fee date": date } ]
+            pharmacy_document["fee history"] = []
             pharmacy_document["medication"] = [ { "din": din, "pill type": is_pill, "cost": cost,
                                                   "recent date dispensed": date,
-                                                  "record": [ {"cost": cost, "date dispensed": date} ] } ]
+                                                  "record": [] } ]
             self.pharmacy_drug_list_col.insert_one(pharmacy_document)
 
 if __name__ == "__main__":
