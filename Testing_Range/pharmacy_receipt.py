@@ -14,8 +14,7 @@ from datetime import datetime
  #extract: from image, access: from canada drug base, get: return value
 
 class pharmacy_receipt:
-    def __init__(self, access_key_id, secret_access_key, image_location):
-        self.image_location = image_location
+    def __init__(self, access_key_id, secret_access_key):
         self.access_key_id = access_key_id
         self.secret_access_key = secret_access_key
         self.key_value_form = None
@@ -34,37 +33,7 @@ class pharmacy_receipt:
         self.pharmacy_name = None
 
     def aws_Textract(self, region="ca-central-1") -> str:
-        try:
-            # Create an STS client to verify credentials
-            textract_client = boto3.client(
-               "textract",
-               aws_access_key_id=self.access_key_id,
-              aws_secret_access_key=self.secret_access_key,
-              region_name=region
-            )
-            feature_types = ["FORMS"]
-            # Verify credentials by calling GetCallerIdentity
-            if self.image_location is not None:
-                with open(self.image_location, "rb") as document_file:
-                    document_bytes = document_file.read()
-            try:
-                response = textract_client.analyze_document(
-
-                    Document={"Bytes": document_bytes}, FeatureTypes = feature_types
-                )
-                #logger.info("Detected %s blocks.", len(response["Blocks"]))
-            except ClientError:
-                print("Couldn't detect text.")
-                raise
-            else:
-                return json.dumps(response, indent=4);
-
-        except NoCredentialsError:
-            print("Error: No valid credentials provided.")
-        except PartialCredentialsError:
-            print("Error: Incomplete credentials provided.")
-        except Exception as e:
-            print(f"An error occurred: {e}")
+        pass
 
     def extract_key_value_pair(self) -> list[list[str]]:
         key_value_pair = []
@@ -465,6 +434,20 @@ class pharmacy_receipt:
 
     def get_pharmacy_name(self) -> str:
         return self.pharmacy_name
+
+    def extract_and_access(self):
+        self.extract_key_value_pair()
+        self.extract_cost()
+        self.extract_fee()
+        self.extract_din()
+        self.access_drug_code_and_brand_name_and_ingredient_name()
+        self.extract_quantity()
+        self.access_drug_type()
+        self.quantity_correction()
+        self.extract_dates()
+        pharmacy_list_obj = pharmacy_list()
+        pharmacy_list_obj.get_pharmacy_address_list()
+        self.extract_address(pharmacy_list_obj)
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key

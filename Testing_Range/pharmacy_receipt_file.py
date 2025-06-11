@@ -13,10 +13,10 @@ from pharmacy_list import pharmacy_list
 from datetime import datetime
  #extract: from image, access: from canada drug base, get: return value
 
-class pharmacy_receipt_byte(pharmacy_receipt):
-    def __init__(self, access_key_id, secret_access_key, image_bytes):
+class pharmacy_receipt_file(pharmacy_receipt):
+    def __init__(self, access_key_id, secret_access_key, image_location):
         super().__init__(access_key_id, secret_access_key)
-        self.image_bytes = image_bytes
+        self.image_location = image_location
 
     def aws_Textract(self, region="ca-central-1") -> str:
         try:
@@ -29,10 +29,13 @@ class pharmacy_receipt_byte(pharmacy_receipt):
             )
             feature_types = ["FORMS"]
             # Verify credentials by calling GetCallerIdentity
+            if self.image_location is not None:
+                with open(self.image_location, "rb") as document_file:
+                    document_bytes = document_file.read()
             try:
                 response = textract_client.analyze_document(
 
-                    Document={"Bytes": self.image_bytes}, FeatureTypes = feature_types
+                    Document={"Bytes": document_bytes}, FeatureTypes = feature_types
                 )
                 #logger.info("Detected %s blocks.", len(response["Blocks"]))
             except ClientError:
@@ -50,19 +53,18 @@ class pharmacy_receipt_byte(pharmacy_receipt):
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key
-    """
     load_dotenv()
     access_key_id = os.getenv("AWS_Access_Key")
     secret_access_key = os.getenv("AWS_Secret_Access_Key")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250515_233055.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250516_205447.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/1000084658.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086731.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086732.jpg")
-    receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
+    #receipt = pharmacy_receipt_file(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
+    #receipt = pharmacy_receipt_file(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
+    #receipt = pharmacy_receipt_file(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250515_233055.jpg")
+    #receipt = pharmacy_receipt_file(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250516_205447.jpg")
+    #receipt = pharmacy_receipt_file(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/1000084658.jpg")
+    #receipt = pharmacy_receipt_file(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
+    #receipt = pharmacy_receipt_file(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086731.jpg")
+    #receipt = pharmacy_receipt_file(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086732.jpg")
+    receipt = pharmacy_receipt_file(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
     key_value_pair = receipt.extract_key_value_pair()
     for pair in key_value_pair:
         print(pair[0], pair[1])
@@ -79,4 +81,3 @@ if __name__ == "__main__":
     print(receipt.extract_address(pharmacy_list_obj))
     print(receipt.get_pharmacy_ident())
     print(receipt.get_pharmacy_name())
-    """

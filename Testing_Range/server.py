@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 
 from Testing_Range.add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
-from Testing_Range.pharmacy_receipt import pharmacy_receipt
+from Testing_Range.pharmacy_receipt_file import pharmacy_receipt_file
 from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
 
 
@@ -54,6 +54,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
         mongoDB_Password = os.getenv("MongoDB_Password")
         new_pharmacy_drug = new_pharmacy_drug_receipt(receipt_byte, mongoDB_Username, mongoDB_Password)
         new_pharmacy_drug.add_pharmacy_drug()
+        print("Adding drug done")
 
 httpd = HTTPServer(('0.0.0.0', 5001), SimpleHandler)
 print("Listening on port 5001...")

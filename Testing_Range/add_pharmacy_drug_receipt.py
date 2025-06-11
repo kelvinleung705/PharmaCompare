@@ -8,12 +8,12 @@ from typing import Union
 import requests
 import re
 from textcract_key_value_form import textcract_key_value_form
-from pharmacy_receipt import pharmacy_receipt
+from pharmacy_receipt_file import pharmacy_receipt_file
 import pymongo
 from datetime import datetime
 
 class new_pharmacy_drug_receipt:
-    def __init__(self, prescription_receipt: pharmacy_receipt, mongoDB_Username, mongoDB_Password):
+    def __init__(self, prescription_receipt: pharmacy_receipt_file, mongoDB_Username, mongoDB_Password):
         self.prescription_receipt = prescription_receipt
         myclient = pymongo.MongoClient("mongodb+srv://"+mongoDB_Username+":"+mongoDB_Password+"@pharmacomparedata1.tu3p29k.mongodb.net/?retryWrites=true&w=majority&appName=PharmaCompareData1")
         self.database = myclient["Drug_Price"]
