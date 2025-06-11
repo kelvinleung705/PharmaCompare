@@ -38,7 +38,8 @@ imageForm.addEventListener('submit', function(event) {
     .then(response => response.text())
     .then(result => {
         console.log("Server response:", result);
-        alert("Image submitted successfully!");
+        alert(result)
+        //alert("Image submitted successfully!");
     })
     .catch(error => {
         console.error("Error submitting image:", error);

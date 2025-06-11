@@ -41,20 +41,26 @@ class SimpleHandler(BaseHTTPRequestHandler):
         with open(f"received_{filename}", "wb") as f:
             f.write(file_data)
 
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"File received")
 
         load_dotenv()
         access_key_id = os.getenv("AWS_Access_Key")
         secret_access_key = os.getenv("AWS_Secret_Access_Key")
         receipt_byte = pharmacy_receipt_byte(access_key_id, secret_access_key, file_data)
-        receipt_byte.extract_and_access()
-        mongoDB_Username = os.getenv("MongoDB_Username")
-        mongoDB_Password = os.getenv("MongoDB_Password")
-        new_pharmacy_drug = new_pharmacy_drug_receipt(receipt_byte, mongoDB_Username, mongoDB_Password)
-        new_pharmacy_drug.add_pharmacy_drug()
-        print("Adding drug done")
+        valid = receipt_byte.extract_and_access()
+        if valid:
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"File received, file is valid")
+            mongoDB_Username = os.getenv("MongoDB_Username")
+            mongoDB_Password = os.getenv("MongoDB_Password")
+            new_pharmacy_drug = new_pharmacy_drug_receipt(receipt_byte, mongoDB_Username, mongoDB_Password)
+            new_pharmacy_drug.add_pharmacy_drug()
+            print("Adding drug done")
+        else:
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"File received, file is not valid")
+            print("invalid")
 
 httpd = HTTPServer(('0.0.0.0', 5001), SimpleHandler)
 print("Listening on port 5001...")

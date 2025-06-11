@@ -51,7 +51,10 @@ def send_image():
     }
 
     response = requests.post('http://127.0.0.1:5001/upload', files=files)
-    return 'Image received successfully', 200
+    if response.content == b'File received, file is valid':
+        return 'Image received successfully', 200
+    else:
+        return 'Image invalid', 200
     # Send to external Flask server
 
 

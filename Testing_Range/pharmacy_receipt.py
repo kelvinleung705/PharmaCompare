@@ -31,6 +31,8 @@ class pharmacy_receipt:
         self.pharmacy_address = None
         self.pharmacy_ident = None
         self.pharmacy_name = None
+        self.valid = True
+        self.drug_type = None
 
     def aws_Textract(self, region="ca-central-1") -> str:
         pass
@@ -99,7 +101,7 @@ class pharmacy_receipt:
         return key_value_pair
 
     def extract_cost(self) -> float:
-        if self.key_value_form is not None:
+        if self.key_value_form is not None and self.valid:
             found = False;
             for pair in self.key_value_form:
                 if "cost" in pair[0].lower():
@@ -111,15 +113,16 @@ class pharmacy_receipt:
                         return self.cost
                     except ValueError:
                         # Return None or raise error depending on what you prefer
+                        self.valid = False
                         return None
-        else:
-            return None
+        self.valid = False
+        return None
 
     def get_cost(self) -> float:
         return self.cost
 
     def extract_fee(self) -> float:
-        if self.key_value_form is not None:
+        if self.key_value_form is not None and self.valid:
             found = False;
             for pair in self.key_value_form:
                 if "fee" in pair[0].lower():
@@ -141,15 +144,16 @@ class pharmacy_receipt:
                         return self.fee
                     except ValueError:
                         # Return None or raise error depending on what you prefer
+                        self.valid = False
                         return None
-        else:
-            return None
+        self.valid = False
+        return None
 
     def get_fee(self) -> float:
         return self.fee
 
     def extract_din(self) -> str:
-        if self.key_value_form is not None:
+        if self.key_value_form is not None and self.valid:
             found = False;
             for pair in self.key_value_form:
                 if "din" in pair[0].lower():
@@ -157,8 +161,8 @@ class pharmacy_receipt:
                     s_clean.lower()
                     self.din = s_clean
                     return self.din
-        else:
-            return None
+        self.valid = False
+        return None
 
     def get_din(self) -> str:
         return self.din
@@ -173,8 +177,10 @@ class pharmacy_receipt:
                 self.drug_code = self.drug_code.rjust(8, '0')
                 self.drug_brand_name = str(data[0]['brand_name'])
             else:
+                self.valid = False
                 return "No result found for this DIN"
         else:
+            self.valid = False
             return f"Error: {response.status_code}"
 
         url = f"https://health-products.canada.ca/api/drug/activeingredient/?lang=eng&id={self.drug_code}"
@@ -185,8 +191,10 @@ class pharmacy_receipt:
                 self.drug_ingredient_name = str(data[0]['ingredient_name'])
                 return [self.drug_code, self.drug_brand_name, self.drug_ingredient_name]
             else:
+                self.valid = False
                 return "No result found for this DIN"
         else:
+            self.valid = False
             return f"Error: {response.status_code}"
 
     def get_drug_code_and_brand_name_and_ingredient_name(self) -> list[str]:
@@ -210,15 +218,17 @@ class pharmacy_receipt:
                 self.drug_type = str(data[0]['pharmaceutical_form_name'])
                 return self.drug_type
             else:
+                self.valid = False
                 return "No result found for this DIN"
         else:
+            self.valid = False
             return f"Error: {response.status_code}"
 
     def get_drug_type(self) -> str:
         return self.drug_type
 
     def extract_quantity(self) -> int:
-        if self.key_value_form is not None:
+        if self.key_value_form is not None and self.valid:
             found = False;
             for pair in self.key_value_form:
                 if "qt" in pair[0].lower() or "quant" in pair[0].lower():
@@ -278,9 +288,10 @@ class pharmacy_receipt:
                 self.quantity_number = closest_qty_number
                 return self.quantity_number
 
-
+            self.valid = False
             return None
         else:
+            self.valid = False
             return None
 
     def get_quantity(self) -> int:
@@ -391,6 +402,7 @@ class pharmacy_receipt:
             tokens = re.split(r'[^a-zA-Z0-9_]+', text)
             tokens = [t for t in tokens if t]
             """
+        self.valid = False
         return None  # No valid date found
 
     def get_date(self) -> datetime:
@@ -414,16 +426,17 @@ class pharmacy_receipt:
         return address_dict[0]['formatted_address'] if address_dict else None
 
     def extract_address(self, pharmacy_list_obj) -> str:
-        for line in self.lines:
-            formatted_line = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', line)
-            formatted_address = self.normalize_address(formatted_line)
-            if formatted_address is not None and (self.pharmacy_address == None or len(formatted_address) > len(self.pharmacy_address)):
-                temp_pharmacy_ident_name = pharmacy_list_obj.check_pharmacy_address_list(formatted_address)
-                if temp_pharmacy_ident_name:
-                    self.pharmacy_address = formatted_address
-                    self.pharmacy_ident = temp_pharmacy_ident_name[0]
-                    self.pharmacy_name = temp_pharmacy_ident_name[1]
-                    print("address found")
+        if self.valid:
+            for line in self.lines:
+                formatted_line = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', line)
+                formatted_address = self.normalize_address(formatted_line)
+                if formatted_address is not None and (self.pharmacy_address == None or len(formatted_address) > len(self.pharmacy_address)):
+                    temp_pharmacy_ident_name = pharmacy_list_obj.check_pharmacy_address_list(formatted_address)
+                    if temp_pharmacy_ident_name:
+                        self.pharmacy_address = formatted_address
+                        self.pharmacy_ident = temp_pharmacy_ident_name[0]
+                        self.pharmacy_name = temp_pharmacy_ident_name[1]
+                        print("address found")
         return self.pharmacy_address
 
     def get_pharmacy_address(self) -> str:
@@ -435,7 +448,7 @@ class pharmacy_receipt:
     def get_pharmacy_name(self) -> str:
         return self.pharmacy_name
 
-    def extract_and_access(self):
+    def extract_and_access(self) -> bool:
         self.extract_key_value_pair()
         self.extract_cost()
         self.extract_fee()
@@ -448,13 +461,14 @@ class pharmacy_receipt:
         pharmacy_list_obj = pharmacy_list()
         pharmacy_list_obj.get_pharmacy_address_list()
         self.extract_address(pharmacy_list_obj)
+        return self.valid
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key
     load_dotenv()
     access_key_id = os.getenv("AWS_Access_Key")
     secret_access_key = os.getenv("AWS_Secret_Access_Key")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
+    receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
     #receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
     #receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250515_233055.jpg")
     #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250516_205447.jpg")
@@ -462,7 +476,7 @@ if __name__ == "__main__":
     #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
     #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086731.jpg")
     #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086732.jpg")
-    receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
+    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
     key_value_pair = receipt.extract_key_value_pair()
     for pair in key_value_pair:
         print(pair[0], pair[1])
