@@ -1,5 +1,12 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import cgi
+import os
+from dotenv import load_dotenv
+
+from Testing_Range.add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
+from Testing_Range.pharmacy_receipt import pharmacy_receipt
+from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
+
 
 class SimpleHandler(BaseHTTPRequestHandler):
     def do_POST(self):
@@ -37,6 +44,16 @@ class SimpleHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
         self.wfile.write(b"File received")
+
+        load_dotenv()
+        access_key_id = os.getenv("AWS_Access_Key")
+        secret_access_key = os.getenv("AWS_Secret_Access_Key")
+        receipt_byte = pharmacy_receipt_byte(access_key_id, secret_access_key, file_data)
+        receipt_byte.extract_and_access()
+        mongoDB_Username = os.getenv("MongoDB_Username")
+        mongoDB_Password = os.getenv("MongoDB_Password")
+        new_pharmacy_drug = new_pharmacy_drug_receipt(receipt_byte, mongoDB_Username, mongoDB_Password)
+        new_pharmacy_drug.add_pharmacy_drug()
 
 httpd = HTTPServer(('0.0.0.0', 5001), SimpleHandler)
 print("Listening on port 5001...")
