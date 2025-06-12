@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/mongodb_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/mongodb_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/mongodb_text_pharmacy_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/mongodb_text_pharmacy_receipt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt_byte.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt_byte.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt_file.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing_Range/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/textcract_key_value_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/textcract_key_value_form.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +110,7 @@
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing Range" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Run Flask App">
+  <component name="RunManager">
     <configuration name="Run Flask App" type="PythonConfigurationType" factoryName="Python">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
@@ -312,7 +306,7 @@
       <workItem from="1749598093946" duration="5415000" />
       <workItem from="1749652515548" duration="3534000" />
       <workItem from="1749662297684" duration="752000" />
-      <workItem from="1749746780948" duration="4069000" />
+      <workItem from="1749746780948" duration="4458000" />
     </task>
     <servers />
   </component>
@@ -407,6 +401,6 @@
     <SUITE FILE_PATH="coverage/PharmaCompare$textcract_blocks.coverage" NAME="textcract_blocks Coverage Results" MODIFIED="1747277164763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$add_pharmacy_drug.coverage" NAME="add_pharmacy_drug Coverage Results" MODIFIED="1748630526219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_receipt_byte.coverage" NAME="pharmacy_receipt_byte Coverage Results" MODIFIED="1749600303634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$client.coverage" NAME="client Coverage Results" MODIFIED="1749661766470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$client.coverage" NAME="client Coverage Results" MODIFIED="1749751638524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
   </component>
 </project>

@@ -8,6 +8,18 @@ from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
 
 
 class SimpleHandler(BaseHTTPRequestHandler):
+
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        self.wfile.write(b"Hello, GET!")
+
+    def do_HEAD(self):
+        self.send_response(200)
+        self.end_headers()
+
+
     def do_POST(self):
         # Parse the multipart form data
         if self.path != '/upload':
