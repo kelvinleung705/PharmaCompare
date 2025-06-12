@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Testing_Range/client_local.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing_Range/add_pharmacy_drug_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/add_pharmacy_drug_receipt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing_Range/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/received_receipt.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/received_receipt.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/static/js/imagePreview.js" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/static/js/imagePreview.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,42 +67,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JavaScript Debug.index.html.executor": "Run",
-    "Python.Run Flask App.executor": "Debug",
-    "Python.add_pharmacy_drug.executor": "Run",
-    "Python.app.executor": "Debug",
-    "Python.client.executor": "Run",
-    "Python.flask_test.executor": "Run",
-    "Python.loginIAM test.executor": "Run",
-    "Python.mongodb_test.executor": "Run",
-    "Python.mongodb_text_pharmacy_receipt.executor": "Debug",
-    "Python.pharmacy_list (1).executor": "Run",
-    "Python.pharmacy_list.executor": "Run",
-    "Python.pharmacy_receipt.executor": "Run",
-    "Python.pharmacy_receipt_byte.executor": "Debug",
-    "Python.pharmacy_receipt_file.executor": "Run",
-    "Python.server.executor": "Debug",
-    "Python.textcract_blocks.executor": "Run",
-    "Python.textcract_key_value_form.executor": "Run",
-    "Python.textcrat_query.executor": "Run",
-    "Python.textcrat_test.executor": "Run",
-    "Python.textract_test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/kelvi/PycharmProjects/csc148",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Run Flask App.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.add_pharmacy_drug.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.client.executor&quot;: &quot;Run&quot;,
+    &quot;Python.flask_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.loginIAM test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mongodb_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mongodb_text_pharmacy_receipt.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.pharmacy_list (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.pharmacy_list.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pharmacy_receipt.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pharmacy_receipt_byte.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.pharmacy_receipt_file.executor&quot;: &quot;Run&quot;,
+    &quot;Python.server.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.textcract_blocks.executor&quot;: &quot;Run&quot;,
+    &quot;Python.textcract_key_value_form.executor&quot;: &quot;Run&quot;,
+    &quot;Python.textcrat_query.executor&quot;: &quot;Run&quot;,
+    &quot;Python.textcrat_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.textract_test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kelvi/PycharmProjects/csc148&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing_Range\static\js" />
@@ -114,7 +112,7 @@
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing Range" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.Run Flask App">
     <configuration name="Run Flask App" type="PythonConfigurationType" factoryName="Python">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
@@ -308,7 +306,9 @@
       <workItem from="1749249430872" duration="8573000" />
       <workItem from="1749314660786" duration="26843000" />
       <workItem from="1749598093946" duration="5415000" />
-      <workItem from="1749652515548" duration="3454000" />
+      <workItem from="1749652515548" duration="3534000" />
+      <workItem from="1749662297684" duration="752000" />
+      <workItem from="1749746780948" duration="2218000" />
     </task>
     <servers />
   </component>
@@ -370,21 +370,6 @@
           <url>file://$PROJECT_DIR$/Testing Range/pharmacy_receipt.py</url>
           <line>141</line>
           <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
-          <line>53</line>
-          <option name="timeStamp" value="119" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
-          <line>54</line>
-          <option name="timeStamp" value="120" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Testing_Range/client.py</url>
-          <line>55</line>
-          <option name="timeStamp" value="121" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

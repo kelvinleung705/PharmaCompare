@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 from typing import Union
 import requests
 import re
-from textcract_key_value_form import textcract_key_value_form
 from pharmacy_receipt_file import pharmacy_receipt_file
 import pymongo
 from datetime import datetime
