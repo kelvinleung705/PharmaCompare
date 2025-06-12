@@ -15,7 +15,9 @@ class pharmacy_list:
                 return [self.pharmacy_address_list[i][0], self.pharmacy_address_list[i][1]]
 
     def get_pharmacy_address_list(self):
-        with open('../Data/Ontario_Pharmacy_Information.csv', mode='r', encoding='utf-8-sig') as file:
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        csv_path = os.path.join(BASE_DIR, 'Data', 'Ontario_Pharmacy_Information.csv')
+        with open(csv_path, mode='r', encoding='utf-8-sig') as file:
             csvFile = csv.reader(file)
             title_line = next(csvFile)
             for lines in csvFile:
@@ -78,7 +80,7 @@ class pharmacy_list:
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         csv_path = os.path.join(BASE_DIR, 'Data', 'Ontario_Pharmacy_Information.csv')
         pharmacy_list = []
-        with open('../Data/Ontario_Pharmacy_Information.csv', mode='r', encoding='utf-8-sig') as file:
+        with open(csv_path, mode='r', encoding='utf-8-sig') as file:
             csvFile = csv.reader(file)
             title_line = next(csvFile)
             for lines in csvFile:
