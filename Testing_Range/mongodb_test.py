@@ -8,11 +8,9 @@ from dotenv import load_dotenv
 from typing import Union
 import requests
 import re
-from pharmacy_list import pharmacy_list
-from add_pharmacy_drug import new_pharmacy_drug
-from textcract_key_value_form import textcract_key_value_form
-from pharmacy_receipt_file import pharmacy_receipt_file
-from datetime import datetime
+from Testing_Range.pharmacy_list import pharmacy_list
+from Testing_Range.add_pharmacy_drug import new_pharmacy_drug
+from Testing_Range.textcract_key_value_form import textcract_key_value_form
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key

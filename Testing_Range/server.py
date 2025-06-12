@@ -4,7 +4,6 @@ import os
 from dotenv import load_dotenv
 
 from Testing_Range.add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
-from Testing_Range.pharmacy_receipt_file import pharmacy_receipt_file
 from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
 
 

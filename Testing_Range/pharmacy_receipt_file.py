@@ -6,9 +6,6 @@ import boto3
 import os
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
 from dotenv import load_dotenv
-from typing import Union
-import requests
-import re
 from Testing_Range.pharmacy_list import pharmacy_list
 from datetime import datetime
  #extract: from image, access: from canada drug base, get: return value

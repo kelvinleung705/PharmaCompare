@@ -1,17 +1,10 @@
 import json
 from encodings.punycode import selective_find
-from pharmacy_receipt import pharmacy_receipt
+from Testing_Range.pharmacy_receipt import pharmacy_receipt
 import pandas as pd
 import boto3
 import os
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
-from dotenv import load_dotenv
-from typing import Union
-import requests
-import re
-from pharmacy_list import pharmacy_list
-from datetime import datetime
- #extract: from image, access: from canada drug base, get: return value
 
 class pharmacy_receipt_byte(pharmacy_receipt):
     def __init__(self, access_key_id, secret_access_key, image_bytes):
