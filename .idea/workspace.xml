@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing_Range/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing_Range/pharmacy_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/pharmacy_list.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,7 +307,7 @@
       <workItem from="1749598093946" duration="5415000" />
       <workItem from="1749652515548" duration="3534000" />
       <workItem from="1749662297684" duration="752000" />
-      <workItem from="1749746780948" duration="4499000" />
+      <workItem from="1749746780948" duration="5170000" />
     </task>
     <servers />
   </component>
@@ -401,6 +402,6 @@
     <SUITE FILE_PATH="coverage/PharmaCompare$textcract_blocks.coverage" NAME="textcract_blocks Coverage Results" MODIFIED="1747277164763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$add_pharmacy_drug.coverage" NAME="add_pharmacy_drug Coverage Results" MODIFIED="1748630526219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_receipt_byte.coverage" NAME="pharmacy_receipt_byte Coverage Results" MODIFIED="1749600303634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$client.coverage" NAME="client Coverage Results" MODIFIED="1749751638524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$client.coverage" NAME="client Coverage Results" MODIFIED="1749752332469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
   </component>
 </project>
