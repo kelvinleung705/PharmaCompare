@@ -45,8 +45,10 @@ class pharmacy_list:
 
 
     def check_pharmacy(self) -> list[list[str]]:
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        csv_path = os.path.join(BASE_DIR, 'Data', 'Ontario_Pharmacy_Information.csv')
         pharmacy_list = []
-        with open('../Data/Ontario_Pharmacy_Locations.csv', mode='r', encoding='utf-8-sig') as file:
+        with open('csv_path', mode='r', encoding='utf-8-sig') as file:
             csvFile = csv.reader(file)
             next(csvFile)
             for lines in csvFile:
