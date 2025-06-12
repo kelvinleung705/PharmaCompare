@@ -9,12 +9,18 @@ import requests
 import re
 from Testing_Range.pharmacy_receipt_file import pharmacy_receipt_file
 import pymongo
+import certifi
 from datetime import datetime
 
 class new_pharmacy_drug_receipt:
     def __init__(self, prescription_receipt: pharmacy_receipt_file, mongoDB_Username, mongoDB_Password):
         self.prescription_receipt = prescription_receipt
-        myclient = pymongo.MongoClient("mongodb+srv://"+mongoDB_Username+":"+mongoDB_Password+"@pharmacomparedata1.tu3p29k.mongodb.net/?retryWrites=true&w=majority&appName=PharmaCompareData1")
+        #myclient = pymongo.MongoClient("mongodb+srv://"+mongoDB_Username+":"+mongoDB_Password+"@pharmacomparedata1.tu3p29k.mongodb.net/?retryWrites=true&w=majority&appName=PharmaCompareData1")
+        myclient = pymongo.MongoClient(
+            "mongodb+srv://" + mongoDB_Username + ":" + mongoDB_Password + "@pharmacomparedata1.tu3p29k.mongodb.net/?retryWrites=true&w=majority&appName=PharmaCompareData1",
+            tls=True,
+            tlsCAFile=certifi.where()
+        )
         self.database = myclient["Drug_Price"]
         self.pharmacy_drug_list_col = self.database["pharmacy_drug_list"]
 
