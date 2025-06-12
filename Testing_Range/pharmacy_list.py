@@ -16,7 +16,7 @@ class pharmacy_list:
 
     def get_pharmacy_address_list(self):
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        csv_path = os.path.join(BASE_DIR, 'Data', 'Ontario_Pharmacy_Information.csv')
+        csv_path = os.path.join(BASE_DIR, '..', 'Data', 'Ontario_Pharmacy_Information.csv')
         with open(csv_path, mode='r', encoding='utf-8-sig') as file:
             csvFile = csv.reader(file)
             title_line = next(csvFile)
@@ -48,7 +48,7 @@ class pharmacy_list:
 
     def check_pharmacy(self) -> list[list[str]]:
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        csv_path = os.path.join(BASE_DIR, 'Data', 'Ontario_Pharmacy_Information.csv')
+        csv_path = os.path.join(BASE_DIR, '..', 'Data', 'Ontario_Pharmacy_Information.csv')
         pharmacy_list = []
         with open('csv_path', mode='r', encoding='utf-8-sig') as file:
             csvFile = csv.reader(file)
@@ -78,7 +78,7 @@ class pharmacy_list:
 
     def update_pharmacy_list(self) -> list[list[str]]:
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        csv_path = os.path.join(BASE_DIR, 'Data', 'Ontario_Pharmacy_Information.csv')
+        csv_path = os.path.join(BASE_DIR, '..', 'Data', 'Ontario_Pharmacy_Information.csv')
         pharmacy_list = []
         with open(csv_path, mode='r', encoding='utf-8-sig') as file:
             csvFile = csv.reader(file)
