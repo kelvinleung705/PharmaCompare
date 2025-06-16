@@ -19,7 +19,6 @@ class SimpleHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
 
-    @app.post("/upload")
     def do_POST(self):
         # Parse the multipart form data
         if self.path != '/upload':
