@@ -1,10 +1,16 @@
+
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import cgi
 import os
+
+import app
 from dotenv import load_dotenv
 
 from Testing_Range.add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
 from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
+from fastapi import FastAPI, UploadFile, File, WebSocket, WebSocketDisconnect, BackgroundTasks
+from fastapi.responses import HTMLResponse
+import asyncio
 
 
 class SimpleHandler(BaseHTTPRequestHandler):
@@ -19,8 +25,29 @@ class SimpleHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
 
+    def process_image(self, file_data):
+        load_dotenv()
+        access_key_id = os.getenv("AWS_Access_Key")
+        secret_access_key = os.getenv("AWS_Secret_Access_Key")
+        receipt_byte = pharmacy_receipt_byte(access_key_id, secret_access_key, file_data)
+        valid = receipt_byte.extract_and_access()
+        if valid:
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"File received, file is valid")
+            mongoDB_Username = os.getenv("MongoDB_Username")
+            mongoDB_Password = os.getenv("MongoDB_Password")
+            new_pharmacy_drug = new_pharmacy_drug_receipt(receipt_byte, mongoDB_Username, mongoDB_Password)
+            new_pharmacy_drug.add_pharmacy_drug()
+            print("Adding drug done")
+        else:
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"File received, file is not valid")
+            print("invalid")
+
     @app.post("/upload")
-    def do_POST(self):
+    async def upload_image(self, background_tasks=None):
         # Parse the multipart form data
         if self.path != '/upload':
             self.send_response(404)
@@ -52,7 +79,9 @@ class SimpleHandler(BaseHTTPRequestHandler):
         with open(f"received_{filename}", "wb") as f:
             f.write(file_data)
 
-
+        background_tasks.add_task(file_data)
+        return {"message": "File received"}
+        """
         load_dotenv()
         access_key_id = os.getenv("AWS_Access_Key")
         secret_access_key = os.getenv("AWS_Secret_Access_Key")
@@ -72,6 +101,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"File received, file is not valid")
             print("invalid")
+        """
 
 httpd = HTTPServer(('0.0.0.0', 5001), SimpleHandler)
 print("Listening on port 5001...")
