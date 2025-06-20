@@ -23,7 +23,7 @@ import uuid
 
 
 app = FastAPI()
-active_connections: Dict[str, WebSocket]
+active_connections: Dict[str, WebSocket] = {}
 
 def process_image(file_data, client_id):
     load_dotenv()

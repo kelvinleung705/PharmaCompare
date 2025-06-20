@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Testing_Range/client_local_websocket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing_Range/server_fastapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/server_fastapi.py" afterDir="false" />
     </list>
@@ -317,7 +318,7 @@
       <workItem from="1750114663664" duration="714000" />
       <workItem from="1750117927857" duration="24000" />
       <workItem from="1750292268131" duration="3694000" />
-      <workItem from="1750370052455" duration="9373000" />
+      <workItem from="1750370052455" duration="11814000" />
     </task>
     <servers />
   </component>
