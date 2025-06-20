@@ -21,8 +21,9 @@ import uuid
 
 
 
-active_connections: dict[str, WebSocket]
-app = None
+
+app = FastAPI()
+active_connections: Dict[str, WebSocket]
 
 def process_image(file_data, client_id):
     load_dotenv()
@@ -56,7 +57,7 @@ async def websocket_endpoint(websocket: WebSocket):
         while True:
             await websocket.receive_json()
     except WebSocketDisconnect:
-        del active_connections[client_id]
+        pass
     finally:
         del active_connections[client_id]
 
@@ -66,12 +67,9 @@ async def upload_image(client_id: str, file: UploadFile = File(...)):
 
     file_data = await file.read()
 
-    """
     # Save file
-    with open(f"received_{filename}", "wb") as f:
+    with open(f"received_image", "wb") as f:
         f.write(file_data)
-    """
-
 
     result = await asyncio.to_thread(process_image, file_data, client_id)
     return {"message": "File received"}
