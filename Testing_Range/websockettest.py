@@ -52,4 +52,4 @@ async def websocket_endpoint(websocket: WebSocket):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("chat_app:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("websockettest:app", host="127.0.0.1", port=8000, reload=True)

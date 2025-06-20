@@ -8,101 +8,70 @@ from dotenv import load_dotenv
 
 from Testing_Range.add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
 from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
-from fastapi import FastAPI, UploadFile, File, WebSocket, WebSocketDisconnect, BackgroundTasks
-from fastapi.responses import HTMLResponse
+
+from fastapi import FastAPI, WebSocket, UploadFile, File, WebSocketDisconnect
+import uuid
+
+
+from fastapi.responses import JSONResponse
 import asyncio
+import io
+from typing import Dict
+import uuid
 
 
-class SimpleHandler(BaseHTTPRequestHandler):
 
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type', 'text/html')
-        self.end_headers()
-        self.wfile.write(b"Hello, GET!")
+active_connections: dict[str, WebSocket]
+app = None
 
-    def do_HEAD(self):
-        self.send_response(200)
-        self.end_headers()
+def process_image(file_data, client_id):
+    load_dotenv()
+    access_key_id = os.getenv("AWS_Access_Key")
+    secret_access_key = os.getenv("AWS_Secret_Access_Key")
+    receipt_byte = pharmacy_receipt_byte(access_key_id, secret_access_key, file_data)
+    valid = receipt_byte.extract_and_access()
+    if valid:
+        mongoDB_Username = os.getenv("MongoDB_Username")
+        mongoDB_Password = os.getenv("MongoDB_Password")
+        new_pharmacy_drug = new_pharmacy_drug_receipt(receipt_byte, mongoDB_Username, mongoDB_Password)
+        new_pharmacy_drug.add_pharmacy_drug()
+        print("Adding drug done")
+        if client_id in active_connections.keys():
+            active_connections[client_id].send_text(f"success")
+    else:
+        print("invalid")
+        if client_id in active_connections.keys():
+            active_connections[client_id].send_text(f"failed")
 
-    def process_image(self, file_data):
-        load_dotenv()
-        access_key_id = os.getenv("AWS_Access_Key")
-        secret_access_key = os.getenv("AWS_Secret_Access_Key")
-        receipt_byte = pharmacy_receipt_byte(access_key_id, secret_access_key, file_data)
-        valid = receipt_byte.extract_and_access()
-        if valid:
-            self.send_response(200)
-            self.end_headers()
-            self.wfile.write(b"File received, file is valid")
-            mongoDB_Username = os.getenv("MongoDB_Username")
-            mongoDB_Password = os.getenv("MongoDB_Password")
-            new_pharmacy_drug = new_pharmacy_drug_receipt(receipt_byte, mongoDB_Username, mongoDB_Password)
-            new_pharmacy_drug.add_pharmacy_drug()
-            print("Adding drug done")
-        else:
-            self.send_response(200)
-            self.end_headers()
-            self.wfile.write(b"File received, file is not valid")
-            print("invalid")
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
 
-    @app.post("/upload")
-    async def upload_image(self, background_tasks=None):
-        # Parse the multipart form data
-        if self.path != '/upload':
-            self.send_response(404)
-            self.end_headers()
-            self.wfile.write(b'Not Found')
-            return
-        content_type = self.headers.get('Content-Type')
-        if not content_type.startswith('multipart/form-data'):
-            self.send_response(400)
-            self.end_headers()
-            self.wfile.write(b"Invalid content type")
-            return
+    client_id = str(uuid.uuid4())
+    active_connections[client_id] = websocket
 
-        form = cgi.FieldStorage(
-            fp=self.rfile,
-            headers=self.headers,
-            environ={
-                'REQUEST_METHOD': 'POST',
-                'CONTENT_TYPE': content_type,
-            }
-        )
+    await websocket.send_json({"client_id":client_id})
 
-        file_field = form['image']
-        filename = file_field.filename
-        content_type = file_field.type
-        file_data = file_field.file.read()
+    try:
+        while True:
+            await websocket.receive_json()
+    except WebSocketDisconnect:
+        del active_connections[client_id]
+    finally:
+        del active_connections[client_id]
 
-        # Save file
-        with open(f"received_{filename}", "wb") as f:
-            f.write(file_data)
 
-        background_tasks.add_task(file_data)
-        return {"message": "File received"}
-        """
-        load_dotenv()
-        access_key_id = os.getenv("AWS_Access_Key")
-        secret_access_key = os.getenv("AWS_Secret_Access_Key")
-        receipt_byte = pharmacy_receipt_byte(access_key_id, secret_access_key, file_data)
-        valid = receipt_byte.extract_and_access()
-        if valid:
-            self.send_response(200)
-            self.end_headers()
-            self.wfile.write(b"File received, file is valid")
-            mongoDB_Username = os.getenv("MongoDB_Username")
-            mongoDB_Password = os.getenv("MongoDB_Password")
-            new_pharmacy_drug = new_pharmacy_drug_receipt(receipt_byte, mongoDB_Username, mongoDB_Password)
-            new_pharmacy_drug.add_pharmacy_drug()
-            print("Adding drug done")
-        else:
-            self.send_response(200)
-            self.end_headers()
-            self.wfile.write(b"File received, file is not valid")
-            print("invalid")
-        """
+@app.post("/upload/{client_id}")
+async def upload_image(client_id: str, file: UploadFile = File(...)):
 
-httpd = HTTPServer(('0.0.0.0', 5001), SimpleHandler)
-print("Listening on port 5001...")
-httpd.serve_forever()
+    file_data = await file.read()
+
+    """
+    # Save file
+    with open(f"received_{filename}", "wb") as f:
+        f.write(file_data)
+    """
+
+
+    result = await asyncio.to_thread(process_image, file_data, client_id)
+    return {"message": "File received"}

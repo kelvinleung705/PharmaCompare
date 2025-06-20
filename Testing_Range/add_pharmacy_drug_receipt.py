@@ -7,13 +7,13 @@ from dotenv import load_dotenv
 from typing import Union
 import requests
 import re
-from Testing_Range.pharmacy_receipt_file import pharmacy_receipt_file
+from Testing_Range.pharmacy_receipt import pharmacy_receipt
 import pymongo
 import certifi
 from datetime import datetime
 
 class new_pharmacy_drug_receipt:
-    def __init__(self, prescription_receipt: pharmacy_receipt_file, mongoDB_Username, mongoDB_Password):
+    def __init__(self, prescription_receipt: pharmacy_receipt, mongoDB_Username, mongoDB_Password):
         self.prescription_receipt = prescription_receipt
         #myclient = pymongo.MongoClient("mongodb+srv://"+mongoDB_Username+":"+mongoDB_Password+"@pharmacomparedata1.tu3p29k.mongodb.net/?retryWrites=true&w=majority&appName=PharmaCompareData1")
         myclient = pymongo.MongoClient(
