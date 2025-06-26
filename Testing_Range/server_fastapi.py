@@ -10,6 +10,7 @@ from Testing_Range.add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
 from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
 
 from fastapi import FastAPI, WebSocket, UploadFile, File, WebSocketDisconnect
+import websockets
 import uuid
 
 
@@ -38,11 +39,11 @@ def process_image(file_data, client_id):
         new_pharmacy_drug.add_pharmacy_drug()
         print("Adding drug done")
         if client_id in active_connections.keys():
-            active_connections[client_id].send_text(f"success")
+            active_connections[client_id].send_json({'type': 'update', 'data': 'image valid'})
     else:
         print("invalid")
         if client_id in active_connections.keys():
-            active_connections[client_id].send_text(f"failed")
+            active_connections[client_id].send_json({'type': 'update', 'data': 'image invalid'})
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
@@ -51,7 +52,7 @@ async def websocket_endpoint(websocket: WebSocket):
     client_id = str(uuid.uuid4())
     active_connections[client_id] = websocket
 
-    await websocket.send_json({"client_id":client_id})
+    await websocket.send_json({'type':'client_id', 'data':client_id})
 
     try:
         while True:
@@ -72,4 +73,5 @@ async def upload_image(client_id: str, file: UploadFile = File(...)):
         f.write(file_data)
 
     result = await asyncio.to_thread(process_image, file_data, client_id)
-    return {"message": "File received"}
+    """return {"message": "File received"}send json back"""
+    await active_connections[client_id].send_json({'type': 'update', 'data': 'image received'})

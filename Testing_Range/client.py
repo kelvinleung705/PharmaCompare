@@ -10,6 +10,8 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 file = None
+
+socket = None
 @app.route('/', methods=['POST', 'GET'])
 def index():
     image_data = None
