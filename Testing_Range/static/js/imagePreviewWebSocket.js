@@ -10,9 +10,8 @@ const ws = new WebSocket('ws://localhost:5001/ws');
 // 3. RECEIVING messages from the server
 // This is the most important part for you: reacting to server data
 ws.onmessage = function(event) {
-    console.log("Raw event data received:", event.data)
-    console.log("Raw event data received:")
     const serverMessage = event.data;
+    alert(serverMessage)
     let serverJson;
     try {
         serverJson = JSON.parse(serverMessage);
@@ -24,8 +23,11 @@ ws.onmessage = function(event) {
     const keys = Object.keys(serverJson);
     if (serverJson.hasOwnProperty('type')) {
         console.log("The 'type' key exists!");
+        alert(serverJson['type'])
         if (serverJson['type'] === 'client_id') {
-            const client_id_v = serverJson['value']
+            alert(serverJson['data'])
+            const client_id_v = serverJson['data']
+            alert(client_id_v)
             fetch('/client_id_set', {
                 method: 'POST',
                 headers: {
@@ -33,12 +35,20 @@ ws.onmessage = function(event) {
                 },
                 body: JSON.stringify({ client_id: client_id_v })
             })
+            .then(response => response.text())
+            .then(result => {
+                console.log("Server response:", result);
+                alert(result)
+        //alert("Image submitted successfully!");
+            })
+            .catch(error => {
+                console.error("Error submitting image:", error);
+                alert("Submission failed.");
+            });
         }
     }
 
-
     // You can do anything you want with the message here!
-    alert("Server says: " + serverMessage);
 };
 
 

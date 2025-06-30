@@ -97,7 +97,7 @@ def send_image():
         return f'Invalid base64 data: {str(e)}', 400
     image_file = io.BytesIO(image_bytes)
     files = {
-        'image': (image_name, image_file, file_type)  # name, content, MIME type
+        'file': (image_name, image_file, file_type)  # name, content, MIME type
     }
     global client_id
     response = requests.post('http://127.0.0.1:5001/upload/' + client_id, files=files)
