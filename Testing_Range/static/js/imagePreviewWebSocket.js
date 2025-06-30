@@ -4,6 +4,44 @@ const preview = document.getElementById('preview');
 
 
 
+
+const ws = new WebSocket('ws://localhost:5001/ws');
+
+// 3. RECEIVING messages from the server
+// This is the most important part for you: reacting to server data
+ws.onmessage = function(event) {
+    console.log("Raw event data received:", event.data)
+    console.log("Raw event data received:")
+    const serverMessage = event.data;
+    let serverJson;
+    try {
+        serverJson = JSON.parse(serverMessage);
+    } catch (e) {
+        console.error("Failed to parse server message as JSON:", serverMessage, e);
+        return;  // Stop if the message isn't valid JSON
+    }
+    console.log("Message received from server: " + serverMessage);
+    const keys = Object.keys(serverJson);
+    if (serverJson.hasOwnProperty('type')) {
+        console.log("The 'type' key exists!");
+        if (serverJson['type'] === 'client_id') {
+            const client_id_v = serverJson['value']
+            fetch('/client_id_set', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ client_id: client_id_v })
+            })
+        }
+    }
+
+
+    // You can do anything you want with the message here!
+    alert("Server says: " + serverMessage);
+};
+
+
 imageInput.addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (!file) {

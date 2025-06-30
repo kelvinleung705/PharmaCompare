@@ -10,13 +10,12 @@ from Testing_Range.add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
 from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
 
 from fastapi import FastAPI, WebSocket, UploadFile, File, WebSocketDisconnect
+import uvicorn  # The ASGI server to run our app
 import websockets
-import uuid
 
 
 from fastapi.responses import JSONResponse
 import asyncio
-import io
 from typing import Dict
 import uuid
 
@@ -75,3 +74,11 @@ async def upload_image(client_id: str, file: UploadFile = File(...)):
     result = await asyncio.to_thread(process_image, file_data, client_id)
     """return {"message": "File received"}send json back"""
     await active_connections[client_id].send_json({'type': 'update', 'data': 'image received'})
+
+
+
+if __name__ == "__main__":
+    print("Starting FastAPI server with Uvicorn on http://0.0.0.0:5001")
+    # This command starts the ASGI server, which will keep listening for
+    # both HTTP and WebSocket connections indefinitely.
+    uvicorn.run(app, host="0.0.0.0", port=5001)

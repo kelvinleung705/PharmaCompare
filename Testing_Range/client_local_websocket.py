@@ -27,7 +27,7 @@ def index():
             image_encoded = base64.b64encode(image_read_stream).decode('utf-8')
             image_type = file.content_type  # e.g., image/png
             image_data = f'data:{image_type};base64,{image_encoded}'
-    return render_template('uploadImage.html', image_data=image_data)
+    return render_template('uploadImageWebSocket.html', image_data=image_data)
 
 @app.route('/ws')
 def ws_handler():
@@ -63,6 +63,16 @@ def ws_handler():
             break
     return ''
 
+@app.route('/client_id_set', methods=['POST'])
+def set_client_id():
+    data = request.get_json()
+    if not data or 'client_id' not in data:
+        return 'No client_id provided', 400
+    global client_id
+    client_id = data['client_id']
+    return f"Client ID set to: {client_id}", 200
+
+
 @app.route('/submit', methods=['POST'])
 def send_image():
     data = request.get_json()
@@ -89,7 +99,7 @@ def send_image():
     files = {
         'image': (image_name, image_file, file_type)  # name, content, MIME type
     }
-
+    global client_id
     response = requests.post('http://127.0.0.1:5001/upload/' + client_id, files=files)
     if response.content == b'File received, file is valid':
         return 'Image received successfully', 200
