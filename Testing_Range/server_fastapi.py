@@ -25,7 +25,7 @@ import uuid
 app = FastAPI()
 active_connections: Dict[str, WebSocket] = {}
 
-async def process_image(file_data, client_id):
+def process_image(file_data, client_id):
     load_dotenv()
     access_key_id = os.getenv("AWS_Access_Key")
     secret_access_key = os.getenv("AWS_Secret_Access_Key")
@@ -38,10 +38,10 @@ async def process_image(file_data, client_id):
         new_pharmacy_drug.add_pharmacy_drug()
         print("Adding drug done")
         if client_id in active_connections.keys():
-            await active_connections[client_id].send_json({'type': 'update', 'data': 'image valid'})
+            return {'type': 'update', 'data': 'image valid'}
     else:
         if client_id in active_connections.keys():
-            await active_connections[client_id].send_json({'type': 'update', 'data': 'image invalid'})
+            return {'type': 'update', 'data': 'image invalid'}
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
@@ -70,10 +70,10 @@ async def upload_image(client_id: str, file: UploadFile = File(...)):
     with open(f"received_image", "wb") as f:
         f.write(file_data)
 
-    """result = await asyncio.to_thread(process_image, file_data, client_id)"""
-    await process_image(file_data, client_id)
+    result = await asyncio.to_thread(process_image, file_data, client_id)
+    """await process_image(file_data, client_id)"""
     """return {"message": "File received"}send json back"""
-    await active_connections[client_id].send_json({'type': 'update', 'data': 'image received'})
+    await active_connections[client_id].send_json(result)
 
 
 
