@@ -101,10 +101,12 @@ def send_image():
     }
     global client_id
     response = requests.post('http://127.0.0.1:5001/upload/' + client_id, files=files)
+    """
     if response.content == b'File received, file is valid':
         return 'Image received successfully', 200
     else:
         return 'Image invalid', 200
+    """
     # Send to external Flask server
 
 

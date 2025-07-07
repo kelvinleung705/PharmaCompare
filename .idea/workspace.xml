@@ -7,7 +7,7 @@
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing_Range/client_local_websocket.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/client_local_websocket.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/static/js/imagePreviewWebSocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/static/js/imagePreviewWebSocket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing_Range/server_fastapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/server_fastapi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +57,9 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Testing Range/mongodb_test.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -321,7 +324,8 @@
       <workItem from="1750292268131" duration="3694000" />
       <workItem from="1750370052455" duration="12648000" />
       <workItem from="1750702260342" duration="12767000" />
-      <workItem from="1751314077728" duration="9716000" />
+      <workItem from="1751314077728" duration="10149000" />
+      <workItem from="1751846264455" duration="2825000" />
     </task>
     <servers />
   </component>
@@ -425,8 +429,8 @@
     <SUITE FILE_PATH="coverage/PharmaCompare$loginIAM_test.coverage" NAME="loginIAM test Coverage Results" MODIFIED="1736731396245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$app.coverage" NAME="app Coverage Results" MODIFIED="1748886577201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_list.coverage" NAME="pharmacy_list Coverage Results" MODIFIED="1748190674079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$server_fastapi.coverage" NAME="server_fastapi Coverage Results" MODIFIED="1751325842967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$client_local_websocket.coverage" NAME="client_local_websocket Coverage Results" MODIFIED="1751326508698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$server_fastapi.coverage" NAME="server_fastapi Coverage Results" MODIFIED="1751849222782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$client_local_websocket.coverage" NAME="client_local_websocket Coverage Results" MODIFIED="1751848462861" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_receipt.coverage" NAME="pharmacy_receipt Coverage Results" MODIFIED="1748886514009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$pharmacy_list__1_.coverage" NAME="pharmacy_list (1) Coverage Results" MODIFIED="1747804554314" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$mongodb_text_pharmacy_receipt.coverage" NAME="mongodb_text_pharmacy_receipt Coverage Results" MODIFIED="1749659832496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
