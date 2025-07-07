@@ -29,6 +29,7 @@ def index():
             image_data = f'data:{image_type};base64,{image_encoded}'
     return render_template('uploadImageWebSocket.html', image_data=image_data)
 
+"""
 @app.route('/ws')
 def ws_handler():
     ws = request.environ.get('wsgi.websocket')  # Get the WebSocket object
@@ -62,6 +63,7 @@ def ws_handler():
             print("WebSocket error:", e)
             break
     return ''
+"""
 
 @app.route('/client_id_set', methods=['POST'])
 def set_client_id():
@@ -100,12 +102,33 @@ def send_image():
         'file': (image_name, image_file, file_type)  # name, content, MIME type
     }
     global client_id
-    response = requests.post('http://127.0.0.1:5001/upload/' + client_id, files=files)
-    if response.content == b'File received, file is valid':
-        return 'Image received successfully', 200
-    else:
-        return 'Image invalid', 200
+
+    try:
+        response = requests.post('http://127.0.0.1:5001/upload/' + client_id, files=files)
+        # 2. CHECK THE STATUS CODE (Good Practice)
+        # This confirms the request was accepted as expected.
+        response.raise_for_status()  # This will raise an exception for 4xx or 5xx errors
+        # 3. GET THE JSON RESPONSE
+        # The .json() method parses the response body into a Python dictionary.
+        data = response.json()
+        status_code = response.status_code
+        if  status_code == 202:
+            return data.get('message'), status_code
+        else:
+            return 'Image invalid', 200
     # Send to external Flask server
+    except requests.exceptions.HTTPError as http_err:
+        print(f"HTTP error occurred: {http_err}")
+        # You might want to see the error body from the server
+        print(f"Server response: {response.text}")
+    except requests.exceptions.RequestException as err:
+        print(f"An other error occurred: {err}")
+    """
+    finally:
+        # Clean up the dummy file
+        os.remove(file_to_upload)
+    """
+
 
 
 
