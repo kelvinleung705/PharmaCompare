@@ -5,6 +5,7 @@ import os
 
 import app
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 from Testing_Range.add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
 from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
@@ -12,6 +13,7 @@ from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
 from fastapi import FastAPI, WebSocket, UploadFile, File, WebSocketDisconnect, BackgroundTasks
 import uvicorn  # The ASGI server to run our app
 import websockets
+
 
 
 from fastapi.responses import JSONResponse
@@ -24,6 +26,28 @@ import uuid
 
 app = FastAPI()
 active_connections: Dict[str, WebSocket] = {}
+
+# =======================================================================
+# THIS IS THE FIX
+# =======================================================================
+origins = [
+    # The origin from your network log that needs permission
+    "http://localhost:5000",
+
+    # It's good practice to also include these for flexibility
+    "http://localhost",
+    "http://127.0.0.1",
+    "http://127.0.0.1:5000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,       # The list of origins that are allowed to make requests
+    allow_credentials=True,      # Allow cookies to be sent
+    allow_methods=["*"],         # Allow all methods (GET, POST, etc.)
+    allow_headers=["*"],         # Allow all headers
+)
+# =======================================================================
 
 def process_image_sync(file_data, client_id):
     load_dotenv()

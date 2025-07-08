@@ -75,6 +75,7 @@ def set_client_id():
     return f"Client ID set to: {client_id}", 200
 
 
+"""
 @app.route('/submit', methods=['POST'])
 def send_image():
     data = request.get_json()
@@ -101,10 +102,12 @@ def send_image():
     files = {
         'file': (image_name, image_file, file_type)  # name, content, MIME type
     }
-    global client_id
+    client_id_from_request = data.get('localClientId')
+    if not client_id_from_request:
+        return 'No client_id provided in the request', 400
 
     try:
-        response = requests.post('http://127.0.0.1:5001/upload/' + client_id, files=files)
+        response = requests.post('http://127.0.0.1:5001/upload/' + client_id_from_request, files=files)
         # 2. CHECK THE STATUS CODE (Good Practice)
         # This confirms the request was accepted as expected.
         response.raise_for_status()  # This will raise an exception for 4xx or 5xx errors
@@ -123,11 +126,12 @@ def send_image():
         print(f"Server response: {response.text}")
     except requests.exceptions.RequestException as err:
         print(f"An other error occurred: {err}")
-    """
+"""
+"""
     finally:
         # Clean up the dummy file
         os.remove(file_to_upload)
-    """
+"""
 
 
 
