@@ -3,7 +3,6 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import cgi
 import os
 
-import app
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 
