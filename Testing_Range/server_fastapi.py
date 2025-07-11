@@ -113,6 +113,7 @@ async def upload_image(client_id: str,  background_tasks: BackgroundTasks, file:
 
 
 if __name__ == "__main__":
+
     print("Starting FastAPI server with Uvicorn on http://0.0.0.0:5001")
     # This command starts the ASGI server, which will keep listening for
     # both HTTP and WebSocket connections indefinitely.

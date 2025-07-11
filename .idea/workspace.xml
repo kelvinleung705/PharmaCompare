@@ -116,7 +116,7 @@
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing Range" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Run Flask App">
+  <component name="RunManager">
     <configuration name="Run Flask App" type="PythonConfigurationType" factoryName="Python">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
@@ -325,7 +325,7 @@
       <workItem from="1751931540408" duration="2866000" />
       <workItem from="1751992745734" duration="5935000" />
       <workItem from="1752036027404" duration="6000" />
-      <workItem from="1752272530252" duration="1254000" />
+      <workItem from="1752272530252" duration="4071000" />
     </task>
     <servers />
   </component>
@@ -403,7 +403,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PharmaCompare$websockettest.coverage" NAME="websockettest Coverage Results" MODIFIED="1750299885682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
-    <SUITE FILE_PATH="coverage/PharmaCompare$client_local.coverage" NAME="client_local Coverage Results" MODIFIED="1749755575338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
+    <SUITE FILE_PATH="coverage/PharmaCompare$client_local.coverage" NAME="client_local Coverage Results" MODIFIED="1752276365994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing_Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textract_test.coverage" NAME="textract_test Coverage Results" MODIFIED="1746999878673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PharmaCompare$flask_test.coverage" NAME="flask_test Coverage Results" MODIFIED="1748826660966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />
     <SUITE FILE_PATH="coverage/PharmaCompare$textcrat_query.coverage" NAME="textcrat_query Coverage Results" MODIFIED="1748230315252" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Testing Range" />

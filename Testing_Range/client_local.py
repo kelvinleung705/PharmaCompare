@@ -50,7 +50,8 @@ def send_image():
         'image': (image_name, image_file, file_type)  # name, content, MIME type
     }
 
-    response = requests.post('http://127.0.0.1:5001/upload', files=files)
+    #response = requests.post('http://127.0.0.1:5001/upload', files=files)
+    response = requests.post('https://pharmacompare-3a46.onrender.com/upload', files=files)
     if response.content == b'File received, file is valid':
         return 'Image received successfully', 200
     else:
