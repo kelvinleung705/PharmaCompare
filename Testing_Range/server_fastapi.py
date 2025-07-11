@@ -11,7 +11,6 @@ from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
 
 from fastapi import FastAPI, WebSocket, UploadFile, File, WebSocketDisconnect, BackgroundTasks
 import uvicorn  # The ASGI server to run our app
-import websockets
 
 
 
