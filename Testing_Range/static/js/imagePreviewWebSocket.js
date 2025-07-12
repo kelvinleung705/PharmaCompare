@@ -6,7 +6,7 @@ const preview = document.getElementById('preview');
 
 
 //const ws = new WebSocket('ws://localhost:5001/ws');
-const ws = new WebSocket('wss://pharmacompare-3a46.onrender.com/ws');
+const ws = new WebSocket('https://pharmacompare-3a46.onrender.com/ws');
 
 //htps://pharmacompare-3a46.onrender.com
 
