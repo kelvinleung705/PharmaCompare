@@ -32,6 +32,9 @@ origins = [
     # The origin from your network log that needs permission
     "http://localhost:5000",
 
+    # The URL of your frontend running on Heroku
+    "https://pharmacompare-7e5413777c20.herokuapp.com",
+
     # It's good practice to also include these for flexibility
     "http://localhost",
     "http://127.0.0.1",
