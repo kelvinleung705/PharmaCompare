@@ -1,15 +1,8 @@
-import requests
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask import Flask, render_template_string, request
 from gevent.pywsgi import WSGIServer
 from geventwebsocket.handler import WebSocketHandler
-from datetime import datetime
-import os
 import base64
-import io
-import re
-import json
-from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -135,9 +128,11 @@ def send_image():
 
 
 
-
+if __name__ == "__main__":
+    import os
+    app.run(debug=True, use_reloader=False)
 
 if __name__ == '__main__':
     print("Starting WebSocket server on http://localhost:5000")
-    http_server = WSGIServer(('0.0.0.0', 5000), app, handler_class=WebSocketHandler)
+    http_server = WSGIServer(('https://pharmacompare-3a46.onrender.com', 5000), app, handler_class=WebSocketHandler)
     http_server.serve_forever()

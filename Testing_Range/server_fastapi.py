@@ -84,13 +84,15 @@ async def process_image_async(file_data: bytes, client_id: str):
     try:
         # Run the blocking code in a separate thread
         result = await asyncio.to_thread(process_image_sync, file_data, client_id)
-
+        print("process done")
         # Send the result using the async WebSocket function
         if client_id in active_connections:
+            print("confirm message sending")
             await active_connections[client_id].send_json({'type': 'update', 'data': result['data']})
     except Exception as e:
         print(f"Error during processing for {client_id}: {e}")
         if client_id in active_connections:
+            print("confirm message sending")
             await active_connections[client_id].send_json({'type': 'update', 'data': 'Processing failed.'})
 
 @app.post("/upload/{client_id}")
