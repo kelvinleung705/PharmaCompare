@@ -32,7 +32,7 @@ class pharmacy_receipt_byte(pharmacy_receipt):
                 print("Couldn't detect text.")
                 raise
             else:
-                return json.dumps(response, indent=4);
+                return json.dumps(response, indent=4)
 
         except NoCredentialsError:
             print("Error: No valid credentials provided.")

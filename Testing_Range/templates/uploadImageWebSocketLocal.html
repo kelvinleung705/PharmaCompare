@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Image Upload (No Disk)</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Upload an Image</h1>
+    <div class="content">
+        <h1 style="text-align: center">Upload an Image (In Memory)</h1>
+        <form id="imageForm" method="POST" enctype="multipart/form-data">
+            <input id="imageInput" type="file" name="image" accept="image/*" required>
+            <input type="hidden" name="image_base64" id="imageBase64Input">
+            <button type="submit">Upload</button>
+        </form>
+
+        <img id="preview" style="display:none; max-width: 500px; margin-top: 20px;" />
+
+        <script src="{{ url_for('static', filename='js/imagePreviewWebSocketLocal.js') }}" defer></script>
+        {% if image_data %}
+            <h2>Server-processed Preview (After Upload):</h2>
+            <img src="{{ image_data }}" style="max-width: 500px; margin-top: 20px;">
+        {% endif %}
+    </div>
+{% endblock %}

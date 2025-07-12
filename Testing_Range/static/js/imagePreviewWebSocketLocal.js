@@ -5,8 +5,8 @@ const preview = document.getElementById('preview');
 
 
 
-//const ws = new WebSocket('ws://localhost:5001/ws');
-const ws = new WebSocket('wss://pharmacompare-3a46.onrender.com/ws');
+const ws = new WebSocket('ws://localhost:5001/ws');
+//const ws = new WebSocket('wss://pharmacompare-3a46.onrender.com/ws');
 
 //htps://pharmacompare-3a46.onrender.com
 
@@ -44,7 +44,6 @@ ws.onmessage = function(event) {
 
     // You can do anything you want with the message here!
 };
-
 
 
 imageInput.addEventListener('change', function(event) {
@@ -85,9 +84,9 @@ imageForm.addEventListener('submit', async function(event) {
 
     // THE CRITICAL FIX: Build the correct upload URL using our unique ID.
     // This tells the FastAPI server who we are.
-    //const uploadUrl = `http://localhost:5001/upload/${localClientId}`;
+    const uploadUrl = `http://localhost:5001/upload/${localClientId}`;
 
-    const uploadUrl = `https://pharmacompare-3a46.onrender.com/upload/${localClientId}`;
+    //const uploadUrl = `https://pharmacompare-3a46.onrender.com/upload/${localClientId}`;
 
     console.log(`Uploading file to: ${uploadUrl}`);
     alert(`Uploading file to: ${uploadUrl}`);

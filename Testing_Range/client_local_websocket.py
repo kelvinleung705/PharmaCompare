@@ -3,7 +3,6 @@ from flask import Flask, render_template_string, request
 from gevent.pywsgi import WSGIServer
 from geventwebsocket.handler import WebSocketHandler
 import base64
-
 app = Flask(__name__)
 
 file = None
@@ -20,7 +19,7 @@ def index():
             image_encoded = base64.b64encode(image_read_stream).decode('utf-8')
             image_type = file.content_type  # e.g., image/png
             image_data = f'data:{image_type};base64,{image_encoded}'
-    return render_template('uploadImageWebSocket.html', image_data=image_data)
+    return render_template('uploadImageWebSocketLocal.html', image_data=image_data)
 
 """
 @app.route('/ws')
@@ -58,6 +57,7 @@ def ws_handler():
     return ''
 """
 
+"""
 @app.route('/client_id_set', methods=['POST'])
 def set_client_id():
     data = request.get_json()
@@ -66,7 +66,7 @@ def set_client_id():
     global client_id
     client_id = data['client_id']
     return f"Client ID set to: {client_id}", 200
-
+"""
 
 """
 @app.route('/submit', methods=['POST'])
@@ -128,11 +128,9 @@ def send_image():
 
 
 
-if __name__ == "__main__":
-    import os
-    app.run(debug=True, use_reloader=False)
+
 
 if __name__ == '__main__':
     print("Starting WebSocket server on http://localhost:5000")
-    http_server = WSGIServer(('https://pharmacompare-3a46.onrender.com', 5000), app, handler_class=WebSocketHandler)
+    http_server = WSGIServer(('0.0.0.0', 5000), app, handler_class=WebSocketHandler)
     http_server.serve_forever()

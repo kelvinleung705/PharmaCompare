@@ -58,6 +58,7 @@ def ws_handler():
     return ''
 """
 
+"""
 @app.route('/client_id_set', methods=['POST'])
 def set_client_id():
     data = request.get_json()
@@ -66,6 +67,7 @@ def set_client_id():
     global client_id
     client_id = data['client_id']
     return f"Client ID set to: {client_id}", 200
+"""
 
 
 """
@@ -127,12 +129,13 @@ def send_image():
 """
 
 
-
+"""
 if __name__ == "__main__":
     import os
     app.run(debug=True, use_reloader=False)
+"""
 
 if __name__ == '__main__':
     print("Starting WebSocket server on http://localhost:5000")
-    http_server = WSGIServer(('https://pharmacompare-3a46.onrender.com', 5000), app, handler_class=WebSocketHandler)
+    http_server = WSGIServer(('0.0.0.0', 5000), app, handler_class=WebSocketHandler)
     http_server.serve_forever()
