@@ -1,11 +1,22 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask import Flask, render_template_string, request
+from flask_cors import CORS  # 1. Import CORS
+
 import base64
 
 app = Flask(__name__)
 
 file = None
 client_id = None
+
+CORS(app, resources={
+    r"/*": {
+        "origins": [
+            "https://pharmacompare-client-server.onrender.com",
+            "http://localhost:5000"
+        ]
+    }
+})
 
 
 @app.route('/', methods=['POST', 'GET'])
