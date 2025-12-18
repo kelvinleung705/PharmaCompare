@@ -34,7 +34,7 @@ origins = [
 
     # The URL of your frontend running on Heroku, Render
     "https://pharmacompare-7e5413777c20.herokuapp.com",
-    "https://pharmacompare-client-server.onrender.com"
+    "https://pharmacompare-client-server.onrender.com",
 
     # It's good practice to also include these for flexibility
     "http://localhost",
