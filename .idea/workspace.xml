@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Front_End/client_websocket_both_rander.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PharmaCompare.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PharmaCompare.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front_End/client_websocket_heroku.py" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/client_websocket_local_client_rander_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/static/js/imagePreviewWebSocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/static/js/imagePreviewWebSocket.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +99,7 @@
     "Python.websockettest (1).executor": "Run",
     "Python.websockettest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
