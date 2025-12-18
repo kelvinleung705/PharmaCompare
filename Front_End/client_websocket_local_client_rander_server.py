@@ -19,3 +19,8 @@ def index():
             image_type = file.content_type  # e.g., image/png
             image_data = f'data:{image_type};base64,{image_encoded}'
     return render_template('uploadImageWebSocket.html', image_data=image_data)
+
+
+if __name__ == "__main__":
+    import os
+    app.run(debug=True, use_reloader=False)
