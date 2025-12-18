@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="" />
+    <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/server_fastapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/server_fastapi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/client_websocket_both_rander.py" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/client_websocket_both_rander.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
