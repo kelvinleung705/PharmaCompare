@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/server_fastapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/server_fastapi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt_byte.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt_byte.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/static/js/imagePreviewWebSocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/static/js/imagePreviewWebSocket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/templates/uploadImageWebSocket.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/templates/uploadImageWebSocket.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/templates/uploadImageWebSocketLocal.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/templates/uploadImageWebSocketLocal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt_file.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,15 +87,16 @@
     "Python.client_local_websocket.executor": "Run",
     "Python.client_websocket_async.executor": "Run",
     "Python.client_websocket_heroku.executor": "Run",
+    "Python.client_websocket_local_client_rander_server.executor": "Run",
     "Python.flask_test.executor": "Run",
     "Python.loginIAM test.executor": "Run",
     "Python.mongodb_test.executor": "Run",
     "Python.mongodb_text_pharmacy_receipt.executor": "Debug",
     "Python.pharmacy_list (1).executor": "Run",
     "Python.pharmacy_list.executor": "Run",
-    "Python.pharmacy_receipt.executor": "Run",
+    "Python.pharmacy_receipt.executor": "Debug",
     "Python.pharmacy_receipt_byte.executor": "Debug",
-    "Python.pharmacy_receipt_file.executor": "Run",
+    "Python.pharmacy_receipt_file.executor": "Debug",
     "Python.server.executor": "Run",
     "Python.server_fastapi.executor": "Run",
     "Python.textcract_blocks.executor": "Run",
@@ -172,29 +180,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="flask_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PharmaCompare" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Testing Range" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing Range/flask_test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="mongodb_text_pharmacy_receipt" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
@@ -210,6 +195,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing_Range/mongodb_text_pharmacy_receipt.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pharmacy_list" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PharmaCompare" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Back_End" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Back_End/pharmacy_list.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -266,19 +273,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.Run Flask App" />
+      <item itemvalue="Python.pharmacy_list" />
       <item itemvalue="Python.client_local_websocket" />
-      <item itemvalue="Python.flask_test" />
       <item itemvalue="Python.mongodb_text_pharmacy_receipt" />
       <item itemvalue="Python.websockettest (1)" />
       <item itemvalue="Python.websockettest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pharmacy_list" />
         <item itemvalue="Python.client_local_websocket" />
         <item itemvalue="Python.websockettest (1)" />
         <item itemvalue="Python.websockettest" />
         <item itemvalue="Python.mongodb_text_pharmacy_receipt" />
-        <item itemvalue="Python.flask_test" />
       </list>
     </recent_temporary>
   </component>
@@ -403,6 +410,36 @@
           <url>file://$PROJECT_DIR$/Testing Range/pharmacy_receipt.py</url>
           <line>141</line>
           <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt.py</url>
+          <line>429</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt.py</url>
+          <line>428</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt.py</url>
+          <line>461</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt.py</url>
+          <line>427</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt_file.py</url>
+          <line>77</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt.py</url>
+          <line>432</line>
+          <option name="timeStamp" value="57" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

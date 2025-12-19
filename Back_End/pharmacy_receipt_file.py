@@ -61,7 +61,7 @@ if __name__ == "__main__":
     #receipt = pharmacy_receipt_file(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
     #receipt = pharmacy_receipt_file(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086731.jpg")
     #receipt = pharmacy_receipt_file(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086732.jpg")
-    receipt = pharmacy_receipt_file(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
+    receipt = pharmacy_receipt_file(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/Drug Receipt/20250527_164112.jpg")
     key_value_pair = receipt.extract_key_value_pair()
     for pair in key_value_pair:
         print(pair[0], pair[1])

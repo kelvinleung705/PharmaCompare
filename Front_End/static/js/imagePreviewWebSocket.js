@@ -118,6 +118,9 @@ imageForm.addEventListener('submit', async function(event) {
     }
 });
 
+
+
+
 /*
 imageForm.addEventListener('submit', function(event) {
     event.preventDefault();  // Prevent traditional form submission

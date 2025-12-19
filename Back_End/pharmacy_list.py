@@ -125,6 +125,10 @@ class pharmacy_list:
 if __name__ == "__main__":
     p = pharmacy_list()
     r = p.normalize_address("107 Jonathon Cheechoo Drive,Moose Factory,ON,CANADA")
+    print(r)
+    r = p.normalize_address("UNIT 8-1170 BURNHAMTHORPE RD. W.")
+    print(r)
     #p.update_pharmacy_list()
     p.get_pharmacy_address_list()
     print(p.check_pharmacy_address_list("300 Main St W, Kingsville, ON N9Y 1H8, Canada"))
+    #print(p.check_pharmacy_address_list(r))

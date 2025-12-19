@@ -465,6 +465,7 @@ class pharmacy_receipt:
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key
+    """
     load_dotenv()
     access_key_id = os.getenv("AWS_Access_Key")
     secret_access_key = os.getenv("AWS_Secret_Access_Key")
@@ -493,3 +494,4 @@ if __name__ == "__main__":
     print(receipt.extract_address(pharmacy_list_obj))
     print(receipt.get_pharmacy_ident())
     print(receipt.get_pharmacy_name())
+    """

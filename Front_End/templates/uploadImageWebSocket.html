@@ -2,19 +2,49 @@
 
 {% block head %}
     <title>Image Upload (No Disk)</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        /* Essential: The map will not show up without a defined height */
+        gmp-map {
+            height: 400px;
+            width: 100%;
+            margin-top: 30px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .image-preview-area {
+            margin: 20px 0;
+            min-height: 100px;
+        }
+        img {
+            max-width: 500px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
-    <h1>Upload an Image</h1>
     <div class="content">
+        <h1>Upload Receipt</h1>
+
         <h1 style="text-align: center">Upload an Image (In Memory)</h1>
         <form id="imageForm" method="POST" enctype="multipart/form-data">
             <input id="imageInput" type="file" name="image" accept="image/*" required>
-            <input type="hidden" name="image_base64" id="imageBase64Input">
+            <!input type="hidden" name="image_base64" id="imageBase64Input">
             <button type="submit">Upload</button>
         </form>
 
-        <img id="preview" style="display:none; max-width: 500px; margin-top: 20px;" />
+        <img id="preview" style="display:none;" />
 
         <script src="{{ url_for('static', filename='js/imagePreviewWebSocket.js') }}" defer></script>
         {% if image_data %}
@@ -22,4 +52,7 @@
             <img src="{{ image_data }}" style="max-width: 500px; margin-top: 20px;">
         {% endif %}
     </div>
+
+
+
 {% endblock %}
