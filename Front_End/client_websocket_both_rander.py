@@ -2,7 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask import Flask, render_template_string, request
 
 import base64
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 
 file = None
@@ -14,6 +17,7 @@ client_id = None
 @app.route('/', methods=['POST', 'GET'])
 def index():
     image_data = None
+    google_geocoding_api_key = os.getenv("Google_Geocoding_API_KEY")
     if request.method == 'POST':
         file = request.files['image']
         if file:
@@ -21,7 +25,7 @@ def index():
             image_encoded = base64.b64encode(image_read_stream).decode('utf-8')
             image_type = file.content_type  # e.g., image/png
             image_data = f'data:{image_type};base64,{image_encoded}'
-    return render_template('uploadImageWebSocket.html', image_data=image_data)
+    return render_template('uploadImageWebSocket.html', image_data=image_data, google_map_api=google_geocoding_api_key)
 
 
 if __name__ == "__main__":
