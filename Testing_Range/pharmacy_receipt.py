@@ -29,6 +29,7 @@ class pharmacy_receipt:
         self.drug_brand_name = None
         self.date = None
         self.pharmacy_address = None
+        self.pharmacy_location = None
         self.pharmacy_ident = None
         self.pharmacy_name = None
         self.valid = True
@@ -423,17 +424,29 @@ class pharmacy_receipt:
         response = requests.get(url, params=params, headers={'User-Agent': 'MyApp'})
         data = response.json()
         address_dict = data['results']
-        return address_dict[0]['formatted_address'] if address_dict else None
+        if address_dict and len(address_dict) > 0:
+            if "navigation_points" in address_dict[0].keys():
+                return [address_dict[0]['formatted_address'], address_dict[0]['navigation_points'][0]["location"]]
+            else:
+                return [address_dict[0]['formatted_address'], None]
+        else:
+            return None
 
-    def extract_address(self, pharmacy_list_obj) -> str:
+    def extract_address(self, pharmacy_list_obj) -> list:
         if self.valid:
             for line in self.lines:
                 formatted_line = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', line)
-                formatted_address = self.normalize_address(formatted_line)
+                formatted_address_and_location = self.normalize_address(formatted_line)
+                if formatted_address_and_location:
+                    formatted_address = formatted_address_and_location[0]
+                else:
+                    formatted_address = None
                 if formatted_address is not None and (self.pharmacy_address == None or len(formatted_address) > len(self.pharmacy_address)):
                     temp_pharmacy_ident_name = pharmacy_list_obj.check_pharmacy_address_list(formatted_address)
                     if temp_pharmacy_ident_name:
+                        formatted_location = formatted_address_and_location[1]
                         self.pharmacy_address = formatted_address
+                        self.pharmacy_location = formatted_location
                         self.pharmacy_ident = temp_pharmacy_ident_name[0]
                         self.pharmacy_name = temp_pharmacy_ident_name[1]
                         print("address found")
@@ -441,6 +454,9 @@ class pharmacy_receipt:
 
     def get_pharmacy_address(self) -> str:
         return self.pharmacy_address
+
+    def get_pharmacy_location(self) -> dict:
+        return self.pharmacy_location
 
     def get_pharmacy_ident(self) -> str:
         return self.pharmacy_ident

@@ -11,7 +11,7 @@
         }
 
         /* Essential: The map will not show up without a defined height */
-        gmp-map {
+        #map {
             height: 400px;
             width: 100%;
             margin-top: 30px;
@@ -31,10 +31,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
     </style>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key={{ google_map_api }}&libraries=maps,marker"
-        defer
-    ></script>
+
 {% endblock %}
 
 {% block body %}
@@ -56,9 +53,10 @@
             <img src="{{ image_data }}" style="max-width: 500px; margin-top: 20px;">
         {% endif %}
     </div>
-    <div>
-        <gmp-map center="41.027748173921374, -92.41852445367961" zoom="13" map-id="DEMO_MAP_ID" style="height: 400px"></gmp-map>
-    </div>
+    <div id="map"></div>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key={{ google_map_api }}&callback=initMap"
+></script>
+
 
 
 

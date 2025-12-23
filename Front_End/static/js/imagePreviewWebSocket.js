@@ -11,6 +11,10 @@ const ws = new WebSocket('wss://pharmacompare-3a46.onrender.com/ws');
 //htps://pharmacompare-3a46.onrender.com
 
 let localClientId = null;
+
+let pharmacyMarkers = [];
+let map;
+
 /*
 (function() {
  */
@@ -35,7 +39,7 @@ ws.onmessage = function(event) {
             //alert(serverJson['data'])
             localClientId = serverJson['data']
             const client_id_v = serverJson['data']
-            alert("cleint id is: "+ client_id_v)
+            alert("client id is: "+ client_id_v)
 
         } else if (serverJson['type'] === 'update') {
             alert("Update: "+ serverJson['data'])
@@ -119,6 +123,88 @@ imageForm.addEventListener('submit', async function(event) {
 });
 
 
+
+
+
+
+// ==========================================================
+// 4. GOOGLE MAP LOGIC
+// ==========================================================
+
+/**
+ * THIS IS THE ENTRY POINT FOR THE MAP.
+ * It's called by the Google Maps script tag in the HTML.
+ * It MUST be in the global scope.
+ */
+
+
+function initMap() {
+    const initialCenter = { lat: 43.6584, lng: -79.3883 };
+    map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,
+        center: initialCenter,
+    });
+    loadAndDisplayPharmacies();
+}
+
+/**
+ * Creates the HTML content for a pharmacy's InfoWindow.
+ */
+function createPharmacyInfoWindowContent(pharmacy) {
+    const feeText = pharmacy.processing_fee
+        ? `<b>Processing Fee: $${pharmacy.processing_fee.toFixed(2)}</b>`
+        : "Processing fee not available.";
+
+    return `
+        <div class="infowindow-content">
+            <h4>${pharmacy.name}</h4>
+            <p>${pharmacy.address}</p>
+            <hr>
+            <p>${feeText}</p>
+        </div>
+    `;
+}
+
+/**
+ * Fetches all pharmacy data from an API and adds markers to the map.
+ */
+async function loadAndDisplayPharmacies() {
+    try {
+        // NOTE: Make sure your Flask server is running and accessible at this URL.
+        const response = await fetch('http://127.0.0.1:5000/api/pharmacies');
+        const allPharmacies = await response.json();
+
+        if (allPharmacies.length === 0) {
+            console.warn("No pharmacies found.");
+            return;
+        }
+
+        pharmacyMarkers.forEach(marker => marker.setMap(null));
+        pharmacyMarkers = [];
+
+        const infowindow = new google.maps.InfoWindow();
+
+        allPharmacies.forEach(pharmacy => {
+            const position = { lat: pharmacy.lat, lng: pharmacy.lng };
+            const marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: pharmacy.name,
+            });
+
+            marker.addListener('click', () => {
+                const content = createPharmacyInfoWindowContent(pharmacy);
+                infowindow.setContent(content);
+                infowindow.open(map, marker);
+            });
+
+            pharmacyMarkers.push(marker);
+        });
+    } catch (error) {
+        console.error("Failed to load pharmacy data:", error);
+        alert("Could not load pharmacy locations. Please ensure the data server is running and accessible.");
+    }
+}
 
 
 /*

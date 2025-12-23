@@ -76,5 +76,6 @@ if __name__ == "__main__":
     pharmacy_list_obj = pharmacy_list()
     pharmacy_list_obj.get_pharmacy_address_list()
     print(receipt.extract_address(pharmacy_list_obj))
+    print(receipt.get_pharmacy_location())
     print(receipt.get_pharmacy_ident())
     print(receipt.get_pharmacy_name())

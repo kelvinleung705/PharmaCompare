@@ -31,6 +31,13 @@ class new_pharmacy_drug_receipt:
         pharmacy_ident = self.prescription_receipt.get_pharmacy_ident()
         pharmacy_name = self.prescription_receipt.get_pharmacy_name()
         pharmacy_address = self.prescription_receipt.get_pharmacy_address()
+        pharmacy_latitude = None
+        pharmacy_longitude = None
+        location = self.prescription_receipt.get_pharmacy_location()
+        if location:
+            pharmacy_latitude = location['latitude']
+            pharmacy_longitude = location['longtitude']
+
         fee = self.prescription_receipt.get_fee()
         date = self.prescription_receipt.get_date()
         din = self.prescription_receipt.get_din()
@@ -134,6 +141,9 @@ class new_pharmacy_drug_receipt:
             pharmacy_document["pharmacy ident"] = pharmacy_ident
             pharmacy_document["pharmacy name"] = pharmacy_name
             pharmacy_document["pharmacy address"] = pharmacy_address
+            if pharmacy_latitude:
+                pharmacy_document["pharmacy latitude"] = pharmacy_latitude
+                pharmacy_document["pharmacy longitude"] = pharmacy_longitude
             pharmacy_document["fee"] = fee
             pharmacy_document["fee date"] = self.prescription_receipt.get_date()
             pharmacy_document["fee history"] = []
