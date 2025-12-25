@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Front_End/static/js/MapGeneral.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front_End/templates/MapGeneral.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/add_pharmacy_drug_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/add_pharmacy_drug_receipt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/insert_location.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/insert_location.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt_byte.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt_byte.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Front_End/client_websocket_both_rander.py" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/client_websocket_both_rander.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front_End/static/js/imagePreviewWebSocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/static/js/imagePreviewWebSocket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Front_End/templates/uploadImageWebSocket.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/templates/uploadImageWebSocket.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_Range/pharmacy_receipt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="e41682687ad9e36b274e7f873724ff118f6fc6af" />
+        <entry key="$PROJECT_DIR$" value="b3d8cd6e7e6fb0ede3ee5a50596a20d43d19317c" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -89,14 +89,15 @@
     "Python.client_websocket_heroku.executor": "Run",
     "Python.client_websocket_local_client_rander_server.executor": "Run",
     "Python.flask_test.executor": "Run",
+    "Python.insert_location.executor": "Debug",
     "Python.loginIAM test.executor": "Run",
     "Python.mongodb_test.executor": "Run",
     "Python.mongodb_text_pharmacy_receipt.executor": "Debug",
     "Python.pharmacy_list (1).executor": "Run",
     "Python.pharmacy_list.executor": "Run",
-    "Python.pharmacy_receipt.executor": "Debug",
+    "Python.pharmacy_receipt.executor": "Run",
     "Python.pharmacy_receipt_byte.executor": "Debug",
-    "Python.pharmacy_receipt_file.executor": "Debug",
+    "Python.pharmacy_receipt_file.executor": "Run",
     "Python.server.executor": "Run",
     "Python.server_fastapi.executor": "Run",
     "Python.textcract_blocks.executor": "Run",
@@ -130,11 +131,11 @@
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Front_End" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Front_End\templates" />
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare" />
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing_Range" />
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing_Range\static\js" />
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing_Range\static" />
-      <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing Range" />
     </key>
   </component>
   <component name="RunManager">
@@ -286,10 +287,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.websockettest" />
-        <item itemvalue="Python.websockettest" />
-        <item itemvalue="Python.pharmacy_receipt" />
         <item itemvalue="Python.mongodb_text_pharmacy_receipt" />
         <item itemvalue="Python.client_local_websocket" />
+        <item itemvalue="Python.pharmacy_receipt" />
+        <item itemvalue="Python.websockettest (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -370,7 +371,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="Google_Map" />
                       </list>
                     </value>
                   </entry>
@@ -386,19 +387,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt_file.py</url>
-          <line>77</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt.py</url>
-          <line>429</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Testing_Range/pharmacy_receipt.py</url>
           <line>476</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Back_End/add_pharmacy_drug_receipt.py</url>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

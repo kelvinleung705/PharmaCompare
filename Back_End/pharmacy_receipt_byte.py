@@ -43,7 +43,6 @@ class pharmacy_receipt_byte(pharmacy_receipt):
 
 if __name__ == "__main__":
     # Replace with your access key and secret access key
-    """
     load_dotenv()
     access_key_id = os.getenv("AWS_Access_Key")
     secret_access_key = os.getenv("AWS_Secret_Access_Key")
@@ -55,8 +54,8 @@ if __name__ == "__main__":
     #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
     #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086731.jpg")
     #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086732.jpg")
-    receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
-    receipt = pharmacy_receipt_file(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
+    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
+    receipt = pharmacy_receipt_byte(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/Drug Receipt/20250527_164112.jpg")
     key_value_pair = receipt.extract_key_value_pair()
     for pair in key_value_pair:
         print(pair[0], pair[1])
@@ -68,9 +67,8 @@ if __name__ == "__main__":
     print(receipt.access_drug_type())
     print(receipt.quantity_correction())
     print(receipt.extract_dates())
-    pharmacy_list_obj = pharmacy_list()
+    #pharmacy_list_obj = pharmacy_list()
     pharmacy_list_obj.get_pharmacy_address_list()
     print(receipt.extract_address(pharmacy_list_obj))
     print(receipt.get_pharmacy_ident())
     print(receipt.get_pharmacy_name())
-    """

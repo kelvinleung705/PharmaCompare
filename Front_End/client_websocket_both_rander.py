@@ -71,6 +71,13 @@ def get_all_pharmacies():
         # Return a JSON error message with a 500 Internal Server Error status
         return jsonify({"error": "Could not connect to the database."}), 500
 
+@app.route('/map', methods=['GET'])
+def show_map():
+
+    google_geocoding_api_key = os.getenv("Google_Geocoding_API_KEY")
+
+    return render_template('MapGeneral.html', google_map_api=google_geocoding_api_key)
+
 
 if __name__ == "__main__":
     import os

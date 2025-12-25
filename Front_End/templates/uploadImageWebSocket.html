@@ -37,7 +37,9 @@
 {% block body %}
     <div class="content">
         <h1>Upload Receipt</h1>
-
+        <button onclick="window.location.href='{{ url_for('show_map') }}';">
+        Go to Other Page via JavaScript
+    </button>
         <h1 style="text-align: center">Upload an Image (In Memory)</h1>
         <form id="imageForm" method="POST" enctype="multipart/form-data">
             <input id="imageInput" type="file" name="image" accept="image/*" required>
@@ -53,7 +55,11 @@
             <img src="{{ image_data }}" style="max-width: 500px; margin-top: 20px;">
         {% endif %}
     </div>
-    <div id="map"></div>
+    <div>
+        <a href="{{ url_for('show_map') }}" class="button">Go to Other Page</a>
+
+    </div>
+    <!div id="map"><!/div>
     <script defer src="https://maps.googleapis.com/maps/api/js?key={{ google_map_api }}&callback=initMap"
 ></script>
 

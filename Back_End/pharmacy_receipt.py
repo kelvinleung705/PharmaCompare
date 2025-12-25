@@ -29,6 +29,7 @@ class pharmacy_receipt:
         self.drug_brand_name = None
         self.date = None
         self.pharmacy_address = None
+        self.pharmacy_location = None
         self.pharmacy_ident = None
         self.pharmacy_name = None
         self.valid = True
@@ -423,7 +424,13 @@ class pharmacy_receipt:
         response = requests.get(url, params=params, headers={'User-Agent': 'MyApp'})
         data = response.json()
         address_dict = data['results']
-        return address_dict[0]['formatted_address'] if address_dict else None
+        if address_dict and len(address_dict) > 0:
+            if "navigation_points" in address_dict[0].keys():
+                return [address_dict[0]['formatted_address'], address_dict[0]['navigation_points'][0]["location"]]
+            else:
+                return [address_dict[0]['formatted_address'], None]
+        else:
+            return None
 
     def extract_address(self, pharmacy_list_obj) -> str:
 
@@ -442,6 +449,9 @@ class pharmacy_receipt:
 
     def get_pharmacy_address(self) -> str:
         return self.pharmacy_address
+
+    def get_pharmacy_location(self) -> dict:
+        return self.pharmacy_location
 
     def get_pharmacy_ident(self) -> str:
         return self.pharmacy_ident
