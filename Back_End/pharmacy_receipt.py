@@ -445,20 +445,25 @@ class pharmacy_receipt:
 
     def extract_address(self, pharmacy_list_obj) -> str:
         if self.valid:
-            for line in self.lines:
-                #formatted_line = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', line)
+            i = 1
+            while i < len(self.lines):
+                line = self.lines
                 print(line)
-                formatted_line = line
-                formatted_address = self.normalize_address(formatted_line)
-                if formatted_address is not None and (self.pharmacy_address == None or len(formatted_address) > len(self.pharmacy_address)):
-                    print("CP1: ", formatted_address)
-                    temp_pharmacy_ident_name = pharmacy_list_obj.check_pharmacy_address_list(formatted_address)
-                    if temp_pharmacy_ident_name:
-                        print("CP2: ", temp_pharmacy_ident_name)
-                        self.pharmacy_address = formatted_address
-                        self.pharmacy_ident = temp_pharmacy_ident_name[0]
-                        self.pharmacy_name = temp_pharmacy_ident_name[1]
-                        print("address found")
+                formatted_line = re.sub(r'[^a-zA-Z0-9]', '', line)
+                english_chars = re.findall(r"[a-zA-Z]", formatted_line)
+                count = len(english_chars)
+                if count > len(formatted_line)//2:
+                    formatted_address = self.normalize_address(line)
+                    if formatted_address is not None and (self.pharmacy_address == None or len(formatted_address) > len(self.pharmacy_address)):
+                        print("CP1: ", formatted_address)
+                        temp_pharmacy_ident_name = pharmacy_list_obj.check_pharmacy_address_list(formatted_address)
+                        if temp_pharmacy_ident_name:
+                            print("CP2: ", temp_pharmacy_ident_name)
+                            self.pharmacy_address = formatted_address
+                            self.pharmacy_ident = temp_pharmacy_ident_name[0]
+                            self.pharmacy_name = temp_pharmacy_ident_name[1]
+                            print("address found")
+            i += 1
             if self.pharmacy_address == None:
                 self.valid = False
                 self.pharmacy_address = "No address found"
