@@ -12,6 +12,7 @@ class pharmacy_list:
     def check_pharmacy_address_list(self, pharmacy_address) -> list[str]:
         for i in range(len(self.pharmacy_address_list)):
             if pharmacy_address in self.pharmacy_address_list[i][2]:
+                print(i)
                 return [self.pharmacy_address_list[i][0], self.pharmacy_address_list[i][1]]
 
     def get_pharmacy_address_list(self):

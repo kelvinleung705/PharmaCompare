@@ -447,11 +447,14 @@ class pharmacy_receipt:
         if self.valid:
             for line in self.lines:
                 #formatted_line = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', line)
+                print(line)
                 formatted_line = line
                 formatted_address = self.normalize_address(formatted_line)
                 if formatted_address is not None and (self.pharmacy_address == None or len(formatted_address) > len(self.pharmacy_address)):
+                    print("CP1: ", formatted_address)
                     temp_pharmacy_ident_name = pharmacy_list_obj.check_pharmacy_address_list(formatted_address)
                     if temp_pharmacy_ident_name:
+                        print("CP2: ", temp_pharmacy_ident_name)
                         self.pharmacy_address = formatted_address
                         self.pharmacy_ident = temp_pharmacy_ident_name[0]
                         self.pharmacy_name = temp_pharmacy_ident_name[1]
@@ -472,17 +475,18 @@ class pharmacy_receipt:
 
     def extract_and_access(self) -> bool:
         self.extract_key_value_pair()
-        self.extract_cost()
-        self.extract_fee()
-        self.extract_din()
-        self.access_drug_code_and_brand_name_and_ingredient_name()
-        self.extract_quantity()
-        self.access_drug_type()
-        self.quantity_correction()
-        self.extract_dates()
+        print(self.extract_cost())
+        print(self.extract_fee())
+        print(self.extract_din())
+        print(self.access_drug_code_and_brand_name_and_ingredient_name())
+        print(self.extract_quantity())
+        print(self.access_drug_type())
+        print(self.quantity_correction())
+        print(self.extract_dates())
         pharmacy_list_obj = pharmacy_list()
         pharmacy_list_obj.get_pharmacy_address_list()
-        self.extract_address(pharmacy_list_obj)
+        print(self.extract_address(pharmacy_list_obj))
+        print(self.valid)
         return self.valid
 
 if __name__ == "__main__":
