@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_26_2025_3_26_AM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_26_2025_3_26_AM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_26_2025_3_28_AM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_26_2025_3_28_AM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/add_pharmacy_drug_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/add_pharmacy_drug_receipt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt_byte.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt_byte.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back_End/server_fastapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/server_fastapi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -409,26 +409,45 @@ class pharmacy_receipt:
         return self.date
 
     def normalize_address(self, address):
-        import os
-        load_dotenv()
+        # import os # os is already imported at the top of the file
+        # load_dotenv() # <-- REMOVE THIS LINE
         API_KEY = os.getenv("Google_Geocoding_API_KEY")
+        if not API_KEY:
+            print("ERROR: Google Geocoding API Key is not set.")
+            # Decide how to handle this: either return None, or raise an error
+            # For now, let's return None so it doesn't crash, but it will fail address extraction.
+            return None
+
         url1 = "https://maps.googleapis.com/maps/api/geocode/json?address="
         url2 = "&key="
-        url = url1 + address + url2 + API_KEY
-        params = {
-            "q": address,
-            "format": "json",
-            "addressdetails": 1
-        }
-        response = requests.get(url, params=params, headers={'User-Agent': 'MyApp'})
-        data = response.json()
-        address_dict = data['results']
-        return address_dict[0]['formatted_address'] if address_dict else None
+        # Properly encode the address for the URL
+        encoded_address = requests.utils.quote(address)
+        url = url1 + encoded_address + url2 + API_KEY
+
+        try:
+            response = requests.get(url, headers={'User-Agent': 'MyApp'})  # Removed params as url is fully constructed
+            response.raise_for_status()  # Raise an exception for bad status codes (4xx or 5xx)
+            data = response.json()
+
+            if data.get('status') == 'OK' and data.get('results'):
+                # The Google Geocoding API returns a list of results.
+                # We are interested in the first one for this case.
+                return data['results'][0]['formatted_address']
+            else:
+                print(f"Google Geocoding API returned status: {data.get('status')}. Results: {data.get('results')}")
+                return None
+        except requests.exceptions.RequestException as e:
+            print(f"Error calling Google Geocoding API: {e}")
+            return None
+        except Exception as e:
+            print(f"An unexpected error occurred during address normalization: {e}")
+            return None
 
     def extract_address(self, pharmacy_list_obj) -> str:
         if self.valid:
             for line in self.lines:
-                formatted_line = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', line)
+                #formatted_line = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', line)
+                formatted_line = line
                 formatted_address = self.normalize_address(formatted_line)
                 if formatted_address is not None and (self.pharmacy_address == None or len(formatted_address) > len(self.pharmacy_address)):
                     temp_pharmacy_ident_name = pharmacy_list_obj.check_pharmacy_address_list(formatted_address)

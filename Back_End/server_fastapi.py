@@ -92,6 +92,7 @@ async def process_image_async(file_data: bytes, client_id: str):
         # Send the result using the async WebSocket function
         if client_id in active_connections:
             print("confirm message sending")
+
             await active_connections[client_id].send_json({'type': 'update', 'data': result['data']})
     except Exception as e:
         print(f"Error during processing for {client_id}: {e}")
