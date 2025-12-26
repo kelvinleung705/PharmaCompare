@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from typing import Union
 import requests
 import re
-from Testing_Range.pharmacy_list import pharmacy_list
+from pharmacy_list import pharmacy_list
 from datetime import datetime
  #extract: from image, access: from canada drug base, get: return value
 
@@ -437,6 +437,9 @@ class pharmacy_receipt:
                         self.pharmacy_ident = temp_pharmacy_ident_name[0]
                         self.pharmacy_name = temp_pharmacy_ident_name[1]
                         print("address found")
+            if self.pharmacy_address == None:
+                self.valid = False
+                self.pharmacy_address = "No address found"
         return self.pharmacy_address
 
     def get_pharmacy_address(self) -> str:

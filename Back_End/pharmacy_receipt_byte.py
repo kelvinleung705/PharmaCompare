@@ -1,10 +1,13 @@
 import json
 from encodings.punycode import selective_find
-from Testing_Range.pharmacy_receipt import pharmacy_receipt
+from add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
+from pharmacy_receipt import pharmacy_receipt
 import pandas as pd
 import boto3
+from dotenv import load_dotenv
 import os
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
+from pharmacy_list import pharmacy_list
 
 class pharmacy_receipt_byte(pharmacy_receipt):
     def __init__(self, access_key_id, secret_access_key, image_bytes):
@@ -41,36 +44,55 @@ class pharmacy_receipt_byte(pharmacy_receipt):
         except Exception as e:
             print(f"An error occurred: {e}")
 
+
 if __name__ == "__main__":
-    # Replace with your access key and secret access key
-    """
+    # Load environment variables
     load_dotenv()
     access_key_id = os.getenv("AWS_Access_Key")
     secret_access_key = os.getenv("AWS_Secret_Access_Key")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250112_174106.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250515_233055.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250516_205447.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/1000084658.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20221228.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086731.jpg")
-    #receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250529_1000086732.jpg")
-    receipt = pharmacy_receipt(access_key_id, secret_access_key,"C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
-    receipt = pharmacy_receipt_file(access_key_id, secret_access_key, "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/20250527_164112.jpg")
-    key_value_pair = receipt.extract_key_value_pair()
-    for pair in key_value_pair:
-        print(pair[0], pair[1])
-    print(receipt.extract_cost())
-    print(receipt.extract_fee())
-    print(receipt.extract_din())
-    print(receipt.access_drug_code_and_brand_name_and_ingredient_name())
-    print(receipt.extract_quantity())
-    print(receipt.access_drug_type())
-    print(receipt.quantity_correction())
-    print(receipt.extract_dates())
-    pharmacy_list_obj = pharmacy_list()
-    pharmacy_list_obj.get_pharmacy_address_list()
-    print(receipt.extract_address(pharmacy_list_obj))
-    print(receipt.get_pharmacy_ident())
-    print(receipt.get_pharmacy_name())
-    """
+
+    # 1. Define the path to your image
+    image_path = "C:/Users/kelvi/OneDrive - University of Toronto/Desktop/Drug Receipt/20250527_164112.jpg"
+
+    # 2. Open the file in binary read mode ('rb') and read its content
+    try:
+        with open(image_path, 'rb') as image_file:
+            image_bytes = image_file.read()
+
+        # 3. Pass the actual image_bytes to your class instance
+        receipt = pharmacy_receipt_byte(access_key_id, secret_access_key, image_bytes)
+
+        # Now the rest of your code will work as expected
+        key_value_pair = receipt.extract_key_value_pair()
+        if key_value_pair:  # Check if extraction was successful
+            for pair in key_value_pair:
+                print(pair[0], pair[1])
+            print(receipt.extract_cost())
+            print(receipt.extract_fee())
+            print(receipt.extract_din())
+            print(receipt.access_drug_code_and_brand_name_and_ingredient_name())
+            print(receipt.extract_quantity())
+            print(receipt.access_drug_type())
+            print(receipt.quantity_correction())
+            print(receipt.extract_dates())
+            pharmacy_list_obj = pharmacy_list()
+            pharmacy_list_obj.get_pharmacy_address_list()
+            print(receipt.extract_address(pharmacy_list_obj))
+            print(receipt.get_pharmacy_ident())
+            print(receipt.get_pharmacy_name())
+            print("is it valid: ", receipt.valid)
+            # ... and so on
+            mongoDB_Username = os.getenv("MongoDB_Username")
+            mongoDB_Password = os.getenv("MongoDB_Password")
+            new_pharmacy_drug = new_pharmacy_drug_receipt(receipt, mongoDB_Username, mongoDB_Password)
+            new_pharmacy_drug.add_pharmacy_drug()
+        else:
+            print("Failed to extract key-value pairs. Check the Textract output.")
+
+    except FileNotFoundError:
+        print(f"Error: The file was not found at {image_path}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+
+

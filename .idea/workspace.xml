@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Back_End/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_26_2025_3_26_AM_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_26_2025_3_26_AM__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_26_2025_3_28_AM_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_26_2025_3_28_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/add_pharmacy_drug_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/add_pharmacy_drug_receipt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt_byte.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt_byte.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/server_fastapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/server_fastapi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +81,7 @@
     "JavaScript Debug.index.html.executor": "Run",
     "Python.Run Flask App.executor": "Run",
     "Python.add_pharmacy_drug.executor": "Run",
+    "Python.add_pharmacy_drug_receipt.executor": "Run",
     "Python.app.executor": "Debug",
     "Python.client.executor": "Run",
     "Python.client_local.executor": "Run",
@@ -88,7 +97,7 @@
     "Python.pharmacy_list (1).executor": "Run",
     "Python.pharmacy_list.executor": "Run",
     "Python.pharmacy_receipt.executor": "Debug",
-    "Python.pharmacy_receipt_byte.executor": "Debug",
+    "Python.pharmacy_receipt_byte.executor": "Run",
     "Python.pharmacy_receipt_file.executor": "Debug",
     "Python.server.executor": "Run",
     "Python.server_fastapi.executor": "Run",
@@ -127,7 +136,7 @@
       <recent name="C:\Users\kelvi\PycharmProjects\PharmaCompare\Testing Range" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Run Flask App">
+  <component name="RunManager">
     <configuration name="Run Flask App" type="PythonConfigurationType" factoryName="Python">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
@@ -197,7 +206,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pharmacy_list" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="pharmacy_receipt_byte" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PharmaCompare" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,7 +219,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Back_End/pharmacy_list.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Back_End/pharmacy_receipt_byte.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -267,7 +276,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.Run Flask App" />
-      <item itemvalue="Python.pharmacy_list" />
+      <item itemvalue="Python.pharmacy_receipt_byte" />
       <item itemvalue="Python.client_local_websocket" />
       <item itemvalue="Python.mongodb_text_pharmacy_receipt" />
       <item itemvalue="Python.websockettest (1)" />
@@ -275,11 +284,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pharmacy_receipt_byte" />
         <item itemvalue="Python.websockettest" />
         <item itemvalue="Python.websockettest (1)" />
         <item itemvalue="Python.mongodb_text_pharmacy_receipt" />
         <item itemvalue="Python.client_local_websocket" />
-        <item itemvalue="Python.pharmacy_list" />
       </list>
     </recent_temporary>
   </component>
@@ -406,34 +415,9 @@
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt.py</url>
-          <line>429</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt.py</url>
-          <line>428</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt.py</url>
-          <line>461</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt.py</url>
-          <line>427</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt_file.py</url>
           <line>77</line>
           <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Back_End/pharmacy_receipt.py</url>
-          <line>432</line>
-          <option name="timeStamp" value="57" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

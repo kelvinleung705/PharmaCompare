@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from typing import Union
 import requests
 import re
-from Testing_Range.pharmacy_receipt import pharmacy_receipt
+from pharmacy_receipt import pharmacy_receipt
 import pymongo
 import certifi
 from datetime import datetime
