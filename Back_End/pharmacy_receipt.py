@@ -463,7 +463,7 @@ class pharmacy_receipt:
                             self.pharmacy_ident = temp_pharmacy_ident_name[0]
                             self.pharmacy_name = temp_pharmacy_ident_name[1]
                             print("address found")
-            i += 1
+                i += 1
             if self.pharmacy_address == None:
                 self.valid = False
                 self.pharmacy_address = "No address found"
