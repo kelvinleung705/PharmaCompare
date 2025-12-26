@@ -445,9 +445,9 @@ class pharmacy_receipt:
 
     def extract_address(self, pharmacy_list_obj) -> str:
         if self.valid:
-            i = 1
+            i = 0
             while i < len(self.lines):
-                line = self.lines
+                line = self.lines[i]
                 print(line)
                 formatted_line = re.sub(r'[^a-zA-Z0-9]', '', line)
                 english_chars = re.findall(r"[a-zA-Z]", formatted_line)
