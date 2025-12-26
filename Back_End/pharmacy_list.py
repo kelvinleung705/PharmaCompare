@@ -79,7 +79,7 @@ class pharmacy_list:
 
     def update_pharmacy_list(self) -> list[list[str]]:
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        csv_path = os.path.join(BASE_DIR, '..', 'Data', 'Ontario_Pharmacy_Information.csv')
+        csv_path = os.path.join(BASE_DIR, 'Data', 'Ontario_Pharmacy_Information.csv')
         pharmacy_list = []
         with open(csv_path, mode='r', encoding='utf-8-sig') as file:
             csvFile = csv.reader(file)
