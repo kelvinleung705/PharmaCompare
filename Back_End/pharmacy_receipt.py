@@ -443,7 +443,7 @@ class pharmacy_receipt:
                     if temp_pharmacy_ident_name:
                         self.pharmacy_address = formatted_address_location[0]
                         self.pharmacy_location["latitude"] = formatted_address_location[1]["latitude"]
-                        self.pharmacy_location["latitude"] = formatted_address_location[1]["longitude"]
+                        self.pharmacy_location["longitude"] = formatted_address_location[1]["longitude"]
                         self.pharmacy_ident = temp_pharmacy_ident_name[0]
                         self.pharmacy_name = temp_pharmacy_ident_name[1]
                         print("address found")
