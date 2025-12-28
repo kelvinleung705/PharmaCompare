@@ -52,6 +52,7 @@ app.add_middleware(
 # =======================================================================
 
 def process_image_sync(file_data, client_id):
+    print("arrived process_image_sync")
     load_dotenv()
     access_key_id = os.getenv("AWS_Access_Key")
     secret_access_key = os.getenv("AWS_Secret_Access_Key")

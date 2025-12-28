@@ -460,18 +460,31 @@ class pharmacy_receipt:
         return self.pharmacy_name
 
     def extract_and_access(self) -> bool:
+        print("start extract kv")
         self.extract_key_value_pair()
+        print("start kv complete")
         self.extract_cost()
+        print("extract cost complete")
         self.extract_fee()
+        print("extract fee complete")
         self.extract_din()
+        print("extract din complete")
         self.access_drug_code_and_brand_name_and_ingredient_name()
+        print("extract drug info complete")
         self.extract_quantity()
+        print("extract quantity complete")
         self.access_drug_type()
+        print("extract drug type complete")
         self.quantity_correction()
+        print("qty correction complete")
         self.extract_dates()
+        print("extract date complete")
         pharmacy_list_obj = pharmacy_list()
+        print("pharmacy list complete")
         pharmacy_list_obj.get_pharmacy_address_list()
+        print("get pharmacy address list complete")
         self.extract_address(pharmacy_list_obj)
+        print("extract address complete")
         return self.valid
 
 if __name__ == "__main__":
