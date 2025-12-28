@@ -3,8 +3,8 @@ import cgi
 import os
 from dotenv import load_dotenv
 
-from Testing_Range.add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
-from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
+from add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
+from pharmacy_receipt_byte import pharmacy_receipt_byte
 
 
 class SimpleHandler(BaseHTTPRequestHandler):

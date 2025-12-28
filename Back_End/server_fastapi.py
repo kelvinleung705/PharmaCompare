@@ -6,8 +6,8 @@ import os
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 
-from Testing_Range.add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
-from Testing_Range.pharmacy_receipt_byte import pharmacy_receipt_byte
+from add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
+from pharmacy_receipt_byte import pharmacy_receipt_byte
 
 from fastapi import FastAPI, WebSocket, UploadFile, File, WebSocketDisconnect, BackgroundTasks
 import uvicorn  # The ASGI server to run our app

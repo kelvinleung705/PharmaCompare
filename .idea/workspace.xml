@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3e316a-377f-427b-bfe4-49d82703f0ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Back_End/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/add_pharmacy_drug_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/add_pharmacy_drug_receipt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/mongodb_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/mongodb_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/mongodb_text_pharmacy_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/mongodb_text_pharmacy_receipt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt_byte.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt_byte.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/pharmacy_receipt_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/pharmacy_receipt_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/server_fastapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/server_fastapi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/textcract_key_value_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/textcract_key_value_form.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

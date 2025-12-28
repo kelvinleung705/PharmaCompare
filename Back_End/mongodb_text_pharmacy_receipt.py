@@ -8,9 +8,9 @@ from dotenv import load_dotenv
 from typing import Union
 import requests
 import re
-from Testing_Range.pharmacy_list import pharmacy_list
-from Testing_Range.add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
-from Testing_Range.pharmacy_receipt_file import pharmacy_receipt_file
+from pharmacy_list import pharmacy_list
+from add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
+from pharmacy_receipt_file import pharmacy_receipt_file
 from datetime import datetime
 
 if __name__ == "__main__":

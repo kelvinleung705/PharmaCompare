@@ -1,6 +1,6 @@
 import json
 from encodings.punycode import selective_find
-from Testing_Range.pharmacy_receipt import pharmacy_receipt
+from pharmacy_receipt import pharmacy_receipt
 import pandas as pd
 import boto3
 import os
