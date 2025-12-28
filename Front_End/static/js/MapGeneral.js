@@ -114,17 +114,18 @@ async function addMarker(pharmacy) {
     marker.map = map;
     // Add the new marker to our array for tracking
     activeMarkers.push(marker);
-
+    const googleMapsUrl = `https://www.google.com/maps?q=${pharmacy["pharmacy address"]}`;
     // Add a click listener to show the InfoWindow
     marker.addListener('click', () => {
         // Build the HTML content for the pop-up window
 
         const contentString = `
             <div id="infowindow-content">
-                <h4>${pharmacy["pharmacy name"]}</h4>
+                <h3>${pharmacy["pharmacy name"]}</h3>
                 <p><strong>Address:</strong> ${pharmacy["pharmacy address"]}</p>
-                <p><strong>Processing Fee:</strong> $${pharmacy.fee.toFixed(2)}</p>
+                <h3><strong>Processing Fee:</strong> $${pharmacy.fee.toFixed(2)}</h3>
                 <p><strong>ID:</strong> ${pharmacy["pharmacy ident"]}</p>
+                <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer">View on Google Maps</a>
             </div>
         `;
 
