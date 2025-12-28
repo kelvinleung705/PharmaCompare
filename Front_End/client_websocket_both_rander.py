@@ -12,7 +12,15 @@ app = Flask(__name__)
 file = None
 client_id = None
 pharmacies = None
+mongoDB_Username = os.getenv("MongoDB_Username")
+mongoDB_Password = os.getenv("MongoDB_Password")
 
+# Construct the connection string
+connection_string = (
+    f"mongodb+srv://{mongoDB_Username}:{mongoDB_Password}"
+    "@pharmacomparedata1.tu3p29k.mongodb.net/"
+    "?retryWrites=true&w=majority&appName=PharmaCompareData1"
+)
 
 
 
@@ -33,17 +41,15 @@ def index():
 @app.route('/api/pharmacies')
 def get_all_pharmacies():
     # Load credentials securely from environment variables
-    mongoDB_Username = os.getenv("MongoDB_Username")
-    mongoDB_Password = os.getenv("MongoDB_Password")
-
-    # Construct the connection string
-    connection_string = (
-        f"mongodb+srv://{mongoDB_Username}:{mongoDB_Password}"
-        "@pharmacomparedata1.tu3p29k.mongodb.net/"
-        "?retryWrites=true&w=majority&appName=PharmaCompareData1"
-    )
 
     try:
+        # Step 4: Get coordinates from the request URL
+        sw_lng = float(request.args.get('swLng'))
+        sw_lat = float(request.args.get('swLat'))
+        ne_lng = float(request.args.get('neLng'))
+        ne_lat = float(request.args.get('neLat'))
+        # The bounding box for the query
+        box = [[sw_lng, sw_lat], [ne_lng, ne_lat]]
         # Establish connection to the MongoDB client
         mongoDBclient = pymongo.MongoClient(
             connection_string,
@@ -57,13 +63,41 @@ def get_all_pharmacies():
 
         # Fetch all documents from the collection, excluding the '_id' field
         # The .find() returns a cursor, so we convert it to a list
-        pharmacies = list(pharmacy_collection.find({}, {'_id': 0}))
+        pharmacies = (pharmacy_collection.find(
+            {"location" : {"$geoWithin" : {"$box" : box}}},
+            {"_id": 0,
+             "pharmacy ident": 1,
+             "pharmacy name": 1,
+             "pharmacy address": 1,
+             "fee": 1,
+             "location": 1
+             }
+        ).limit(500))
 
+        pharmacies_list = list(pharmacies)
+
+        """
+        results = []
+
+        for pharmacy in pharmacies:
+            # Create a new dictionary for each pharmacy
+            results.append({
+                "pharmacy ident": pharmacy.get("pharmacy ident"),
+                "pharmacy name": pharmacy.get("pharmacy name"),
+                "pharmacy address": pharmacy.get("pharmacy address"),
+                "fee": pharmacy.get("fee"),
+                # Extract lat/lng from the GeoJSON object
+                "latitude": pharmacy["location"]["coordinates"][1],
+                "longitude": pharmacy["location"]["coordinates"][0]
+            })
+        """
+        from bson import json_util
+        return json_util.dumps(pharmacies_list)
         # Close the database connection as soon as we're done with it
         mongoDBclient.close()
 
         # *** THE FIX: Use jsonify to return the data ***
-        return jsonify(pharmacies)
+        return jsonify(pharmacies_list)
 
     except Exception as e:
         # It's good practice to handle potential connection errors
@@ -75,6 +109,11 @@ def get_all_pharmacies():
 def show_map():
 
     google_geocoding_api_key = os.getenv("Google_Geocoding_API_KEY")
+    load_dotenv()
+    mongoDB_Username = os.getenv("MongoDB_Username")
+    mongoDB_Password = os.getenv("MongoDB_Password")
+    #new_pharmacy_drug = access_pharmacy_cost(mongoDB_Username, mongoDB_Password)
+    #new_pharmacy_drug.add_pharmacy_drug()
 
     return render_template('MapGeneral.html', google_map_api=google_geocoding_api_key)
 

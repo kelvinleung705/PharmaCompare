@@ -142,8 +142,7 @@ class new_pharmacy_drug_receipt:
             pharmacy_document["pharmacy name"] = pharmacy_name
             pharmacy_document["pharmacy address"] = pharmacy_address
             if pharmacy_latitude:
-                pharmacy_document["pharmacy latitude"] = pharmacy_latitude
-                pharmacy_document["pharmacy longitude"] = pharmacy_longitude
+                pharmacy_document["location"] = {"type": "Point", "coordinates": [pharmacy_longitude, pharmacy_latitude]}
             pharmacy_document["fee"] = fee
             pharmacy_document["fee date"] = self.prescription_receipt.get_date()
             pharmacy_document["fee history"] = []

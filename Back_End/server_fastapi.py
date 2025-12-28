@@ -117,7 +117,6 @@ async def upload_image(client_id: str,  background_tasks: BackgroundTasks, file:
 
 
 
-
 if __name__ == "__main__":
 
     print("Starting FastAPI server with Uvicorn on http://0.0.0.0:5001")

@@ -50,8 +50,7 @@ class insert_location:
                     "pharmacy ident": pharmacy_ident
                 },
                 {"$set":
-                    {"latitude": latitude, "longitude": longitude
-                    }
+                    {"location": {"type": "Point", "coordinates": [longitude, latitude]}}
                 }
             )
 
