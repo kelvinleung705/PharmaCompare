@@ -1,6 +1,9 @@
 import json
 from encodings.punycode import selective_find
 from pharmacy_receipt import pharmacy_receipt
+from pharmacy_list import pharmacy_list
+from dotenv import load_dotenv
+
 import pandas as pd
 import boto3
 import os
@@ -67,7 +70,7 @@ if __name__ == "__main__":
     print(receipt.access_drug_type())
     print(receipt.quantity_correction())
     print(receipt.extract_dates())
-    #pharmacy_list_obj = pharmacy_list()
+    pharmacy_list_obj = pharmacy_list()
     pharmacy_list_obj.get_pharmacy_address_list()
     print(receipt.extract_address(pharmacy_list_obj))
     print(receipt.get_pharmacy_ident())

@@ -36,7 +36,7 @@ class new_pharmacy_drug_receipt:
         location = self.prescription_receipt.get_pharmacy_location()
         if location:
             pharmacy_latitude = location['latitude']
-            pharmacy_longitude = location['longtitude']
+            pharmacy_longitude = location['longitude']
 
         fee = self.prescription_receipt.get_fee()
         date = self.prescription_receipt.get_date()

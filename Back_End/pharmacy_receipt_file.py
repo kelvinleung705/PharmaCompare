@@ -7,6 +7,7 @@ import os
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
 from dotenv import load_dotenv
 from pharmacy_list import pharmacy_list
+from add_pharmacy_drug_receipt import new_pharmacy_drug_receipt
 from datetime import datetime
  #extract: from image, access: from canada drug base, get: return value
 
@@ -79,3 +80,4 @@ if __name__ == "__main__":
     print(receipt.get_pharmacy_location())
     print(receipt.get_pharmacy_ident())
     print(receipt.get_pharmacy_name())
+

@@ -29,7 +29,7 @@ class pharmacy_receipt:
         self.drug_brand_name = None
         self.date = None
         self.pharmacy_address = None
-        self.pharmacy_location = None
+        self.pharmacy_location = {}
         self.pharmacy_ident = None
         self.pharmacy_name = None
         self.valid = True
@@ -409,7 +409,7 @@ class pharmacy_receipt:
     def get_date(self) -> datetime:
         return self.date
 
-    def normalize_address(self, address):
+    def normalize_address_location(self, address):
         import os
         load_dotenv()
         API_KEY = os.getenv("Google_Geocoding_API_KEY")
@@ -437,11 +437,13 @@ class pharmacy_receipt:
         if self.valid:
             for line in self.lines:
                 formatted_line = re.sub(r'[^A-Za-z0-9\'\- ]', ' ', line)
-                formatted_address = self.normalize_address(formatted_line)
-                if formatted_address is not None and (self.pharmacy_address == None or len(formatted_address) > len(self.pharmacy_address)):
-                    temp_pharmacy_ident_name = pharmacy_list_obj.check_pharmacy_address_list(formatted_address)
+                formatted_address_location = self.normalize_address_location(formatted_line)
+                if formatted_address_location is not None and (self.pharmacy_address == None or len(formatted_address_location[0]) > len(self.pharmacy_address)):
+                    temp_pharmacy_ident_name = pharmacy_list_obj.check_pharmacy_address_list(formatted_address_location[0])
                     if temp_pharmacy_ident_name:
-                        self.pharmacy_address = formatted_address
+                        self.pharmacy_address = formatted_address_location[0]
+                        self.pharmacy_location["latitude"] = formatted_address_location[1]["latitude"]
+                        self.pharmacy_location["latitude"] = formatted_address_location[1]["longitude"]
                         self.pharmacy_ident = temp_pharmacy_ident_name[0]
                         self.pharmacy_name = temp_pharmacy_ident_name[1]
                         print("address found")
