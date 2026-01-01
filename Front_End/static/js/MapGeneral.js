@@ -12,17 +12,58 @@ initMap();
 let map;
 let infoWindow;
 let activeMarkers = [];
-async function initMap() {
+let lat;
+let lng;
+
+initMap();
+
+
+
+function initMap() {
+    if (navigator.geolocation) {
+        // If it does, ask for the current position.
+        // - If successful, it will call our 'success' function.
+        // - If it fails, it will call our 'error' function.
+        navigator.geolocation.getCurrentPosition(createMapByLocation, handleLocationError);
+    } else {
+        // If the browser doesn't support Geolocation, display an error.
+        alert("Geolocation is not supported by this browser.");
+        handleLocationError()
+    }
+}
+
+
+async function createMapByLocation(position) {
+    const userPosition = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+    };
+    // Now that we have the position, we can build the map.
+    buildMap(userPosition);
+}
+
+// THIS FUNCTION RUNS ON GEOLOCATION FAILURE OR IF NOT SUPPORTED
+function handleLocationError() {
+    console.log("Geolocation failed or is not supported. Using default location.");
+    const defaultPosition = { lat: 43.6584, lng: -79.3883 }; // Toronto
+    // Build the map with the default position.
+    buildMap(defaultPosition);
+}
+
+// This is our main map-building function. It takes a position object as an argument.
+async function buildMap(position) {
     const { Map } = (await google.maps.importLibrary('maps'));
+    const { AdvancedMarkerElement, PinElement  } = (await google.maps.importLibrary('marker'));
+    infoWindow = new google.maps.InfoWindow();
+    //Get location
 
     map = new Map(document.getElementById('map'), {
-        center: { lat: 43.6584, lng: -79.3883 },
-        zoom: 10,
+        center: position,
+        zoom: 12,
         //gestureHandling: "cooperative",
         mapId: 'YajuSenpaiGabaDaddy',
     });
-    infoWindow = new google.maps.InfoWindow();
-    const { AdvancedMarkerElement, PinElement  } = (await google.maps.importLibrary('marker'));
+
     const myPin = new PinElement({
         scale: 1.5,
     });
@@ -66,10 +107,8 @@ async function initMap() {
         });
 
     });
-
-
 }
-initMap();
+
 
 
 function clearMarkers() {
